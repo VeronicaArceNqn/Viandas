@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lugar_entregas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreignId('ciudade_id')
                     ->nullable()
-                    ->constrained('users')
+                    ->after('genero')
+                    ->constrained('ciudades')
                     ->cascadeOnUpdate()
                     ->nullOnDelete();
-            $table->string('calle');
-            $table->integer('nroCalle');
-            $table->string('nombreLugar');
-            $table->timestamps();
         });
     }
 
@@ -30,6 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lugar_entregas');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['ciudade_id']);
+            $table->dropColumn('ciudade_id');
+        });
     }
 };

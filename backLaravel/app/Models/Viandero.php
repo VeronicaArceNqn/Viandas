@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Viandero extends Model
 {
     use HasFactory;
-    protected $fillable = ['descripcion','zonaReparto_id'];
+    protected $fillable = ['user_id', 'descripcion','zonaReparto_id'];
 
     public function zona_Repartos(){
         return $this->belongsTo(ZonaReparto::class, 'id_zona_Reparto');

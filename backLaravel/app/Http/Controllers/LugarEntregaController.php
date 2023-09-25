@@ -30,6 +30,7 @@ class LugarEntregaController extends Controller
     public function store(Request $request)
     {
         $entrega = new LugarEntrega();
+        $entrega->user_id = $request->user_id;
         $entrega->calle = $request->calle;
        $entrega->nroCalle = $request->nroCalle;
        $entrega->nombreLugar = $request->nombreLugar;
@@ -59,6 +60,7 @@ class LugarEntregaController extends Controller
     public function update(Request $request)
     {
         $entrega = LugarEntrega::findOrFail($request->id);
+        $entrega->user_id = $request->user_id;
         $entrega->calle = $request->calle;
         $entrega->nroCalle = $request->nroCalle;
         $entrega->nombreLugar = $request->nombreLugar;

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class LugarEntrega extends Model
 {
     use HasFactory;
-    protected $fillable = ['calle','nroCalle','nombreLugar'];
+    protected $fillable = ['user_id', 'calle','nroCalle','nombreLugar'];
 }

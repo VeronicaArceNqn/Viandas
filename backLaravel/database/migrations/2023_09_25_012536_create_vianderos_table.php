@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('vianderos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                    ->nullable()
+                    ->constrained('users')
+                    ->cascadeOnUpdate()
+                    ->nullOnDelete();
             $table->string('descripcion');
             $table->foreignId('zonaReparto_id')
                     ->nullable()

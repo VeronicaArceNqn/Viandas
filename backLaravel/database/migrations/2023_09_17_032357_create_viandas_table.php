@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('descripcion');
-            $table->integer('idTipovianda');
+            
             $table->string('urlFoto');
             $table->integer('cantidad');
             $table->float('precio');

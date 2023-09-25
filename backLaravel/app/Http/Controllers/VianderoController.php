@@ -30,6 +30,7 @@ class VianderoController extends Controller
     public function store(Request $request)
     {
         $viandero = new Viandero();
+        $viandero->user_id = $request->user_id;
         $viandero->descripcion = $request->descripcion;
        $viandero->zonaReparto_id = $request->zonaReparto_id;
        
