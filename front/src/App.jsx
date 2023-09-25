@@ -1,7 +1,7 @@
-// import "../node_modules/tailwindcss/tailwind.css";
+import "../node_modules/tailwindcss/tailwind.css";
 // import "./myCss.css";
 import "./App.css";
-import Login from "./components/Loggin";
+import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";

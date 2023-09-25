@@ -1,8 +1,10 @@
 import HomeSearchBar from "./HomeSearchBar";
 import Card from "./Card";
+import Card2 from "./Card2";
 import Footer from "./footer";
 import Nav from "./Nav";
 import "../index.css";
+// import "../App.css";
 
 function App() {
   // const [count, setCount] = useState(100);
@@ -10,21 +12,22 @@ function App() {
   return (
     <>
       {/* <Header /> */}
-      {/* <h1 className="text-3xl bg-black">Hola francisco</h1> */}
-      <div className=" flex flex-col  w-full p-1 bg-gray-50 dark:bg-gray-300 text-black">
+      {/* <div className="text-3xl bg-black">Hola francisco</div> */}
         <Nav />
-        <HomeSearchBar />
-        <div className="mt-10 flex flex-wrap justify-evenly duration-300 gap-4 lg:gap-8 w-full lg:px-5">
-          <div className="hidden xl:block">{/* <Card /> */}</div>
-          <div className="hidden xl:block"></div>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+      <div className="flex  flex-col justify-center w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
+        <HomeSearchBar  />
+        <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5">
+          {/* <div className="hidden xl:block"><Card /></div> */}
+          {/* <div className="hidden xl:block"></div> */}
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2 />
+          <Card2/>
         </div>
       </div>
       <Footer />

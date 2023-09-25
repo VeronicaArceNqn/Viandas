@@ -1,13 +1,14 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
-
+import'../index.css'
+import'../App.css'
 
 export default function Nav() {
   return (
    <nav>
-     <div className="w-full  rounded-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+     <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
             <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
-             <NavLink to='/'> Viandas</NavLink>
+             <NavLink to='/'> Viandas <span className='text-yellow-400'>Fai</span></NavLink>
             </h1>
             <form className="md:col-span-4 flex items-center justify-center gap-2">
               <input
@@ -36,31 +37,31 @@ export default function Nav() {
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
               </a>
-                <NavLink to='/'> Inicio</NavLink>
-              <a
+                <NavLink to='/'> Inicio </NavLink>
+              {/* <a
                 href="#"
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-900 transition-colors"
-              >
-                Nostros
-              </a>
-              <a
+              > */}
+                <NavLink to='/'> Nostros</NavLink>
+              {/* </a> */}
+              {/* <a
                 href="#"
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
-              >
+              > */}
                 Servicios
-              </a>
-              <a
+              {/* </a> */}
+              {/* <a
                 href="#"
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
-              </a>
+              </a> */}
                 <NavLink to='/Login'> Login</NavLink>
-              <a
+              {/* <a
                 href="#"
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
                
-              </a>
+              </a> */}
               <NavLink to='/register'> registro</NavLink>
             </nav>
           </div>

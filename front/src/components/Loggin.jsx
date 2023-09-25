@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../App.css";
 import "../index.css";
 import Nav from "./Nav";
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect, useNavigate } from "react-router-dom";
+import axios from 'axios'
+
 
 export default function Loggin() {
+
+  const [email,setEmail] = useState('')
+  const [pass,setPass] = useState('')
+  const [msj,setMsj] = useState('')
+  const navigate = useNavigate();
+
+
+  const login = (e)=>{
+    e.preventDefault();
+    // console.log(e)
+
+  }  
+  const data = {
+    email: email,
+    password:pass
+  }
+  const fetchData = async (e)=>{
+    e.preventDefault();
+    try{     
+      
+      const result = await axios.post("http://localhost:8000/api/login",data);
+      
+      console.log(result.data)
+      setMsj(result.data.message)
+     navigate("/")
+
+    }catch(err){
+      console.log("error de algaaaaaao")
+    }
+  }
+
+  // useEffect(()=>{
+  //   fetchData()
+  // })
+
+
   return (
     <>
       {/* <!-- HTML --> */}
@@ -27,6 +65,9 @@ export default function Loggin() {
                 Correo electrónico *
               </label>
               <input
+              onChange={(e)=>setEmail(e.target.value)}
+              
+                value={email}
                 type="email"
                 id="email"
                 autoComplete="off"
@@ -39,6 +80,8 @@ export default function Loggin() {
                 Contraseña *
               </label>
               <input
+                onChange={(e)=>setPass(e.target.value)}
+                value={pass}
                 type="password"
                 id="password"
                 autoComplete="off"
@@ -56,22 +99,24 @@ export default function Loggin() {
                 >
                 </a>
               </span>
-              <a
+              {/* <a
                 href="#"
                 className="text-gray-400 hover:text-gray-200 transition-colors"
               >
                 ¿Olvidaste tu contraseña?
-              </a>
+              </a> */}
             </div>
             <div className="mt-4 order-1 md:order-2">
               <button
                 type="submit"
                 className="w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors"
+                onClick={e=>fetchData(e)}
               >
                 Iniciar sesión
               </button>
             </div>
           </form>
+              {msj}
         </div>
         {/* <!-- Imagen de fondo --> */}
         <div className="bg hidden lg:block"></div>

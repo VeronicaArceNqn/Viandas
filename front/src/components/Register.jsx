@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+// import Select from  "react-select"
 // import "../myCss.css";
-import Nav from "./Nav";
-import { NavLink } from "react-router-dom";
+import Nav from "../components/Nav";
+import { NavLink, Link } from "react-router-dom";
+import axios from "axios";
+
 export default function Register() {
+  const [ciudades, setCiudades] = useState([]);
+
+  // console.log(ciudades)
+  useEffect(() => {
+    axios
+      .get("https://apis.datos.gob.ar/georef/api/provincias")
+      // .then((response)=>response.json())
+      // .then((response)=>console.log(response))
+      .then((response) => setCiudades(response.data.provincias));
+  }, []);
+  // console.log(ciudades)
   return (
     <>
       {/* <!-- HTML --> */}
-      <Nav />
-      <div className="min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-2">
-        <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto">
+      <div className=" container mx-auto min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-1">
+        <Nav />
+        <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-2 text-center">
           {/* <!-- Titulo con descripción --> */}
           <div className="flex flex-col gap-1 w-full">
             <h1 className="text-4xl font-medium">Crear cuenta</h1>
             <p className="text-gray-400">Registrate en la plataforma</p>
           </div>
+
           {/* <!-- Boton para ingresar con Google --> */}
           {/* <div className="w-full">
               <button
@@ -31,8 +46,19 @@ export default function Register() {
           {/* <!-- Form --> */}
           <form className="flex flex-col gap-4">
             <div>
+              <label htmlFor="apellido" className="text-gray-200">
+                Apellido *
+              </label>
+              <input
+                type="text"
+                id="apellido"
+                autoComplete="off"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                placeholder="Ingresa tu apellido"
+                required
+              />
               <label htmlFor="name" className="text-gray-200">
-                Nombre completo *
+                Nombre *
               </label>
               <input
                 type="text"
@@ -40,6 +66,7 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu nombre completo"
+                required
               />
             </div>
             <div>
@@ -55,6 +82,36 @@ export default function Register() {
               />
             </div>
             <div>
+              <label htmlFor="telefono" className="text-gray-200">
+                Telefono*
+              </label>
+              <input
+                type="number"
+                id="telefono"
+                autoComplete="off"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                placeholder="Ingresa un nro de contacto"
+              />
+            </div>
+            <div>
+              Ciudad *
+              <select
+                defaultValue={0}
+                className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
+                label="selecione provincia"
+                name="provincias"
+              >
+                <option defaultValue={"elegir algo"}>
+                  Selecione una provincia
+                </option>
+                {ciudades.map((ciudad) => (
+                  <option key={ciudad.id} value={ciudad.id}>
+                    {ciudad.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div>
               <label htmlFor="password" className="text-gray-200">
                 Contraseña *
               </label>
@@ -66,14 +123,29 @@ export default function Register() {
                 placeholder="Ingresa tu contraseña"
               />
             </div>
+            <div>
+              <label htmlFor="password2" className="text-gray-200">
+                Repetir Contraseña *
+              </label>
+              <input
+                type="password"
+                id="password2"
+                autoComplete="off"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 order-2 md:order-1">
               <span className="text-gray-400">
-                <a
-                  href="#"
-                  className="text-indigo-400 hover:text-indigo-500 transition-colors"
+                ¿Ya tienes cuenta?{" "}
+                <Link
+                  to="/login"
+                  className={
+                    "text-indigo-400 hover:text-indigo-500 transition-colors"
+                  }
                 >
-                </a>
-                  <NavLink to="/login"> ¿Ya tienes cuenta?</NavLink>{" "}
+                  ingresa
+                </Link>
               </span>
               <a
                 href="#"
