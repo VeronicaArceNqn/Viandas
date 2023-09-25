@@ -14,7 +14,11 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
+            'nombre' => 'required|string|max:50',
+            'apellido' => 'required|string|max:50',
+            'fechaNac' => 'required|date',
+            'telefono'=> 'required',
+            'genero' =>'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -22,7 +26,11 @@ class AuthController extends Controller
             return response()->json($validator->errors());
         }
         $user = User::create([
-            'name' => $request->name,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'fechaNac' => $request->fechaNac,
+            'telefono' => $request->telefono,
+            'genero' => $request->genero,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
