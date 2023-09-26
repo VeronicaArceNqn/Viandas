@@ -58,14 +58,21 @@ class VianderoController extends Controller
      */
     public function update(Request $request, Viandero $viandero)
     {
-        //
+        $viandero = Viandero::findOrFail($request->id);
+        $viandero->user_id = $request->user_id;
+        $viandero->descripcion = $request->descripcion;
+       $viandero->zonaReparto_id = $request->zonaReparto_id;
+       
+       $viandero->save();
+       return $viandero;
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Viandero $viandero)
+    public function destroy(Request $request)
     {
-        //
+        $viandero = Viandero::destroy($request->id);
+        return $viandero;
     }
 }
