@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Nav from "../components/Nav";
 // import "../myCss.css";
 import "../index.css";
 import { NavLink, useNavigate ,redirect} from "react-router-dom";
 import axios from 'axios'
+import { GlobalContext } from "../context/GlobalContext";
+
 
 export default function Loggin() {
   const id = 4;
@@ -12,6 +14,7 @@ export default function Loggin() {
   const [pass, setPass] = useState("");
   const [msj, setMsj] = useState("");
   const navigate = useNavigate();
+  const {setUser} = useContext(GlobalContext)
 
   const login = (e) => {
     e.preventDefault();
@@ -26,8 +29,9 @@ export default function Loggin() {
     try {
       const result = await axios.post("http://localhost:8000/api/login", data);
 
-      console.log(result.data);
+      // console.log(result.data);
       setMsj(result.data.message);
+      setUser(result.data.user)
       navigate("/");
     } catch (err) {
       console.log("error de algaaaaaao");

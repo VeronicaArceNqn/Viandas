@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useState,useContext } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import Rating from "./Rating";
 // import ButtonCard from "./ButtonCard";
 import img from '../images/vinda1.png'
-
+import { GlobalContext } from "../context/GlobalContext";
 const Card2 = (props) => {
-  return (
-    
-    <>
+	const {user} = useContext(GlobalContext)
+	console.log(user)
+	return (
+		
+		<>
     {/* <!-- component --> */}
 {/* <!-- component --> */}
 {/* <!-- This is an example component --> */}
 <div className="max-w-2xl mx-auto w-60">
 
 
-	<div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-800 dark:border-gray-700">
+	<div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
 		<a href="#">
 			<img className="rounded-t-lg p-4  " src="viandaNapo.png" alt="product image"/>
         </a>
 			<div className="px-5 pb-5">
 				<a href="#">
-					<h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-white">Milanesa napolitana con pure</h3>
+					<h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">Milanesa napolitana con pure</h3>
 				</a>
 				<div className="flex items-center mt-2.5 mb-5">
 					<svg className="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
@@ -57,9 +59,11 @@ const Card2 = (props) => {
 					<span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">5.0</span>
 				</div>
 				<div className="flex items-center justify-between">
-					<span className="text-3xl font-bold text-gray-900 dark:text-white">$1599</span>
+					<span className="text-3xl font-bold text-gray-900 dark:text-black">$1599</span>
+					{user?
 					<a href="#"
 						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Agregar</a>
+						:""}
 				</div>
 			</div>
 	</div>

@@ -1,11 +1,18 @@
-import React from 'react'
+import React,{useContext, useEffect} from 'react'
 import {NavLink} from 'react-router-dom';
 import'../index.css'
 import'../App.css'
+import { GlobalContext } from '../context/GlobalContext';
 
 export default function Nav() {
+  const {user} = useContext(GlobalContext)
+  useEffect(()=>{
+    
+    console.log(user)
+  },[user])
   return (
    <nav>
+    
      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
             <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
              <NavLink to='/'> Viandas <span className='text-yellow-400'>Fai</span></NavLink>
@@ -16,6 +23,7 @@ export default function Nav() {
                 className="w-full bg-gray-100 outline-none p-2 rounded-lg"
                 placeholder="Buscar"
               />
+              
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-gray-600 cursor-pointer"
@@ -55,7 +63,8 @@ export default function Nav() {
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
               </a> */}
-                <NavLink to='/Login'> Login</NavLink>
+              {user?user.nombre:
+                <NavLink to='/Login'> Login</NavLink>}
               {/* <a
                 href="#"
                 className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"

@@ -215,8 +215,8 @@ const Footer = (props) => {
   <div className="flex flex-col xl:flex-row gap-4 items-center justify-between">
     <p className="text-gray-800 text-center md:text-left">
       &copy; 2022
-      <span className="text-gray-900 font-bold">JT Devs.</span> Todos
-      los derechos reservados.
+      <span className="text-gray-900 font-bold"></span> Todos
+      los derechos reservados.La patria es el otro
     </p>
     <div className="flex flex-col md:flex-row items-center gap-2">
       <a

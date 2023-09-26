@@ -1,7 +1,7 @@
 import HomeSearchBar from "./HomeSearchBar";
 import Card from "./Card";
 import Card2 from "./Card2";
-import Footer from "./footer";
+import Footer from "./Footer";
 import Nav from "./Nav";
 import "../index.css";
 // import "../App.css";

@@ -1,22 +1,125 @@
 import React, { useEffect, useState } from "react";
-// import Select from  "react-select"
+import Select from "react-select";
 // import "../myCss.css";
 import Nav from "../components/Nav";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
+import { RegisterContextProvider } from "../context/RegisterContext";
+// import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import Footer from "./Footer";
 
 export default function Register() {
+  //   const [selectedDate, setSelectedDate] = useState(null);
+  //   const handleDateChange = (date) => {
+  //     setSelectedDate(date);
+  //   };
   const [ciudades, setCiudades] = useState([]);
+  const [birthdate, setBirthdate] = useState("");
+  const [name, setName] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [genero, setGenero] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [passRepit, setPassRepit] = useState("");
+
+  const handleBirthdateChange = (e) => {
+    setBirthdate(e.target.value);
+  };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  const handleApellido = (e) => {
+    setApellido(e.target.value);
+  };
+  const handleTelefono = (e) => {
+    setTelefono(e.target.value);
+    // console.log(telefono);
+  };
+  const handleGenero = (e) => {
+    setGenero(e.target.value);
+    // console.log(name)
+  };
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    // console.log(name)
+  };
+  const handlePass = (e) => {
+    setPass(e.target.value);
+    // console.log(name)
+  };
+  const handlePassRepit = (e) => {
+      setPassRepit(e.target.value);
+      // console.log(name)
+    };
+    
 
   // console.log(ciudades)
   useEffect(() => {
     axios
       .get("https://apis.datos.gob.ar/georef/api/provincias")
       // .then((response)=>response.json())
-      // .then((response)=>console.log(response))
+      //   .then((response)=>console.log(response))
       .then((response) => setCiudades(response.data.provincias));
+    //   .then(response=>console.log(JSON.stringify(response)))
+    //   const option2 = ciudades.json()
   }, []);
-  // console.log(ciudades)
+  const cleanForm = ()=>{
+    setApellido('')
+    setName('')
+    setBirthdate('')
+    setTelefono('')
+    setGenero('')
+    setPass('')
+    
+  }
+
+  
+  const data = {
+    nombre: name,
+    apellido: apellido,
+    fechaNac: birthdate,
+    telefono: telefono,
+    genero:genero,
+    ciudade_id:"1",
+    email:email,
+    password: pass
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Aquí puedes acceder a la fecha de nacimiento en 'birthdate' y realizar cualquier acción necesaria
+    console.log("Fecha de nacimiento seleccionada:", birthdate);
+    try {
+      // Realiza la solicitud POST utilizando Axios
+      const response = await axios.post(
+        "http://localHost:8000/api/register",
+        data
+      );
+      // Maneja la respuesta del servidor aquí
+      console.log("Respuesta del servidor:", response.data);
+      cleanForm()
+      navigate("/login");
+    } catch (error) {
+      // Maneja los errores de la solicitud aquí
+      console.error("Error al realizar la solicitud:", error);
+    }
+  };
+
+  /**
+   * {
+        "nombre": "Pepe",
+        "apellido": "Perez",
+        "fechaNac": "2000-10-01",
+        "telefono": "299-1111111",
+        "genero": "masculino",
+        "ciudade_id": 1,
+        "email": "pperez@gmail.com",
+        "password": "12345678"
+    }
+   */
+
   return (
     <>
       {/* <!-- HTML --> */}
@@ -45,6 +148,35 @@ export default function Register() {
           </div> */}
           {/* <!-- Form --> */}
           <form className="flex flex-col gap-4">
+            {/* <Select
+         theme={(theme) => ({
+            ...theme,
+            borderRadius: 0,
+            colors: {
+              ...theme.colors,
+              primary25: 'hotpink',
+              primary: 'black',
+            },
+          })} */}
+            {/* className=" bg-slate-500 w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400" 
+          options ={options} /> */}
+            <div>
+              <select
+                defaultValue={genero}
+                className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
+                label="Genero"
+                name="Genero"
+                
+                onChange={handleGenero}
+                required
+                
+              >
+                <option defaultValue={"elegir algo"}>Selecione Genero</option>
+                <option value="m">Masculino</option>
+                <option value="f">Femenino</option>
+                <option value="o">Otros</option>
+              </select>
+            </div>
             <div>
               <label htmlFor="apellido" className="text-gray-200">
                 Apellido *
@@ -55,6 +187,8 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu apellido"
+                value={apellido}
+                onChange={handleApellido}
                 required
               />
               <label htmlFor="name" className="text-gray-200">
@@ -66,6 +200,8 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu nombre completo"
+                value={name}
+                onChange={handleName}
                 required
               />
             </div>
@@ -79,6 +215,9 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu correo electrónico"
+                value={email}
+                onChange={handleEmail}
+                required
               />
             </div>
             <div>
@@ -91,6 +230,22 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa un nro de contacto"
+                value={telefono}
+                onChange={handleTelefono}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="telefono" className="text-gray-200">
+                Fecha de nacimineto*
+              </label>
+              <input
+                className="w-full text-center py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                type="date"
+                id="birthdate"
+                name="birthdate"
+                value={birthdate}
+                onChange={handleBirthdateChange}
               />
             </div>
             <div>
@@ -100,6 +255,7 @@ export default function Register() {
                 className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
                 label="selecione provincia"
                 name="provincias"
+                required
               >
                 <option defaultValue={"elegir algo"}>
                   Selecione una provincia
@@ -121,6 +277,9 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu contraseña"
+                value={pass}
+                onChange={handlePass}
+                required
               />
             </div>
             <div>
@@ -133,6 +292,9 @@ export default function Register() {
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu contraseña"
+                value={passRepit}
+                onChange={handlePassRepit}
+                required
               />
             </div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 order-2 md:order-1">
@@ -158,6 +320,7 @@ export default function Register() {
               <button
                 type="submit"
                 className="w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors"
+                onClick={handleSubmit}
               >
                 Crear cuenta
               </button>
@@ -166,6 +329,7 @@ export default function Register() {
         </div>
         {/* <!-- Imagen de fondo --> */}
         <div className="bg hidden lg:block"></div>
+        <Footer />
       </div>
     </>
   );
