@@ -47,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
+        //Relación uno a uno
+    public function viandero(){
+        return $this->hasOne('App\Models\Viandero');
+    }
 }

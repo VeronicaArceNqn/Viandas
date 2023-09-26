@@ -9,4 +9,9 @@ class ZonaReparto extends Model
 {
     use HasFactory;
     protected $fillable = ['nombreZona', 'descripZona'];
+
+    //Relación uno a muchos
+    public function vianderos(){
+        return $this->hasMany('App\Models\Viandero');
+    }
 }

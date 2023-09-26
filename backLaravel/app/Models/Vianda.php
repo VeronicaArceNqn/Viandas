@@ -19,5 +19,10 @@ class Vianda extends Model
         'publicado',
         'viandero_id',
     ];
+
+    //Relación uno a muchos (inversa)
+    public function viandero(){
+        return $this->belongsTo('App\Models\Viandero');
+    }
     
 }
