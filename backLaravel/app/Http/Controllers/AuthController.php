@@ -19,6 +19,7 @@ class AuthController extends Controller
             'fechaNac' => 'required|date',
             'telefono'=> 'required',
             'genero' =>'required',
+            'ciudade_id' => 'required',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -31,6 +32,7 @@ class AuthController extends Controller
             'fechaNac' => $request->fechaNac,
             'telefono' => $request->telefono,
             'genero' => $request->genero,
+            'ciudade_id' => $request->ciudade_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

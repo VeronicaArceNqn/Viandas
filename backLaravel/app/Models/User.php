@@ -23,6 +23,7 @@ class User extends Authenticatable
         'fechaNac',
         'telefono',
         'genero',
+        'ciudade_id',
         'email',
         'password',
     ];
