@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('viandas', [ViandaController::class, 'index']);
+Route::post('/viandas', 'App\Http\Controllers\ViandaController@store');
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
 Route::post('/tipoVianda', 'App\Http\Controllers\TipoViandaController@store');
