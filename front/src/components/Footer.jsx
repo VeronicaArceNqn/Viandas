@@ -214,9 +214,9 @@ const Footer = (props) => {
   <hr className="my-4" />
   <div className="flex flex-col xl:flex-row gap-4 items-center justify-between">
     <p className="text-gray-800 text-center md:text-left">
-      &copy; 2022
+      &copy; 
       <span className="text-gray-900 font-bold"></span> Todos
-      los derechos reservados.La patria es el otro
+      los derechos reservados. La patria es el otro
     </p>
     <div className="flex flex-col md:flex-row items-center gap-2">
       <a

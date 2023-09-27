@@ -10,8 +10,10 @@ Accept: application/json
 GET https://apis.datos.gob.ar/georef/api/provincias HTTP/1.1
 Accept: application/json
 
+###
 
-
+post http://localhost:8000/api/logout HTTP/1.1
+Accept: application/json
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useContext, useEffect } from "react";
 import Nav from "../components/Nav";
 // import "../myCss.css";
 import "../index.css";
@@ -9,17 +9,21 @@ import { GlobalContext } from "../context/GlobalContext";
 
 export default function Loggin() {
   const id = 4;
-
+  
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [msj, setMsj] = useState("");
   const navigate = useNavigate();
   const {setUser} = useContext(GlobalContext)
+  const {getProduct} = useContext(GlobalContext)
 
   const login = (e) => {
     e.preventDefault();
     // console.log(e)
   };
+  
+
+
   const data = {
     email: email,
     password: pass,
@@ -29,12 +33,12 @@ export default function Loggin() {
     try {
       const result = await axios.post("http://localhost:8000/api/login", data);
 
-      // console.log(result.data);
+      console.log(result.data);
       setMsj(result.data.message);
-      setUser(result.data.user)
+      setUser(result.data)
       navigate("/");
     } catch (err) {
-      console.log("error de algaaaaaao");
+      console.log("Error en request:".err);
     }
   };
 
