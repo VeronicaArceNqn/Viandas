@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { GlobalContextProvider } from "./context/GlobalContext";
+import Error404 from "./components/Error404";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />        
         <Route path="/register" element={<Register />} />
+        <Route path="/nosotros" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
     </GlobalContextProvider>

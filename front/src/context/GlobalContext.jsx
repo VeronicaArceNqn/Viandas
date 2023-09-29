@@ -7,11 +7,11 @@ function GlobalContextProvider({ children }) {
   const SERVER = "http://localhost:8000/api/"
   //
   const [user, setUser] = useState(undefined); //estados globales
-  const logout = (e) => {
-    e.preventDefault();
-    setUser(undefined);
+  const logout = async () => {
+   
     console.log(user.accessToken);
-    axios("http://localhost:8000/api/logout", {
+    setUser(undefined);
+    await axios("http://localhost:8000/api/logout", {
         headers: {
           "content-type": "application/json",
           Authorization: "Bearer " + user.accessToken,

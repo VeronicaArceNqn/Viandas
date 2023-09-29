@@ -1,11 +1,23 @@
 import React, { useContext, useEffect, Fragment } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import "../index.css";
 import "../App.css";
 import { GlobalContext } from "../context/GlobalContext";
-import { Menu, Transition } from "@headlessui/react";
+// import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { BsFillEmojiSmileFill } from "react-icons/bs";
+import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import {
+  RiNotification3Line,
+  RiArrowDownSLine,
+  RiSettings3Line,
+  RiLogoutCircleRLine,
+  RiThumbUpLine,
+  RiShoppingCart2Fill,
+  RiChat3Line,
+} from "react-icons/ri";
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 // import axios from "axios";
 
 function classNames(...classes) {
@@ -13,11 +25,10 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
-  const { user, setUser,logout } = useContext(GlobalContext);
+  const { user, setUser, logout } = useContext(GlobalContext);
   useEffect(() => {
     console.log(user);
   }, []);
-  
 
   return (
     <nav>
@@ -25,7 +36,7 @@ export default function Nav() {
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           <NavLink to="/">
             {" "}
-            Viandas <span className="text-yellow-400">Fai</span>
+            Viandas <span className="text-yellow-400"><RiShoppingCart2Fill  className="text-3xl"/></span>
           </NavLink>
         </h1>
         {/* <form className="md:col-span-4 flex items-center justify-center gap-2">
@@ -50,117 +61,81 @@ export default function Nav() {
             />
           </svg>
         </form> */}
-        <nav className="md:col-span-6 flex items-center gap-4 justify-end">
+        <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <a
             href="#"
             className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
           ></a>
           <NavLink to="/"> Inicio </NavLink>
-          
-          <NavLink to="/"> Nostros</NavLink>
-         
-          Servicios
-          
-          {user ? (
-            <Menu as="div" className="relative inline-block text-left">
-              <div>
-                <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                  <BsFillEmojiSmileFill />
-                  <ChevronDownIcon
-                    className="-mr-1 h-5 w-5 text-gray-400"
-                    aria-hidden="true"
-                  />
-                </Menu.Button>
-              </div>
+          <NavLink to="/nosotros"> Nostros</NavLink>
+          <NavLink to="/"> Servicios</NavLink>
+          {!user ? <NavLink to="/register"> registro</NavLink> : ""}
 
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <div className="py-1">
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          {user.user.nombre}
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          Support
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <a
-                          href="#"
-                          className={classNames(
-                            active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
-                            "block px-4 py-2 text-sm"
-                          )}
-                        >
-                          License
-                        </a>
-                      )}
-                    </Menu.Item>
-                    <form>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <button
-                            onClick={logout}
-                            type="submit"
-                            className={classNames(
-                              active
-                                ? "bg-gray-100 text-gray-900"
-                                : "text-gray-700",
-                              "block w-full px-4 py-2 text-left text-sm"
-                            )}
-                          >
-                            Sign out
-                          </button>
-                        )}
-                      </Menu.Item>
-                    </form>
+          {user ? (
+            <Menu
+              menuButton={
+                <MenuButton className="flex items-center gap-x-2 hover:bg-secondary-100 p-2 rounded-lg transition-colors">
+                  <img
+                    src="https://img.freepik.com/foto-gratis/feliz-optimista-guapo-gerente-ventas-latina-apuntando-lado-mirando-camara_1262-12679.jpg"
+                    className="w-6 h-6 object-cover rounded-full"
+                  />
+                  <span>
+                    {" "}
+                    {user.user.nombre} {user.user.apellido}
+                  </span>
+                  <RiArrowDownSLine />
+                </MenuButton>
+              }
+              align="end"
+              arrow
+              // arrowClassName="bg-secondary-100"
+              transition
+              menuClassName="bg-secondary-100 p-4"
+            >
+              <MenuItem className="p-0 hover:bg-transparent">
+                <Link
+                  to="/perfil"
+                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                >
+                  <img
+                    src="https://img.freepik.com/foto-gratis/feliz-optimista-guapo-gerente-ventas-latina-apuntando-lado-mirando-camara_1262-12679.jpg"
+                    className="w-8 h-8 object-cover rounded-full"
+                  />
+                  <div className="flex flex-col text-sm">
+                    <span className="text-sm"> {user.user.nombre}</span>
+                    <span className="text-xs text-gray-500">
+                      {user.user.email}
+                    </span>
                   </div>
-                </Menu.Items>
-              </Transition>
+                </Link>
+              </MenuItem>
+              <hr className="my-4 border-gray-500" />
+              <MenuItem className="p-0 hover:bg-transparent">
+                <Link
+                  to="/"
+                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                >
+                  <RiSettings3Line /> Configuración
+                </Link>
+              </MenuItem>
+              <MenuItem className="p-0 hover:bg-transparent">
+                <Link
+                  to="/"
+                  onClick={logout}
+                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                >
+                  <RiLogoutCircleRLine /> Cerrar sesión
+                </Link>
+              </MenuItem>
             </Menu>
           ) : (
             <NavLink to="/Login"> Login</NavLink>
-          )}
-          {/* <a
-                href="#"
-                className="xl:py-1 xl:px-2 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-               
-              </a> */}
-          <NavLink to="/register"> registro</NavLink>
+            )}
+        
+
+     
+      
+        
         </nav>
       </div>
     </nav>
