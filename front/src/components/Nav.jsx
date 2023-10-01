@@ -27,7 +27,7 @@ function classNames(...classes) {
 export default function Nav() {
   const { user, setUser, logout } = useContext(GlobalContext);
   useEffect(() => {
-    console.log(user);
+    console.log(`clg useEf nav :user: ${user}`);
   }, []);
 
   return (

@@ -35,6 +35,7 @@ export default function Loggin() {
   // };
   const fetchData = async (data) => {
     // e.preventDefault();
+    console.log(data);
     try {
       const result = await axios.post(`${SERVER}login`, data);
       console.log(result.data);
@@ -147,15 +148,15 @@ export default function Loggin() {
                 Contraseña *
               </label>
               <input
-                {...register("password",{
-                  required:{
-                    value:true,
-                    message:"Campo requerido"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Campo requerido",
                   },
-                  minLength:{
+                  minLength: {
                     value: 8,
-                    message: "Debe tener 8 caracteres !!"
-                  }
+                    message: "Debe tener 8 caracteres !!",
+                  },
                 })}
                 // onChange={(e) => setPass(e.target.value)}
                 // value={pass}

@@ -2,75 +2,55 @@ import React, { useEffect, useState } from "react";
 
 // import "../myCss.css";
 import Nav from "../components/Nav";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "./Footer";
 import { useForm } from "react-hook-form";
 
 export default function Register() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
 
-  const onSubmit = handleSubmit((data)=>{
-    console.log(`holis ${data}`)
-  })
-
-  const regUser = ()=>{
-    
-  }
-
-  const getCiudades = async ()=>{
-    axios.get
-  }
-
-  //   const [selectedDate, setSelectedDate] = useState(null);
-  //   const handleDateChange = (date) => {
-  //     setSelectedDate(date);
-  //   };
   const [ciudades, setCiudades] = useState([]);
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    saveRegister(data);
+  });
 
-  // console.log(ciudades)
-  useEffect(() => {
-    axios
+  const getCiudades = async () => {
+    await axios
       .get("https://apis.datos.gob.ar/georef/api/provincias")
-      // .then((response)=>response.json())
-      //   .then((response)=>console.log(response))
+
       .then((response) => setCiudades(response.data.provincias));
-    //   .then(response=>console.log(JSON.stringify(response)))
-    //   const option2 = ciudades.json()
+  };
+
+  const getLocalidades = async () => {
+    await axios
+      .get(
+        `https://apis.datos.gob.ar/georef/api/municipios?provincia=${watch(
+          "ciudad_id"
+        )}&campos=id,nombre&max=100`
+      )
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getCiudades();
   }, []);
 
-  // const data = {
-  //   nombre: name,
-  //   apellido: apellido,
-  //   fechaNac: birthdate,
-  //   telefono: telefono,
-  //   genero:genero,
-  //   ciudade_id:"1",
-  //   email:email,
-  //   password: pass
-  // };
-
-  const handleSubmitt = async (e) => {
-    e.preventDefault();
-    // Aquí puedes acceder a la fecha de nacimiento en 'birthdate' y realizar cualquier acción necesaria
-    console.log("Fecha de nacimiento seleccionada:", birthdate);
+  const saveRegister = (data) => {
     try {
-      // Realiza la solicitud POST utilizando Axios
-      const response = await axios.post(
-        "http://localHost:8000/api/register",
-        data
-      );
-      // Maneja la respuesta del servidor aquí
+      const response = axios.post("http://localHost:8000/api/register", data);
+
       console.log("Respuesta del servidor:", response.data);
-      cleanForm();
-      navigate("/login");
+      navigate('/login')
     } catch (error) {
-      // Maneja los errores de la solicitud aquí
       console.error("Error al realizar la solicitud:", error);
     }
   };
@@ -83,109 +63,319 @@ export default function Register() {
         <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-2 text-center">
           {/* <!-- Titulo con descripción --> */}
           <div className="flex flex-col gap-1 w-full">
-            <h1 className="text-4xl font-medium">Crear cuenta</h1>
+            <h1 className="text-4xl font-medium ">Crear cuenta</h1>
             <p className="text-gray-400">Registrate en la plataforma</p>
           </div>
 
           {/* <!-- Form --> */}
           <form className="flex flex-col gap-4" onSubmit={onSubmit}>
             <div>
+              {/* Input Genero */}
+
+              <label htmlFor="genero" className="text-gray-200">
+                Genero *
+              </label>
               <select
-                defaultValue="genero"
+                {...register("genero", {
+                  required: {
+                    value: true,
+                    message: "Este campo es obligatorio!",
+                  },
+                })}
                 className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
-                label="Genero"
-                name="Genero"
+                label="genero"
               >
-                <option defaultValue={"elegir algo"}>Selecione Genero</option>
+                <option value={""}>Selecione Genero</option>
                 <option value="m">Masculino</option>
                 <option value="f">Femenino</option>
                 <option value="o">Otros</option>
               </select>
+              {errors.genero && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-200">
+                      {errors.genero.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <label htmlFor="apellido" className="text-gray-200">
                 Apellido *
               </label>
               <input
+                {...register("apellido", {
+                  required: {
+                    value: true,
+                    message: "Campo requerido!!",
+                  },
+                  minLength: {
+                    value: 2,
+                    message: "Minimos 2 caracteres!",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Solo texto !!",
+                  },
+                  //^[a-zA-Z]+$
+                })}
                 type="text"
-                id="apellido"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu apellido"
               />
+              {errors.apellido && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.apellido.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
               <label htmlFor="name" className="text-gray-200">
                 Nombre *
               </label>
               <input
+                {...register("nombre", {
+                  required: {
+                    value: true,
+                    message: "Este campo es requerido.!",
+                  },
+                  minLength: {
+                    value: 2,
+                    message: "Minimo 2 caracteres!",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "A superado el maximo de 10 caracteres!",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Solo texto !!",
+                  },
+                })}
                 type="text"
-                id="name"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu nombre completo"
               />
+              {errors.nombre && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.nombre.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <label htmlFor="email" className="text-gray-200">
                 Correo electrónico *
               </label>
               <input
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Este campo es requerido.",
+                  },
+                  minLength: {
+                    value: 2,
+                    message: "menimo 2 caracteres",
+                  },
+                  maxLength: {
+                    value: 40,
+                    message: "A superado el maximo de caracteres",
+                  },
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "El correo no cumple el formato",
+                  },
+                })}
                 type="email"
-                id="email"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu correo electrónico"
               />
+              {errors.email && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.email.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <label htmlFor="telefono" className="text-gray-200">
-                Telefono*
+                Telefono*( sin 0 y sin 15 )
               </label>
               <input
-                type="number"
-                id="telefono"
+                {...register("telefono", {
+                  required: {
+                    value: true,
+                    message: "Este campo es requerido!",
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Debe tener minimo 8 caracteres",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "A superado el maximo de caracteres",
+                  },
+                  pattern: {
+                    value: /^\d{10}$/,
+                    // value: /^\d{3}\d{8}$/,
+                    message: "Faltan digitos...",
+                  },
+                })}
+                type="texto"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa un nro de contacto"
               />
+              {errors.telefono && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.telefono.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
-              <label htmlFor="telefono" className="text-gray-200">
-                Fecha de nacimineto*
+              <label htmlFor="fechaNac" className="text-gray-200">
+                Fecha de nacimiento*
               </label>
               <input
-                className="w-full text-center py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 type="date"
-                name="birthdate"
+                {...register("fechaNac", {
+                  required: {
+                    value: true,
+                    message: "Campo requerido",
+                  },
+                  validate: (value) => {
+                    const fIngr = new Date(value);
+                    const fActual = new Date();
+                    // console.log(fActual);
+                    let edad = fActual.getFullYear() - fIngr.getFullYear();
+
+                    if (
+                      fActual.getMonth() == fIngr.getMonth() &&
+                      fIngr.getDay() > fActual.getDay()
+                    ) {
+                      edad = edad - 1;
+                    }
+                    if (fIngr.getMonth() > fActual.getMonth()) {
+                      edad = edad - 1;
+                    }
+                    console.log(edad);
+
+                    return edad >= 18 || "Debe ser mayor de 18 anos";
+                  },
+                })}
+                className="w-full text-center py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                name="fechaNac"
               />
+              {errors.fechaNac && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.fechaNac.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
-              Ciudad *
+              <label htmlFor="ciudad_id" className="text-gray-200">
+                Ciudad *
+              </label>
               <select
-                defaultValue={0}
+                {...register("ciudade_id", {
+                  required: {
+                    value: true,
+                    message: "Seleccione una provincia",
+                  },
+                })}
                 className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
-                label="selecione provincia"
-                name="provincias"
+                placeholder="Eliga una provincia"
               >
-                <option defaultValue={"elegir algo"}>
-                  Selecione una provincia
-                </option>
+                <option value={""}>Selecione una provincia</option>
                 {ciudades.map((ciudad) => (
                   <option key={ciudad.id} value={ciudad.id}>
                     {ciudad.nombre}
                   </option>
                 ))}
               </select>
+              {errors.ciudade_id && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.ciudade_id.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <label htmlFor="password" className="text-gray-200">
                 Contraseña *
               </label>
               <input
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Campo requerido!",
+                  },
+                  minLength: {
+                    value: 8,
+                    message: "Minimo de 8 caracteres",
+                  },
+                })}
                 type="password"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu contraseña"
               />
+              {errors.password && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.password.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div>
               <label htmlFor="password2" className="text-gray-200">
@@ -193,10 +383,32 @@ export default function Register() {
               </label>
               <input
                 type="password"
+                {...register("password2", {
+                  required: {
+                    value: true,
+                    message: "Debe confirmar password!!!",
+                  },
+
+                  validate: (value) =>
+                    value == watch("password") ||
+                    "Las claves deben ser iguales",
+                })}
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa tu contraseña"
               />
+              {errors.password2 && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.password2.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 order-2 md:order-1">
               <span className="text-gray-400">
@@ -225,6 +437,7 @@ export default function Register() {
                 Crear cuenta
               </button>
             </div>
+            <pre>{JSON.stringify(watch(), null, 2)}</pre>
           </form>
         </div>
         {/* <!-- Imagen de fondo --> */}
