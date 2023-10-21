@@ -41,6 +41,11 @@ class ViandaController extends Controller
         $vianda->viandero_id = $request->viandero_id;
        
         $vianda->save();
+        $data= [
+            'message' => 'La vianda fue creada correctamente',
+            'vianda' => $vianda
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -49,6 +54,8 @@ class ViandaController extends Controller
     public function show(Vianda $vianda)
     {
         //
+        return response()->json($vianda);
+        //return $vianda;
     }
 
     /**
@@ -76,7 +83,11 @@ class ViandaController extends Controller
         $vianda->viandero_id = $request->viandero_id;
        
         $vianda->save();
-       return $vianda;
+        $data= [
+            'message' => 'La vianda fue modificada correctamente',
+            'vianda' => $vianda
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -85,6 +96,10 @@ class ViandaController extends Controller
     public function destroy(Request $request)
     {
         $vianda = Vianda::destroy($request->id);
-        return $vianda;
+        $data= [
+            'message' => 'La vianda fue borrada correctamente',
+            'vianda' => $vianda
+        ];
+        return response()->json($data);
     }
 }

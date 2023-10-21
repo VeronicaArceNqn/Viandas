@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\LugarEntrega;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +19,9 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             TipoViandaSeeder::class,
             ZonaRepartoSeeder::class,
-            CiudadeSeeder::class
+           
+            //LugarEntregaSeeder::class,
+            EstadoSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 

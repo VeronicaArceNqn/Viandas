@@ -34,6 +34,11 @@ class ZonaRepartoController extends Controller
        $zonaReparto->descripZona = $request->descripZona;
        
        $zonaReparto->save();
+       $data= [
+        'message' => 'La zona de reparto se guardó correctamente',
+        'zonaReparto' => $zonaReparto
+    ];
+    return response()->json($data);
     }
 
     /**
@@ -42,6 +47,7 @@ class ZonaRepartoController extends Controller
     public function show(ZonaReparto $zonaReparto)
     {
         //
+        return response()->json($zonaReparto);
     }
 
     /**
@@ -62,7 +68,11 @@ class ZonaRepartoController extends Controller
         $zonaReparto->descripZona = $request->descripZona;
         
         $zonaReparto->save();
-       return $zonaReparto;
+        $data= [
+            'message' => 'La zona de reparto se modificó correctamente',
+            'zonaReparto' => $zonaReparto
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -71,6 +81,10 @@ class ZonaRepartoController extends Controller
     public function destroy(Request $request)
     {
         $zonaReparto = ZonaReparto::destroy($request->id);
-        return $zonaReparto;
+        $data= [
+            'message' => 'La zona de reparto se borró correctamente',
+            'zonaReparto' => $zonaReparto
+        ];
+        return response()->json($data);
     }
 }

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('calle');
             $table->integer('nroCalle');
             $table->string('nombreLugar');
+            $table->string('provincia');
+            $table->string('ciudad');
             $table->timestamps();
         });
     }

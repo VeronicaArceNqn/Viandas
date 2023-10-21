@@ -33,6 +33,11 @@ class CategoriaController extends Controller
         $categoria->descripCategoria = $request->descripCategoria;
        
         $categoria->save();
+        $data= [
+            'message' => 'La categoría se guardó correctamente',
+            'categoria' => $categoria
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -41,6 +46,7 @@ class CategoriaController extends Controller
     public function show(Categoria $categoria)
     {
         //
+        return response()->json($categoria);
     }
 
     /**
@@ -60,7 +66,11 @@ class CategoriaController extends Controller
         $categoria->descripCategoria = $request->descripCategoria;
         
         $categoria->save();
-        return $categoria;
+        $data= [
+            'message' => 'La categoría se modificó correctamente',
+            'categoria' => $categoria
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -69,6 +79,10 @@ class CategoriaController extends Controller
     public function destroy(Request $request)
     {
         $categoria = Categoria::destroy($request->id);
-        return $categoria;
+        $data= [
+            'message' => 'La categoría se borró correctamente',
+            'categoria' => $categoria
+        ];
+        return response()->json($data);
     }
 }

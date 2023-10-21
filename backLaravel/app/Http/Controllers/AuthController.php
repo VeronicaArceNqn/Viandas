@@ -19,7 +19,7 @@ class AuthController extends Controller
             'fechaNac' => 'required|date',
             'telefono'=> 'required',
             'genero' =>'required',
-            'ciudade_id' => 'required',
+            
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
         ]);
@@ -32,12 +32,16 @@ class AuthController extends Controller
             'fechaNac' => $request->fechaNac,
             'telefono' => $request->telefono,
             'genero' => $request->genero,
-            'ciudade_id' => $request->ciudade_id,
+           
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['data' =>$user,'access_token'=>$token, 'token_type'=>'Bearer',]);
+        return response()->json([
+            'message' => 'El registro fue exitoso',
+            'data' =>$user,
+            'access_token'=>$token, 
+            'token_type'=>'Bearer',]);
     }
     
     public function login(Request $request)
@@ -50,7 +54,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Hola '.$user->name,
+            'message' => 'Hola '.$user->nombre,
             'accessToken' =>$token,
             'token_type' => 'Bearer',
             'user' =>$user,
