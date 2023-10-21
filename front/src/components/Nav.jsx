@@ -26,9 +26,9 @@ function classNames(...classes) {
 
 export default function Nav() {
   const { user, setUser, logout } = useContext(GlobalContext);
-  useEffect(() => {
-    console.log(`clg useEf nav :user: ${user}`);
-  }, []);
+  // useEffect(() => {
+  //   console.log(`clg useEf nav :user: ${user}`);
+  // }, []);
 
   return (
     <nav>
@@ -36,9 +36,10 @@ export default function Nav() {
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           <NavLink to="/">
             {" "}
-            Viandas <span className="text-yellow-400"><RiShoppingCart2Fill  className="text-3xl"/></span>
+            Viandas 
           </NavLink>
         </h1>
+           
         {/* <form className="md:col-span-4 flex items-center justify-center gap-2">
           <input
             type="text"
@@ -127,16 +128,14 @@ export default function Nav() {
                   <RiLogoutCircleRLine /> Cerrar sesión
                 </Link>
               </MenuItem>
+              
             </Menu>
+            
           ) : (
             <NavLink to="/Login"> Login</NavLink>
             )}
-        
-
-     
-      
-        
         </nav>
+      {user? <span className="text-white  "><RiShoppingCart2Fill  className="text-3xl"/></span>:""}
       </div>
     </nav>
   );

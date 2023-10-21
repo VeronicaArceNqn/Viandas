@@ -10,17 +10,19 @@ import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
 
 function App() {
-  const [viandas, setViandas] = useState([]);// estado con arreglo vacio
+  const [viandas, setViandas] = useState([]); // estado con arreglo vacio
   const { SERVER } = useContext(GlobalContext);
+
   const fetchViandas = async () => {
-    await axios.get(`${SERVER}viandas`).then((res) => {
+    await axios.get(`${SERVER}viandas`)
+      .then((res) => {
       // console.log(res.data);
       setViandas(res.data);
     });
   };
   useEffect(() => {
     fetchViandas();
-    console.log('useEssect fetch viandas home')
+    // console.log("useEssect fetch viandas home");
   }, []);
 
   // console.log(viandas)
@@ -42,11 +44,9 @@ function App() {
               img={vianda.urlFoto}
             />
           ))}
-         
         </div>
       </div>
       <Footer />
-     
     </>
   );
 }

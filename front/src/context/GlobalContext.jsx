@@ -3,13 +3,15 @@ import React, { createContext, useEffect, useState } from "react";
 import { Navigate, redirect } from "react-router-dom";
 
 const GlobalContext = createContext(); //creo contexto
+
+
 function GlobalContextProvider({ children }) {
   const SERVER = "http://localhost:8000/api/";
   //
   const [user, setUser] = useState(undefined); //estados globales
   //
   const logout = async () => {
-    console.log(user.accessToken);
+    // console.log(user.accessToken);
     setUser(undefined);
     await axios("http://localhost:8000/api/logout", {
       headers: {
@@ -22,7 +24,7 @@ function GlobalContextProvider({ children }) {
         // navigate("/login");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
       });
   };
 

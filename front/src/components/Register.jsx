@@ -9,17 +9,20 @@ import Footer from "./Footer";
 import { useForm } from "react-hook-form";
 
 export default function Register() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm(); 
+
 
   const [ciudades, setCiudades] = useState([]);
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    // console.log(data);
     saveRegister(data);
   });
 
@@ -29,27 +32,30 @@ export default function Register() {
 
       .then((response) => setCiudades(response.data.provincias));
   };
-
-  const getLocalidades = async () => {
-    await axios
+  // console.log(watch("ciudade_id"))
+  const getLocalidades = () => {
+    axios
       .get(
-        `https://apis.datos.gob.ar/georef/api/municipios?provincia=${watch(
-          "ciudad_id"
-        )}&campos=id,nombre&max=100`
+        "https://apis.datos.gob.ar/georef/api/municipios?provincia=58&campos=id,nombre&max=100"
       )
-      .catch((err) => console.log(err));
+      .then((loc) => console.log(loc));
   };
 
   useEffect(() => {
     getCiudades();
   }, []);
 
+  // useEffect(() => {
+  //   getLocalidades();
+  // }, []);
+
   const saveRegister = (data) => {
     try {
       const response = axios.post("http://localHost:8000/api/register", data);
 
       console.log("Respuesta del servidor:", response.data);
-      navigate('/login')
+      //swit alerta confirmacion
+      navigate("/login");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
     }
@@ -60,7 +66,7 @@ export default function Register() {
       {/* <!-- HTML --> */}
       <div className=" container mx-auto min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-1">
         <Nav />
-        <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-2 text-center">
+        <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-1 text-center">
           {/* <!-- Titulo con descripción --> */}
           <div className="flex flex-col gap-1 w-full">
             <h1 className="text-4xl font-medium ">Crear cuenta</h1>
@@ -310,7 +316,7 @@ export default function Register() {
                 </div>
               )}
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="ciudad_id" className="text-gray-200">
                 Ciudad *
               </label>
@@ -321,6 +327,7 @@ export default function Register() {
                     message: "Seleccione una provincia",
                   },
                 })}
+               
                 className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Eliga una provincia"
               >
@@ -343,7 +350,8 @@ export default function Register() {
                   </div>
                 </div>
               )}
-            </div>
+
+            </div> */}
             <div>
               <label htmlFor="password" className="text-gray-200">
                 Contraseña *
@@ -437,7 +445,7 @@ export default function Register() {
                 Crear cuenta
               </button>
             </div>
-            <pre>{JSON.stringify(watch(), null, 2)}</pre>
+            {/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
           </form>
         </div>
         {/* <!-- Imagen de fondo --> */}

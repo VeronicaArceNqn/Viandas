@@ -6,6 +6,8 @@ import { NavLink, redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
+import Footer from "./Footer";
+import Swal from "sweetalert2"
 
 export default function Loggin() {
   const {
@@ -38,12 +40,17 @@ export default function Loggin() {
     console.log(data);
     try {
       const result = await axios.post(`${SERVER}login`, data);
-      console.log(result.data);
+      console.log(result);
       // setMsj(result.data.message);
       setUser(result.data);
+      Swal.fire('Bienvenido al sistema!')
       navigate("/");
     } catch (err) {
-      console.log("Error en request:".err);
+      console.log(err);
+      if(err.response.status== 401){
+        // alert(err.response.status)
+        Swal.fire('Usuario o contrasena no coinciden!')
+      }
     }
   };
 
@@ -216,7 +223,7 @@ export default function Loggin() {
               <button
                 onClick={(e) => fetchData(e)}
                 type="submit"
-                className="w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors"
+                className="mb-8 w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors"
               >
                 Iniciar sesión
               </button>
@@ -225,8 +232,8 @@ export default function Loggin() {
           {/* {msj} */}
         </div>
         {/* <!-- Imagen de fondo --> to={"/nosotros/"+id}*/}
-
-        <div className="bg hidden lg:block"></div>
+                <Footer/>
+        {/* <div className="bg hidden lg:block"></div> */}
       </div>
     </>
   );
