@@ -52,4 +52,9 @@ class User extends Authenticatable
     public function viandero(){
         return $this->hasOne('App\Models\Viandero');
     }
+
+    //Relación uno a muchos
+    public function pedidos(){
+        return $this->hasMany('App\Models\Pedido');
+    }
 }

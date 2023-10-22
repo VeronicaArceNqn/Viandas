@@ -36,14 +36,20 @@ class TipoViandaController extends Controller
        $tipoViandas->descripTipoVianda = $request->descripTipoVianda;
        
        $tipoViandas->save();
+       $data= [
+            'message' => 'El tipo de vianda se guardó correctamente',
+          'tipoViandas' => $tipoViandas
+        ];
+        return response()->json($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(TipoVianda $tipoViandas)
     {
         //
+        return response()->json($tipoViandas);
     }
 
     /**
@@ -63,7 +69,11 @@ class TipoViandaController extends Controller
        $tipoViandas->descripTipoVianda = $request->descripTipoVianda;
        
        $tipoViandas->save();
-       return $tipoViandas;
+       $data= [
+        'message' => 'El tipo de vianda se modificó correctamente',
+        'tipoViandas' => $tipoViandas
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -72,7 +82,11 @@ class TipoViandaController extends Controller
     public function destroy(Request $request)
     {
         $tipoViandas = TipoVianda::destroy($request->id);
-        return $tipoViandas;
+        $data= [
+            'message' => 'El tipo de vianda se borró correctamente',
+          'tipoViandas' => $tipoViandas
+        ];
+        return response()->json($data);
     }
 }
 

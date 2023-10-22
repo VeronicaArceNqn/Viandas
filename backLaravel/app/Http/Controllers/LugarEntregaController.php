@@ -23,19 +23,26 @@ class LugarEntregaController extends Controller
     {
         //
     }
-
+   
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $entrega = new LugarEntrega();
-        $entrega->user_id = $request->user_id;
-        $entrega->calle = $request->calle;
-       $entrega->nroCalle = $request->nroCalle;
-       $entrega->nombreLugar = $request->nombreLugar;
+        $lugarEntrega = new LugarEntrega();
+        $lugarEntrega->user_id = $request->user_id;
+        $lugarEntrega->calle = $request->calle;
+        $lugarEntrega->nroCalle = $request->nroCalle;
+        $lugarEntrega->nombreLugar = $request->nombreLugar;
+        $lugarEntrega->provincia = $request->provincia;
+        $lugarEntrega->ciudad = $request->ciudad;
        
-       $entrega->save();
+       $lugarEntrega->save();
+       $data= [
+            'message' => 'El lugar de entrega se registró correctamente',
+            'lugarEntrega' => $lugarEntrega
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -44,6 +51,7 @@ class LugarEntregaController extends Controller
     public function show(LugarEntrega $lugarEntrega)
     {
         //
+        return response()->json($lugarEntrega);
     }
 
     /**
@@ -59,14 +67,20 @@ class LugarEntregaController extends Controller
      */
     public function update(Request $request)
     {
-        $entrega = LugarEntrega::findOrFail($request->id);
-        $entrega->user_id = $request->user_id;
-        $entrega->calle = $request->calle;
-        $entrega->nroCalle = $request->nroCalle;
-        $entrega->nombreLugar = $request->nombreLugar;
+        $lugarEntrega = LugarEntrega::findOrFail($request->id);
+        $lugarEntrega->user_id = $request->user_id;
+        $lugarEntrega->calle = $request->calle;
+        $lugarEntrega->nroCalle = $request->nroCalle;
+        $lugarEntrega->nombreLugar = $request->nombreLugar;
+        $lugarEntrega->provincia = $request->provincia;
+        $lugarEntrega->ciudad = $request->ciudad;
        
-        $entrega->save();
-        return $entrega;
+        $lugarEntrega->save();
+        $data= [
+            'message' => 'El lugar de entrega se modificó correctamente',
+            'lugarEntrega' => $lugarEntrega
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -74,7 +88,11 @@ class LugarEntregaController extends Controller
      */
     public function destroy(Request $request)
     {
-        $entrega = LugarEntrega::destroy($request->id);
-        return $entrega;
+        $lugarEntrega = LugarEntrega::destroy($request->id);
+        $data= [
+            'message' => 'El lugar de entrega se borró correctamente',
+            'lugarEntrega' => $lugarEntrega
+        ];
+        return response()->json($data);
     }
 }

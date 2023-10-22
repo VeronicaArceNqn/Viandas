@@ -35,6 +35,11 @@ class VianderoController extends Controller
        $viandero->zonaReparto_id = $request->zonaReparto_id;
        
        $viandero->save();
+       $data= [
+        'message' => 'Su registro se realizó correctamente',
+        'viandero' => $viandero
+    ];
+    return response()->json($data);
     }
 
     /**
@@ -43,6 +48,7 @@ class VianderoController extends Controller
     public function show(Viandero $viandero)
     {
         //
+        return response()->json($viandero);
     }
 
     /**
@@ -64,7 +70,12 @@ class VianderoController extends Controller
        $viandero->zonaReparto_id = $request->zonaReparto_id;
        
        $viandero->save();
-       return $viandero;
+       $data= [
+        'message' => 'La modificación se realizó correctamente',
+        'viandero' => $viandero
+    ];
+    return response()->json($data);
+      
     }
 
     /**
@@ -73,6 +84,10 @@ class VianderoController extends Controller
     public function destroy(Request $request)
     {
         $viandero = Viandero::destroy($request->id);
-        return $viandero;
+        $data= [
+            'message' => 'La eliminación se realizó correctamente',
+            'viandero' => $viandero
+        ];
+        return response()->json($data);
     }
 }

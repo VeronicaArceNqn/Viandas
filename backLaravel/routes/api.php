@@ -24,39 +24,62 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('user', 'App\Http\Controllers\UserController@index');
-Route::get('viandas', [ViandaController::class, 'index']);
-Route::post('/viandas', 'App\Http\Controllers\ViandaController@store');
+Route::get('user/{user}', 'App\Http\Controllers\UserController@show');
+
+ Route::get('viandas', [ViandaController::class, 'index']);
+ Route::get('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@show');
+ Route::put('/viandas/{id}', 'App\Http\Controllers\ViandaController@update');
+ Route::post('/viandas', 'App\Http\Controllers\ViandaController@store');
+Route::delete('/viandas/{id}', 'App\Http\Controllers\ViandaController@destroy');
+//Route::resource('/viandas', ViandaController::class);
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
+Route::get('/tipoVianda/{tipoViandas}', 'App\Http\Controllers\TipoViandaController@show');
 Route::post('/tipoVianda', 'App\Http\Controllers\TipoViandaController@store');
 Route::put('/tipoVianda/{id}', 'App\Http\Controllers\TipoViandaController@update');
 Route::delete('/tipoVianda/{id}', 'App\Http\Controllers\TipoViandaController@destroy');
 
 Route::get('/categoria', 'App\Http\Controllers\CategoriaController@index');
+Route::get('/categoria/{categoria}', 'App\Http\Controllers\CategoriaController@show');
 Route::post('/categoria', 'App\Http\Controllers\CategoriaController@store');
 Route::put('/categoria/{id}', 'App\Http\Controllers\CategoriaController@update');
 Route::delete('/categoria/{id}', 'App\Http\Controllers\CategoriaController@destroy');
 
 Route::get('/zonaReparto', 'App\Http\Controllers\ZonaRepartoController@index');
+Route::get('/zonaReparto/{zonaReparto}', 'App\Http\Controllers\ZonaRepartoController@show');
 Route::post('/zonaReparto', 'App\Http\Controllers\ZonaRepartoController@store');
 Route::put('/zonaReparto/{id}', 'App\Http\Controllers\ZonaRepartoController@update');
 Route::delete('/zonaReparto/{id}', 'App\Http\Controllers\ZonaRepartoController@destroy');
 
-Route::get('/ciudade', 'App\Http\Controllers\CiudadeController@index');
-Route::post('/ciudade', 'App\Http\Controllers\CiudadeController@store');
-Route::put('/ciudade/{id}', 'App\Http\Controllers\CiudadeController@update');
-Route::delete('/ciudade/{id}', 'App\Http\Controllers\CiudadeController@destroy');
-
 Route::get('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@index');
+Route::get('/lugarEntrega/{lugarEntrega}', 'App\Http\Controllers\LugarEntregaController@show');
 Route::post('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@store');
 Route::put('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@update');
 Route::delete('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@destroy');
 
 Route::get('/viandero', 'App\Http\Controllers\VianderoController@index');
+Route::get('/viandero/{viandero}', 'App\Http\Controllers\VianderoController@show');
 Route::post('/viandero', 'App\Http\Controllers\VianderoController@store');
 Route::put('/viandero/{id}', 'App\Http\Controllers\VianderoController@update');
 Route::delete('/viandero/{id}', 'App\Http\Controllers\VianderoController@destroy');
 
+Route::get('/estado', 'App\Http\Controllers\EstadoController@index');
+Route::get('/estado/{estado}', 'App\Http\Controllers\EstadoController@show');
+Route::post('/estado', 'App\Http\Controllers\EstadoController@store');
+Route::put('/estado/{id}', 'App\Http\Controllers\EstadoController@update');
+Route::delete('/estado/{id}', 'App\Http\Controllers\EstadoController@destroy');
+
+Route::get('/pedido', 'App\Http\Controllers\PedidoController@index');
+Route::get('/pedido/{pedido}', 'App\Http\Controllers\PedidoController@show');
+Route::post('/pedido', 'App\Http\Controllers\PedidoController@store');
+Route::put('/pedido/{id}', 'App\Http\Controllers\PedidoController@update');
+Route::delete('/pedido/{id}', 'App\Http\Controllers\PedidoController@destroy');
+
+Route::get('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@index');
+Route::get('/pedidoVianda/{pedidoVianda}', 'App\Http\Controllers\PedidoViandaController@show');
+Route::post('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@store');
+Route::put('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@update');
+Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@destroy');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
