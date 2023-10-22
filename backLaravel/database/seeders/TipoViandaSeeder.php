@@ -13,16 +13,16 @@ class TipoViandaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('tipo_Viandas')->insert([
+        DB::table('tipoViandas')->insert([
             'descripTipoVianda' => "Tradicional",
             ]);
-        DB::table('tipo_Viandas')->insert([
+        DB::table('tipoViandas')->insert([
             'descripTipoVianda' => "Vegetariana",
             ]);
-        DB::table('tipo_Viandas')->insert([
+        DB::table('tipoViandas')->insert([
             'descripTipoVianda' => "Vegana",
             ]);
-        DB::table('tipo_Viandas')->insert([
+        DB::table('tipoViandas')->insert([
             'descripTipoVianda' => "Sin TACC",
             ]);
 

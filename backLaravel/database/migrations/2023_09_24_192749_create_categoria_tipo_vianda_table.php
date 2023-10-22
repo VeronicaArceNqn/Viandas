@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->foreignId('tipoVianda_id')
                     ->nullable()
-                    ->constrained('tipo_Viandas')
+                    ->constrained('tipoViandas')
                     ->cascadeOnUpdate()
                     ->nullOnDelete();            
         });

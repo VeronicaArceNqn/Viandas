@@ -15,6 +15,7 @@ class Pedido extends Model
         return $this->belongsTo('App\Models\User');
     }
     
+    //Relación uno a muchos
     public function pedidoViandas(){
         return $this->hasMany('App\Models\PedidoVianda');
     }

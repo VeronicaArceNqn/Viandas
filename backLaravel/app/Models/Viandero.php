@@ -27,6 +27,6 @@ class Viandero extends Model
 
     //Relación uno a muchos (inversa)
     public function zonaReparto(){
-        return $this->belongsTo('App\Models\ZonaReparto');
+        return $this->belongsTo('App\Models\ZonaReparto', 'zonaReparto_id');
     }
 }

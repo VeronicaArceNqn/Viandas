@@ -24,5 +24,14 @@ class Vianda extends Model
     public function viandero(){
         return $this->belongsTo('App\Models\Viandero');
     }
+    //Relación uno a uno
+    public function tipoVianda(){
+        return $this->belongsTo(TipoVianda::class, 'tipoVianda_id', 'id');
+    }
+
+    //Relación uno a muchos
+    public function pedidoViandas(){
+        return $this->hasMany('App\Models\PedidoVianda');
+    }
     
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
-                    ->unique()
+                   
                     ->nullable()
                     ->constrained('users')
                     ->cascadeOnUpdate()

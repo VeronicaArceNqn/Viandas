@@ -16,4 +16,15 @@ class PedidoVianda extends Model
         'fechaEntrega',
         'lugarEntrega_id',
     ];
+
+    //Relación uno a muchos (inversa)
+    public function pedido(){
+        return $this->belongsTo('App\Models\Pedido');
+    }
+
+    //Relación uno a uno
+    public function vianda(){
+        return $this->belongsTo('App\Models\Vianda');
+    }
+    
 }

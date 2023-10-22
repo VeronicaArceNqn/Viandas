@@ -12,6 +12,6 @@ class ZonaReparto extends Model
 
     //Relación uno a muchos
     public function vianderos(){
-        return $this->hasMany('App\Models\Viandero');
+        return $this->hasMany('App\Models\Viandero', 'zonaReparto_id');
     }
 }
