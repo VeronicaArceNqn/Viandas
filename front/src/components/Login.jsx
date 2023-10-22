@@ -7,7 +7,7 @@ import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import Footer from "./Footer";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 export default function Loggin() {
   const {
@@ -43,13 +43,13 @@ export default function Loggin() {
       console.log(result);
       // setMsj(result.data.message);
       setUser(result.data);
-      Swal.fire('Bienvenido al sistema!')
+      Swal.fire("Bienvenido al sistema!");
       navigate("/");
     } catch (err) {
       console.log(err);
-      if(err.response.status== 401){
+      if (err.response.status == 401) {
         // alert(err.response.status)
-        Swal.fire('Usuario o contrasena no coinciden!')
+        await Swal.fire("Usuario o contrasena no coinciden!");
       }
     }
   };
@@ -232,7 +232,7 @@ export default function Loggin() {
           {/* {msj} */}
         </div>
         {/* <!-- Imagen de fondo --> to={"/nosotros/"+id}*/}
-                <Footer/>
+        <Footer />
         {/* <div className="bg hidden lg:block"></div> */}
       </div>
     </>

@@ -7,7 +7,7 @@ import img from "../images/vinda1.png";
 import { GlobalContext } from "../context/GlobalContext";
 const Card2 = ({nombre,precio,img}) => {
   const { user } = useContext(GlobalContext);
-  console.log(user);
+  // console.log(user);
   return (
     <>
       {/* <!-- component --> */}

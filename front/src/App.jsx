@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import Error404 from "./components/Error404";
+import AdminVianda from "./components/AdminVianda";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />        
         <Route path="/register" element={<Register />} />
         <Route path="/nosotros" element={<Error404 />} />
+        <Route path="/crear-viandas" element={<AdminVianda />} />
       </Routes>
     </BrowserRouter>
     </GlobalContextProvider>
