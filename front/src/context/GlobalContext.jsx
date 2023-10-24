@@ -4,15 +4,37 @@ import { Navigate, redirect } from "react-router-dom";
 
 const GlobalContext = createContext(); //creo contexto
 
-
 function GlobalContextProvider({ children }) {
   const SERVER = "http://localhost:8000/api/";
   //
   const [user, setUser] = useState(undefined); //estados globales
+  const [viandero, setViandero] = useState(undefined); //estados globales
   //
+  //
+  async function getViandero() {
+    const arrVianderos = await axios.get(`${SERVER}viandero`);
+    const vianderos = arrVianderos.data;
+    console.log(viandero);
+    const result = vianderos.filter(
+      (viandero) => viandero.user_id === user.user.id
+    );
+    console.log(result[0]);
+    setViandero(result);
+    if ((result.lenght = 1)) {
+      console.log("1");
+      // navigate("/crear-viandas")
+    }
+  }
+
+  useEffect(() => {
+    console.log("se modif el user->modf viandero");
+    getViandero();
+  }, [user]);
+
   const logout = async () => {
     // console.log(user.accessToken);
     setUser(undefined);
+    setViandero(undefined);
     await axios("http://localhost:8000/api/logout", {
       headers: {
         "content-type": "application/json",
@@ -28,7 +50,7 @@ function GlobalContextProvider({ children }) {
       });
   };
 
-  const contextValue = { user, setUser, logout, SERVER }; //variable a pasar a los hijos
+  const contextValue = { user, setUser, logout, SERVER, viandero, setViandero }; //variable a pasar a los hijos
   return (
     <GlobalContext.Provider value={contextValue}>
       {" "}

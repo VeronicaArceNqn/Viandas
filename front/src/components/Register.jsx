@@ -7,6 +7,8 @@ import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "./Footer";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
 
 export default function Register() {
   const navigate = useNavigate(); 
@@ -19,7 +21,7 @@ export default function Register() {
   } = useForm(); 
 
 
-  const [ciudades, setCiudades] = useState([]);
+  // const [ciudades, setCiudades] = useState([]);
 
   const onSubmit = handleSubmit((data) => {
     // console.log(data);
@@ -29,7 +31,6 @@ export default function Register() {
   const getCiudades = async () => {
     await axios
       .get("https://apis.datos.gob.ar/georef/api/provincias")
-
       .then((response) => setCiudades(response.data.provincias));
   };
   // console.log(watch("ciudade_id"))
@@ -41,9 +42,9 @@ export default function Register() {
       .then((loc) => console.log(loc));
   };
 
-  useEffect(() => {
-    getCiudades();
-  }, []);
+  // useEffect(() => {
+  //   getCiudades();
+  // }, []);
 
   // useEffect(() => {
   //   getLocalidades();
@@ -55,6 +56,7 @@ export default function Register() {
 
       console.log("Respuesta del servidor:", response.data);
       //swit alerta confirmacion
+      Swal.fire("Ya estas registrado al sistema, ahora puedes iniciar session !");
       navigate("/login");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);

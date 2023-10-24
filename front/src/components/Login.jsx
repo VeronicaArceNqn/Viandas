@@ -37,7 +37,7 @@ export default function Loggin() {
   // };
   const fetchData = async (data) => {
     // e.preventDefault();
-    console.log(data);
+    // console.log(data);
     try {
       const result = await axios.post(`${SERVER}login`, data);
       console.log(result);
@@ -49,7 +49,7 @@ export default function Loggin() {
       console.log(err);
       if (err.response.status == 401) {
         // alert(err.response.status)
-        await Swal.fire("Usuario o contrasena no coinciden!");
+         Swal.fire("Usuario o clave no coinciden!");
       }
     }
   };
