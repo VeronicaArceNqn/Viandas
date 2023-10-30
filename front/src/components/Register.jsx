@@ -81,7 +81,7 @@ export default function Register() {
               {/* Input Genero */}
 
               <label htmlFor="genero" className="text-gray-200">
-                Genero *
+                Género *
               </label>
               <select
                 {...register("genero", {
@@ -93,7 +93,7 @@ export default function Register() {
                 className="w-full py-2 px-4  border rounded-full mt-2 outline-none focus:border-indigo-400"
                 label="genero"
               >
-                <option value={""}>Selecione Genero</option>
+                <option value={""}>Selecione Género</option>
                 <option value="m">Masculino</option>
                 <option value="f">Femenino</option>
                 <option value="o">Otros</option>
@@ -231,7 +231,7 @@ export default function Register() {
             </div>
             <div>
               <label htmlFor="telefono" className="text-gray-200">
-                Telefono*( sin 0 y sin 15 )
+                Teléfono*( sin 0 y sin 15 )
               </label>
               <input
                 {...register("telefono", {

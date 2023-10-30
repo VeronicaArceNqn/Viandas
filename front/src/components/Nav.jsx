@@ -109,9 +109,9 @@ export default function Nav() {
         </h1>
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <NavLink to="/"> Inicio </NavLink>
-          <NavLink to="/nosotros"> Nostros</NavLink>
+          <NavLink to="/nosotros"> Nosotros</NavLink>
           <NavLink to="/"> Servicios</NavLink>
-          {!user ? <NavLink to="/register"> registro</NavLink> : ""}
+          {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
 
           {user ? (
             <Menu
@@ -208,7 +208,7 @@ export default function Nav() {
                   {/*header*/}
                   <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <h3 className="text-3xl font-semibold">
-                      Informacion Importante
+                      Información Importante
                     </h3>
 
                     <button
@@ -223,15 +223,15 @@ export default function Nav() {
                   {/*body*/}
                   <div className="relative p-6 flex-auto">
                     <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
-                      Es seccion mostrara a tus potenciales clientes lo que
-                      describas de ti y la viandas
+                      Esta sección mostrará a tus potenciales clientes lo que
+                      describas de ti y tus viandas
                     </p>
                     <p>Descripcion:</p>
 
                     <textarea
                       name="descripcion"
                       className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Hola! Mi nombre es..."
+                      placeholder="Hola! Mi nombre es... Me dedico a la elaboración de... etc."
                     />
                     <label htmlFor="zonaEntrega" className="text-gray-200">
                       Zona de entrega

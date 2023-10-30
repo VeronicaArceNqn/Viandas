@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vianda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ViandaController extends Controller
 {
@@ -29,17 +30,26 @@ class ViandaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'urlFoto' =>'image|max:2048'
+        ]);
+
         $vianda = new Vianda();
         $vianda->nombre = $request->nombre;
         $vianda->descripcion = $request->descripcion;
         $vianda->tipoVianda_id = $request->tipoVianda_id;
-        $vianda->urlFoto = $request->urlFoto;
+        //$vianda->urlFoto = $request->urlFoto;
         $vianda->cantidad = $request->cantidad;
         $vianda->precio = $request->precio;
         $vianda->horarioPedido = $request->horarioPedido;
         $vianda->publicado = $request->publicado;
         $vianda->viandero_id = $request->viandero_id;
        
+        if ($request->file('urlFoto')!==null){
+            $urlImagen = $request->file('urlFoto')->store('public/images');
+            $imagen = storage::url($urlImagen);
+            $vianda->urlFoto= $imagen;
+        }
         $vianda->save();
         $data= [
             'message' => 'La vianda fue creada correctamente',
