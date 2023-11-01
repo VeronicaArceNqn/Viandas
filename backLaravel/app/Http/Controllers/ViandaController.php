@@ -14,6 +14,10 @@ class ViandaController extends Controller
     public function index()
     {
        $vianda = Vianda::all();
+
+       foreach ($vianda as $viand){
+            $viand->urlFoto = url($viand->urlFoto);
+       }
        return $vianda;
     }
 
@@ -64,6 +68,7 @@ class ViandaController extends Controller
     public function show(Vianda $vianda)
     {
         //
+        $vianda->urlFoto = url($vianda->urlFoto);
         return response()->json($vianda);
         //return $vianda;
     }
@@ -85,13 +90,19 @@ class ViandaController extends Controller
         $vianda->nombre = $request->nombre;
         $vianda->descripcion = $request->descripcion;
         $vianda->tipoVianda_id = $request->tipoVianda_id;
-        $vianda->urlFoto = $request->urlFoto;
+        //$vianda->urlFoto = $request->urlFoto;
         $vianda->cantidad = $request->cantidad;
         $vianda->precio = $request->precio;
         $vianda->horarioPedido = $request->horarioPedido;
         $vianda->publicado = $request->publicado;
         $vianda->viandero_id = $request->viandero_id;
-       
+        
+        if ($request->file('urlFoto')!==null){
+            $urlImagen = $request->file('urlFoto')->store('public/images');
+            $imagen = storage::url($urlImagen);
+            $vianda->urlFoto= $imagen;
+        }
+        
         $vianda->save();
         $data= [
             'message' => 'La vianda fue modificada correctamente',
