@@ -111,6 +111,7 @@ export default function Nav() {
           <NavLink to="/"> Inicio </NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>
           <NavLink to="/"> Servicios</NavLink>
+          <NavLink to="/entrega"> Entrega</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
 
           {user ? (

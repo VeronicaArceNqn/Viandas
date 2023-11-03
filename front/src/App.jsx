@@ -9,6 +9,7 @@ import { GlobalContextProvider } from "./context/GlobalContext";
 import Error404 from "./components/Error404";
 import AdminVianda from "./components/AdminVianda";
 
+import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/nosotros" element={<Error404 />} />
         <Route path="/crear-viandas" element={<AdminVianda />} />
+        <Route path="/entrega" element={<Entrega />} /> 
       </Routes>
     </BrowserRouter>
     </GlobalContextProvider>
