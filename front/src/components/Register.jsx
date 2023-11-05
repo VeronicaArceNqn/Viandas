@@ -94,9 +94,9 @@ export default function Register() {
                 label="genero"
               >
                 <option value={""}>Selecione Género</option>
-                <option value="m">Masculino</option>
-                <option value="f">Femenino</option>
-                <option value="o">Otros</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="NoBinario">No binario</option>
               </select>
               {errors.genero && (
                 <div className="flex  shadow-lg rounded-lg mt-1">
@@ -111,43 +111,8 @@ export default function Register() {
                 </div>
               )}
             </div>
-            <div>
-              <label htmlFor="apellido" className="text-gray-200">
-                Apellido *
-              </label>
-              <input
-                {...register("apellido", {
-                  required: {
-                    value: true,
-                    message: "Campo requerido!!",
-                  },
-                  minLength: {
-                    value: 2,
-                    message: "Minimos 2 caracteres!",
-                  },
-                  pattern: {
-                    value: /^[a-zA-Z]+$/,
-                    message: "Solo texto !!",
-                  },
-                  //^[a-zA-Z]+$
-                })}
-                type="text"
-                autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
-                placeholder="Ingresa tu apellido"
-              />
-              {errors.apellido && (
-                <div className="flex  shadow-lg rounded-lg mt-1">
-                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
 
-                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
-                    <h2 className="font-semibold text-red-100">
-                      {errors.apellido.message}
-                    </h2>
-                    <p className="text-gray-700"></p>
-                  </div>
-                </div>
-              )}
+            <div>
               <label htmlFor="name" className="text-gray-200">
                 Nombre *
               </label>
@@ -159,14 +124,14 @@ export default function Register() {
                   },
                   minLength: {
                     value: 2,
-                    message: "Minimo 2 caracteres!",
+                    message: "Mínimo 2 caracteres!",
                   },
                   maxLength: {
                     value: 10,
-                    message: "A superado el maximo de 10 caracteres!",
+                    message: "A superado el máximo de 10 caracteres!",
                   },
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g,
                     message: "Solo texto !!",
                   },
                 })}
@@ -188,6 +153,46 @@ export default function Register() {
                 </div>
               )}
             </div>
+
+            <div>
+              <label htmlFor="apellido" className="text-gray-200">
+                Apellido *
+              </label>
+              <input
+                {...register("apellido", {
+                  required: {
+                    value: true,
+                    message: "Campo requerido!!",
+                  },
+                  minLength: {
+                    value: 2,
+                    message: "Mínimos 2 caracteres!",
+                  },
+                  pattern: {
+                    value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g,
+                    message: "Solo texto !!",
+                  },
+                  //^[a-zA-Z]+$
+                })}
+                type="text"
+                autoComplete="off"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                placeholder="Ingresa tu apellido"
+              />
+              {errors.apellido && (
+                <div className="flex  shadow-lg rounded-lg mt-1">
+                  <div className=" bg-red-600 flex justify-center items-center  px-2 rounded-tr-3xl rounded-lg"></div>
+
+                  <div className="flex flex-col p-2  rounded-tr-lg rounded-br-lg">
+                    <h2 className="font-semibold text-red-100">
+                      {errors.apellido.message}
+                    </h2>
+                    <p className="text-gray-700"></p>
+                  </div>
+                </div>
+              )}
+            </div>
+           
             <div>
               <label htmlFor="email" className="text-gray-200">
                 Correo electrónico *
@@ -200,14 +205,15 @@ export default function Register() {
                   },
                   minLength: {
                     value: 2,
-                    message: "menimo 2 caracteres",
+                    message: "mínimo 2 caracteres",
                   },
                   maxLength: {
                     value: 40,
-                    message: "A superado el maximo de caracteres",
+                    message: "A superado el máximo de caracteres",
                   },
                   pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    //value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    value: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
                     message: "El correo no cumple el formato",
                   },
                 })}
@@ -231,7 +237,7 @@ export default function Register() {
             </div>
             <div>
               <label htmlFor="telefono" className="text-gray-200">
-                Teléfono*( sin 0 y sin 15 )
+                Teléfono * ( sin 0 y sin 15 )
               </label>
               <input
                 {...register("telefono", {
@@ -241,11 +247,11 @@ export default function Register() {
                   },
                   minLength: {
                     value: 8,
-                    message: "Debe tener minimo 8 caracteres",
+                    message: "Debe tener mínimo 8 caracteres",
                   },
                   maxLength: {
                     value: 10,
-                    message: "A superado el maximo de caracteres",
+                    message: "A superado el máximo de caracteres",
                   },
                   pattern: {
                     value: /^\d{10}$/,
@@ -273,7 +279,7 @@ export default function Register() {
             </div>
             <div>
               <label htmlFor="fechaNac" className="text-gray-200">
-                Fecha de nacimiento*
+                Fecha de nacimiento *
               </label>
               <input
                 type="date"
@@ -366,7 +372,7 @@ export default function Register() {
                   },
                   minLength: {
                     value: 8,
-                    message: "Minimo de 8 caracteres",
+                    message: "Mínimo de 8 caracteres",
                   },
                 })}
                 type="password"
@@ -405,7 +411,7 @@ export default function Register() {
                 })}
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
-                placeholder="Ingresa tu contraseña"
+                placeholder="Repetir contraseña"
               />
               {errors.password2 && (
                 <div className="flex  shadow-lg rounded-lg mt-1">
@@ -436,7 +442,7 @@ export default function Register() {
                 href="#"
                 className="text-gray-400 hover:text-gray-200 transition-colors"
               >
-                ¿Olvidaste tu contraseña?
+               {/*<!-- ¿Olvidaste tu contraseña?-->*/}
               </a>
             </div>
             <div className="mt-4 order-1 md:order-2">
