@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViandaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('user', 'App\Http\Controllers\UserController@index');
 Route::get('user/{user}', 'App\Http\Controllers\UserController@show');
+Route::put('user/{id}', [UserController::class, 'update']);
 
  Route::get('viandas', [ViandaController::class, 'index']);
  Route::get('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@show');
