@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 import CardTicket from "./CardTicket";
-import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+
 import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
@@ -13,11 +13,11 @@ const AdminVianda = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-center w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        <Sidebar />
-          <div>
-            <div className="">
+      <div className=" flex  justify-between w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
+        {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
+              <Sidebar />
+          
+            <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               <CardTicket
                 ticket="total"
                 totalTickets="145,000"
@@ -33,12 +33,14 @@ const AdminVianda = () => {
                 totalTickets="145,000"
                 text="Tickets totales"
               />
+         
+             
             </div>
-          </div>
-        </div>
+          {/* </div> */}
+       
         <div>
-          <h1 className="text-2xl text-white my-10">Tickets más recientes</h1>
-          <div className="bg-secondary-100 p-8 rounded-xl">
+          {/* <h1 className="text-2xl text-white my-10">Tickets más recientes</h1> */}
+          {/* <div className="bg-secondary-100 p-8 rounded-xl">
             <div className="hidden md:grid grid-cols-1 md:grid-cols-5 gap-4 mb-10 p-4">
               <h5>ID</h5>
               <h5>Descripción</h5>
@@ -214,7 +216,7 @@ const AdminVianda = () => {
                 </Menu>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />

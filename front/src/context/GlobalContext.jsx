@@ -11,23 +11,23 @@ function GlobalContextProvider({ children }) {
   const [viandero, setViandero] = useState(undefined); //estados globales
   //
   //
-  async function getViandero() {
-    const arrVianderos = await axios.get(`${SERVER}viandero`);
-    const vianderos = arrVianderos.data;
-    console.log(viandero);
-    const result = vianderos.filter(
-      (viandero) => viandero.user_id === user.user.id
-    );
-    console.log(result[0]);
-    setViandero(result);
-    if ((result.lenght = 1)) {
-      console.log("1");
-      // navigate("/crear-viandas")
-    }
-  }
+  async  function getViandero() {
+   const arrVianderos = await axios.get(`${SERVER}viandero`);
+   const vianderos = arrVianderos.data;
+   console.log(viandero);
+   const result = vianderos.filter(
+     (viandero) => viandero.user_id === user.user.id
+   );
+   console.log(result[0]);
+   setViandero(result);
+   if ((result.lenght == 1)) {
+     console.log("1 viandero");
+     // navigate("/crear-viandas")
+   }
+ }
 
   useEffect(() => {
-    console.log("se modif el user->modf viandero");
+    // console.log("se modif el user->modf viandero");
     getViandero();
   }, [user]);
 
@@ -50,7 +50,7 @@ function GlobalContextProvider({ children }) {
       });
   };
 
-  const contextValue = { user, setUser, logout, SERVER, viandero, setViandero }; //variable a pasar a los hijos
+  const contextValue = { user, setUser, logout, SERVER, viandero, getViandero }; //variable a pasar a los hijos
   return (
     <GlobalContext.Provider value={contextValue}>
       {" "}

@@ -8,7 +8,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { GlobalContextProvider } from "./context/GlobalContext";
 import Error404 from "./components/Error404";
 import AdminVianda from "./components/AdminVianda";
-
+import NuevaVianda from "./components/NuevaVianda";
 import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
         <Route path="/nosotros" element={<Error404 />} />
         <Route path="/crear-viandas" element={<AdminVianda />} />
         <Route path="/entrega" element={<Entrega />} /> 
+        <Route path="/nueva-vianda" element={<NuevaVianda />} />
       </Routes>
     </BrowserRouter>
     </GlobalContextProvider>
