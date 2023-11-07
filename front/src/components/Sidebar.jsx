@@ -169,6 +169,7 @@ const Sidebar = () => {
           <span>Usuarios frecuantes</span>
         </NavLink>
       </li>
+    </ul>
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] my-4">
       Personal
     </h5>
