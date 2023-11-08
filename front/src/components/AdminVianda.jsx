@@ -8,31 +8,31 @@ import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import Card2 from "./Card2";
 
 const AdminVianda = () => {
   return (
     <>
       <Nav />
-      <div className=" flex  justify-between w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
+      <div className=" flex  justify-evenly w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
         {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
               <Sidebar />
           
-            <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              <CardTicket
+            {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
+            <div className=" flex flex-wrap ">
+              
+
+              <Card2/>
+              <Card2/>
+              <Card2/>
+              <Card2/>
+              <Card2/>
+
+              {/* <CardTicket
                 ticket="total"
                 totalTickets="145,000"
                 text="Tickets totales"
-              />
-              <CardTicket
-                ticket="total"
-                totalTickets="145,000"
-                text="Tickets totales"
-              />
-              <CardTicket
-                ticket="total"
-                totalTickets="145,000"
-                text="Tickets totales"
-              />
+              /> */}
          
              
             </div>

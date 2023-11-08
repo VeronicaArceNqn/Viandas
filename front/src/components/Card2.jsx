@@ -5,7 +5,7 @@ import React, { useState, useContext } from "react";
 // import ButtonCard from "./ButtonCard";
 import img from "../images/vinda1.png";
 import { GlobalContext } from "../context/GlobalContext";
-const Card2 = ({nombre,precio,img}) => {
+const Card2 = ({ nombre, precio, img }) => {
   const { user } = useContext(GlobalContext);
   // console.log(user);
   return (
@@ -78,6 +78,8 @@ const Card2 = ({nombre,precio,img}) => {
             <div className="flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}
+              
+           
                 ${precio}
               </span>
               {user ? (
