@@ -55,6 +55,7 @@ Route::delete('/zonaReparto/{id}', 'App\Http\Controllers\ZonaRepartoController@d
 
 Route::get('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@index');
 Route::get('/lugarEntrega/{lugarEntrega}', 'App\Http\Controllers\LugarEntregaController@show');
+Route::get('/lugarEntrega/User/{user_id}', 'App\Http\Controllers\LugarEntregaController@getLugaresPorUsuario');
 Route::post('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@store');
 Route::put('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@update');
 Route::delete('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@destroy');

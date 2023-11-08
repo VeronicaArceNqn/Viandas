@@ -17,11 +17,11 @@ const AdminCliente = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-center w-full p-1 bg-gray-700 dark:bg-gray-400  ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  text-black">
+      <div className="flex justify-between w-full p-1 bg-gray-700 dark:bg-gray-400  ">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8  text-black"> */}
         <SidebarCliente />
-          <div>
-            <div className="">
+          <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            
               {/* <CardTicket
                 ticket="total"
                 totalTickets="145,000"
@@ -34,8 +34,8 @@ const AdminCliente = () => {
                 {/* Otras rutas y componentes aquí */}
             
              
-            </div>
-          </div>
+           
+          
         </div>
         <div className="text-white">
           <h1 className="text-2xl text-white my-10">Pedidos más recientes</h1>

@@ -13,8 +13,8 @@ import Swal from "sweetalert2";
 
 export default function Register() {
   const navigate = useNavigate(); 
-  const { user } = useContext(GlobalContext);
-  console.log("Valor de user:", user);
+  const { user, SERVER } = useContext(GlobalContext);
+  //console.log("Valor de user:", user);
   
   const {
     register,
@@ -55,12 +55,12 @@ export default function Register() {
 
   const saveRegister = (data) => {
     try {
-      const response = axios.post("http://localHost:8000/api/lugarEntrega", data);
+      const response = axios.post(`${SERVER}lugarEntrega`, data);
 
       console.log("Respuesta del servidor:", response.data);
       //swit alerta confirmacion
       Swal.fire("Se ha registrado el lugar de entrega correctamente !");
-      navigate("/");
+      navigate("/EntregaListar");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
     }
@@ -71,7 +71,7 @@ export default function Register() {
      <Nav />
       {/* <!-- HTML --> */}
       {/* <div className=" container mx-auto min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-1"> */}
-      <div className="flex flex-col justify-center w-full p-1 bg-gray-700 dark:bg-gray-200  ">
+      <div className="flex flex-col justify-center w-full  bg-gray-700 dark:bg-gray-200  ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  text-black">
       <SidebarCliente />
         {/* <div className="text-white bg-indigo-300 flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-1 text-center"> */}

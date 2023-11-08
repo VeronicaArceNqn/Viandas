@@ -24,7 +24,7 @@ const PerfilEditar = ({ setEditing }) => {
 
   const handleSaveClick = async () => {
     try {
-      const response = await axios.put(`http://localhost:8000/api/user/${user.user.id}`, formData);
+      const response = await axios.put(`${SERVER}user/${user.user.id}`, formData);
 
       console.log("Respuesta del servidor:", response.data);
       Swal.fire("Perfil actualizado con éxito");
@@ -36,9 +36,9 @@ const PerfilEditar = ({ setEditing }) => {
   }
 
   return (
-    <div className="bg-indigo-300">
+    <div className="bg-indigo-300 rounded-lg p-3 w-full">
       <h2 className="text-2xl">Editar Perfil</h2>
-      <form className="flex flex-col gap-2">
+      <form className="flex flex-col gap-2 ">
         {/* Campos de edición */}
         <div>
               <label htmlFor="nombre" className="text-gray-100">
@@ -147,7 +147,7 @@ const PerfilEditar = ({ setEditing }) => {
               </select>
             </div>
         
-        <button className="text-gray-100 w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors" type="button" onClick={handleSaveClick}>Guardar</button>
+        <button className="text-gray-100 w-full bg-indigo-700 p-2 mt-8 rounded-full hover:bg-indigo-800 transition-colors" type="button" onClick={handleSaveClick}>Guardar</button>
       </form>
     </div>
   );

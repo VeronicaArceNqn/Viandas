@@ -95,4 +95,16 @@ class LugarEntregaController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function getLugaresPorUsuario($user_id) {
+        $lugares = LugarEntrega::where('user_id', $user_id)->get();
+    
+        if ($lugares->isEmpty()) {
+            return response()->json([
+                'mensaje' => 'Aún no ha registrado ningún lugar de entrega'
+            ]);
+        }
+    
+        return response()->json($lugares);
+    }
 }

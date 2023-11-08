@@ -18,6 +18,7 @@ import Sidebar from "./components/Sidebar";
 import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para el registro del lugar de entrega
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
+import CardEntrega from "./components/CardEntrega";
 function App() {
   return (
     <GlobalContextProvider>
@@ -31,10 +32,11 @@ function App() {
         <Route path="/entrega" element={<Entrega />} /> 
         <Route path="/nueva-vianda" element={<NuevaVianda />} />   
         <Route path="/entregaNuevo" element={<EntregaNuevo />} />
+        <Route path="/entregaListar" element={<EntregaListar />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/AdminVianda" element={<AdminVianda />} />
         <Route path="/AdminCliente" element={<AdminCliente />} />
-        <Route path="/EntregaListar" component={<EntregaListar />} />
+        <Route path="/CardEntrega" element={<CardEntrega />} />
         <Route path="/Sidebar" element={<Sidebar />} />
       </Routes>
      

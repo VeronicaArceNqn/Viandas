@@ -3,25 +3,97 @@ import { GlobalContext } from "../context/GlobalContext";
 // import "../myCss.css";
 import Nav from "./Nav";
 import SidebarCliente from "./SidebarCliente";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import CardEntrega from "./CardEntrega";
+import { NavLink, Link, useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import Footer from "./Footer";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 
+
 const EntregaListar = () => {
   const { user, SERVER } = useContext(GlobalContext);
-  console.log("Valor de user:", user);
+  //console.log("Valor de user:", user);
+  const navigate = useNavigate(); 
+
+  const [lugarEntrega, setLugarEntrega] = useState([]); // estado con arreglo vacio
+  //const { SERVER } = useContext(GlobalContext);
+
+  const fetchLugarEntrega = async () => {
+    await axios.get(`${SERVER}lugarEntrega/User/${user.user.id}`)
+      .then((res) => {
+       console.log(res.data);
+       console.log(res)
+      if (res.data===null || res.data.mensaje){
+        console.log("sin lugares");
+        navigate("/EntregaNuevo");
+      }else{
+        setLugarEntrega(res.data);
+      }
+    });
+  };
+  useEffect(() => {
+    fetchLugarEntrega();
+    console.log("lugar???");
+  }, []);
+
+  //console.log(lugarEntrega)
+
+  const entregaNuevaClick = () =>{
+    navigate("/EntregaNuevo");
+  }
+
+
   return (
     <>
-  
-      <div className="flex flex-col justify-center w-full p-1 bg-gray-700 dark:bg-gray-400  ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  text-black">
-       
-      <div>EntregaListar</div>
+     <Nav />
+      <div className="flex justify-between w-full  bg-gray-600 dark:bg-gray-400  ">
+        
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8  text-dark"> */}
+          <div className="grid grid-cols-1  md:grid-cols-2 gap-8  text-dark">
+            <SidebarCliente />
+            <div className=" mt-5">
+                  <span className="text-white font-bold text-2xl">Mis lugares de entrega</span>
+            
+
+                {lugarEntrega.length > 0 ? (
+                 
+                lugarEntrega.map((lugarEntrega) => (
+                  
+                      
+                      <CardEntrega
+                        calle={lugarEntrega.calle}
+                        nroCalle={lugarEntrega.nroCalle}
+                        nombreLugar={lugarEntrega.nombreLugar}
+                        ciudad={lugarEntrega.ciudad}
+                        provincia={lugarEntrega.provincia}
+                      />
+                    
+
+                    )
+                    
+                    )
+                    ) : (
+                      <div></div>
+                      
+                  )}
+                <div className="mt-4 order-1 md:order-2">
+              <button
+                type="button"
+                className="w-full bg-indigo-700 p-2 mt-3 rounded-full hover:bg-indigo-800 transition-colors text-sm text-white"
+                onClick={entregaNuevaClick}
+              >
+                ¿Desea agregar un lugar de entrega?
+              </button>
+            </div>
+            </div> 
+                   
+          
+        </div>
       </div>
-      </div>
+      <Footer />
+      <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5"></div>
     </>
     
   )

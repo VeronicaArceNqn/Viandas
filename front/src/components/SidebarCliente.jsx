@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 const SidebarCliente = () => {
     const { user, SERVER } = useContext(GlobalContext);
-  console.log("Valor de user:", user);
+  //console.log("Valor de user:", user);
   return (
     <>
      <div className="flex flex-col justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 ">
@@ -171,7 +171,29 @@ const SidebarCliente = () => {
     </h5>
     <ul>
       <li>
-      <NavLink to="/EntregaNuevo"
+      <NavLink to="/Perfil"
+          className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5 text-sky-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+            />
+          </svg>
+          <span>Mi perfil</span>
+          </NavLink>
+      
+      </li>
+      <li>
+      <NavLink to="/EntregaListar"
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -192,28 +214,7 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
       <li>
-      <NavLink to="/Perfil"
-          className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-5 h-5 text-sky-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
-            />
-          </svg>
-          <span>Mi perfil</span>
-          </NavLink>
-      </li>
-      <li>
-      <NavLink to='/nosotros'
+      <NavLink to='/'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -230,7 +231,7 @@ const SidebarCliente = () => {
               d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
             />
           </svg>
-          <span>Viajes</span>
+          <span>*</span>
           </NavLink>
       </li>
     </ul>
