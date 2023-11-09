@@ -3,11 +3,22 @@ import React, { useState, useContext } from "react";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import Rating from "./Rating";
 // import ButtonCard from "./ButtonCard";
-import img from "../images/vinda1.png";
+// import img from "../images/vinda1.png";
 import { GlobalContext } from "../context/GlobalContext";
-const Card2 = ({ nombre, precio, img }) => {
+import {
+  RiEdit2Line,
+  RiShieldCheckLine,
+  RiErrorWarningLine,
+} from "react-icons/ri";
+import {Link, NavLink} from 'react-router-dom'
+//
+//
+//
+const Card2 = ({id, nombre, precio, img }) => {
+
   const { user } = useContext(GlobalContext);
-  // console.log(user);
+  
+
   return (
     <>
       {/* <!-- component --> */}
@@ -15,14 +26,19 @@ const Card2 = ({ nombre, precio, img }) => {
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-auto w-60">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
-          <a href="#">
+          <Link to={`/editar-vianda/${id}`} >
+
+            <RiEdit2Line/>
+          </Link>
+          <div>
             <img
-              className="rounded-3xl p-4  "
+              className="rounded-3xl p-4 cursor-pointer "
               src={img}
               // src="viandaNapo.png"
               alt="product image"
+              // onClick={cambiarImagen}
             />
-          </a>
+          </div>
           <div className="px-5 pb-5">
             <a href="#">
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
@@ -77,10 +93,7 @@ const Card2 = ({ nombre, precio, img }) => {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
-                {/* $1599 */}
-              
-           
-                ${precio}
+                {/* $1599 */}${precio}
               </span>
               {user ? (
                 //

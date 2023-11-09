@@ -1,16 +1,36 @@
-import React from "react";
+import React ,{ useContext, useEffect, useState}from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
-import CardTicket from "./CardTicket";
-
 import { Link } from "react-router-dom";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import Card2 from "./Card2";
+import { GlobalContext } from "../context/GlobalContext";
+import axios from "axios";
 
 const AdminVianda = () => {
+  //---
+  const [viandas, setViandas] = useState([])
+  const {SERVER} = useContext(GlobalContext)
+  const viandero={
+    id:36
+  } 
+  //--
+  useEffect(()=>{
+fetchViandas()
+  },[])
+  //--  
+  const fetchViandas = async () => {
+    await axios.get(`${SERVER}viandas`)
+      .then((res) => {
+      console.log(res.data);
+       setViandas(res.data);
+    });
+  };
+  //--
+
   return (
     <>
       <Nav />
@@ -20,13 +40,18 @@ const AdminVianda = () => {
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
             <div className=" flex flex-wrap ">
+            {viandas.filter(vianda => vianda.viandero_id === viandero.id).map(vianda => (
+            <Card2
+              key={vianda.id}
+              id = {vianda.id}
+              nombre={vianda.nombre}
+              precio={vianda.precio}
+              img={vianda.urlFoto}
+              
+            />
+          ))}
               
 
-              <Card2/>
-              <Card2/>
-              <Card2/>
-              <Card2/>
-              <Card2/>
 
               {/* <CardTicket
                 ticket="total"
