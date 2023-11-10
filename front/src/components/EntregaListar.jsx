@@ -44,6 +44,20 @@ const EntregaListar = () => {
     navigate("/EntregaNuevo");
   }
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(`${SERVER}lugarEntrega/${id}`);
+      setLugarEntrega(lugarEntrega.filter(lugar => lugar.id !== id))
+      console.log("Respuesta del servidor:", response.data);
+      console.log({id})
+      //swit alerta confirmacion
+      Swal.fire("Se ha borrado el lugar de entrega correctamente !");
+      navigate("/EntregaListar");
+    } catch (error) {
+      console.error("Error al eliminar el lugar de entrega", error);
+    }
+  };  
+
 
   return (
     <>
@@ -63,11 +77,14 @@ const EntregaListar = () => {
                   
                       
                       <CardEntrega
+                        key={lugarEntrega.id}
                         calle={lugarEntrega.calle}
                         nroCalle={lugarEntrega.nroCalle}
                         nombreLugar={lugarEntrega.nombreLugar}
                         ciudad={lugarEntrega.ciudad}
                         provincia={lugarEntrega.provincia}
+                        id={lugarEntrega.id}
+                        onDelete={() => handleDelete(lugarEntrega.id)}
                       />
                     
 

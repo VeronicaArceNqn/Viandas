@@ -88,7 +88,13 @@ class LugarEntregaController extends Controller
      */
     public function destroy(Request $request)
     {
-        $lugarEntrega = LugarEntrega::destroy($request->id);
+        $lugarEntrega = LugarEntrega::find($request->id);
+
+        if (!$lugarEntrega) {
+            return response()->json(['message' => 'El lugar de entrega no fue encontrado'], 404);
+        }
+
+        $lugarEntrega->delete();
         $data= [
             'message' => 'El lugar de entrega se borró correctamente',
             'lugarEntrega' => $lugarEntrega
