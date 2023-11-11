@@ -71,8 +71,8 @@ export default function Register() {
      <Nav />
       {/* <!-- HTML --> */}
       {/* <div className=" container mx-auto min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-1"> */}
-      <div className="flex flex-col justify-center w-full  bg-gray-700 dark:bg-gray-200  ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8  text-black">
+      <div className="flex justify-between w-full  bg-gray-600 dark:bg-gray-400  ">
+        <div className="grid grid-cols-1  md:grid-cols-2 gap-8  text-dark">
       <SidebarCliente />
         {/* <div className="text-white bg-indigo-300 flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-1 text-center"> */}
         
@@ -375,8 +375,9 @@ export default function Register() {
         </div>
         {/* <!-- Imagen de fondo --> */}
         <div className="bg hidden lg:block"></div>
-        <Footer />
+       
       </div>
+    <Footer />
     </>
   );
 }
