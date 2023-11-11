@@ -30,10 +30,11 @@ Route::put('user/{id}', [UserController::class, 'update']);
 
  Route::get('viandas', [ViandaController::class, 'index']);
  Route::get('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@show');
- Route::put('/viandas/{id}', 'App\Http\Controllers\ViandaController@update');
+ Route::put('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@update');
  Route::post('/viandas', 'App\Http\Controllers\ViandaController@store');
 Route::delete('/viandas/{id}', 'App\Http\Controllers\ViandaController@destroy');
 //Route::resource('/viandas', ViandaController::class);
+Route::get('/viandas/filtrar/{id}', 'App\Http\Controllers\ViandaController@filtrarPorTipoVianda');
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
 Route::get('/tipoVianda/{tipoViandas}', 'App\Http\Controllers\TipoViandaController@show');
@@ -84,6 +85,7 @@ Route::post('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@store'
 Route::put('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@update');
 Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@destroy');
 
+Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@cambiarEstado');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
