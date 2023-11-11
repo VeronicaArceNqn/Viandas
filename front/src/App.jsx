@@ -11,6 +11,8 @@ import AdminVianda from "./components/AdminVianda";
 import NuevaVianda from "./components/NuevaVianda";
 
 import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
+import EditarVianda from "./components/editarVianda";
+
 
 import AdminCliente from "./components/AdminCliente";
 import Sidebar from "./components/Sidebar";
@@ -31,13 +33,17 @@ function App() {
         <Route path="/crear-viandas" element={<AdminVianda />} />
         <Route path="/entrega" element={<Entrega />} /> 
         <Route path="/nueva-vianda" element={<NuevaVianda />} />   
+
         <Route path="/entregaNuevo" element={<EntregaNuevo />} />
         <Route path="/entregaListar" element={<EntregaListar />} />
         <Route path="/perfil" element={<Perfil />} />
-        <Route path="/AdminVianda" element={<AdminVianda />} />
+       
         <Route path="/AdminCliente" element={<AdminCliente />} />
         <Route path="/CardEntrega" element={<CardEntrega />} />
         <Route path="/Sidebar" element={<Sidebar />} />
+
+        <Route path="/editar-vianda/:id" element={<EditarVianda />} />   
+
       </Routes>
      
     </BrowserRouter>
