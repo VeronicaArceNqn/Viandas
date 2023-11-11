@@ -28,9 +28,9 @@ class EstadoViandaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
-        //
+        //       
     }
 
     /**
@@ -65,23 +65,49 @@ class EstadoViandaController extends Controller
         //
     }
 
-    public function cambiarEstado(Request $request, $pedidoViandaId, $nuevoEstadoId)
+    public function cambiarEstado(Request $request)
     {
-        $pedidoVianda = PedidoVianda::findOrFail($pedidoViandaId);
-        $estadoActual = $pedidoVianda->estado_actual; // Supongamos que tienes una relación definida en tu modelo PedidoVianda
+        $pedidoViandaId = $request->input('pedidoVianda_id');
+    $nuevoEstadoId = $request->input('estado_id');
 
-        // Actualizar fechaFin del estado actual
-        $estadoActual->fechaFin = now();
-        $estadoActual->save();
+    // Verificar si los IDs son válidos
+    $pedidoVianda = PedidoVianda::find($pedidoViandaId);
+    $nuevoEstado = Estado::find($nuevoEstadoId);
 
-        // Crear nuevo registro en estado_viandas
-        $nuevoEstadoVianda = new EstadoVianda();
-        $nuevoEstadoVianda->pedidoVianda_id = $pedidoViandaId;
-        $nuevoEstadoVianda->estado_id = $nuevoEstadoId;
-        $nuevoEstadoVianda->fechaInicio = now();
-        $nuevoEstadoVianda->save();
+    if (!$pedidoVianda || !$nuevoEstado) {
+        return response()->json(['message' => 'IDs de pedidoVianda o estado no válidos'], 400);
+    }
+    
+    // Buscar el estado actual por pedidoVianda_id
+    $estadoActual = EstadoVianda::where('pedidoVianda_id', $pedidoViandaId)
+                                ->orderBy('id', 'desc')
+                                ->first();
 
-        return response()->json(['message' => 'Estado actualizado con éxito'], 200);
+        // Si no hay estado actual o el nuevo estado es diferente, crear uno nuevo
+        if (!$estadoActual || ($estadoActual && $estadoActual->estado_id != $nuevoEstadoId)) {
+            if ($estadoActual) {
+                // Actualizar fechaFin del estado anterior
+                $estadoActual->fechaFin = now();
+                $nuevoEstadoVianda = $estadoActual->save();
+            }
+
+            // Crear un nuevo registro en estado_Viandas
+            $nuevoEstadoVianda = new EstadoVianda();
+            $nuevoEstadoVianda->pedidoVianda_id = $pedidoViandaId;
+            $nuevoEstadoVianda->estado_id = $nuevoEstadoId;
+            $nuevoEstadoVianda->fechaInicio = now();
+            $nuevoEstadoVianda->save();
+        } else {
+
+              
+            return response()->json(['message' => 'El estado ya está registrado para este pedidoVianda'], 400);
+    }
+    $data= [
+        'message' => 'Estado actualizado con éxito',
+        'nuevoEstadovianda' => $nuevoEstadoVianda,
+        'estadoActual' => $estadoActual
+    ];
+    return response()->json($data);
     }
 
 }
