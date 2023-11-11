@@ -47,19 +47,19 @@ const NuevaVianda = () => {
     formData.append("horarioPedido", data.horarioPedido);
     formData.append("publicado", data.publicado);
     formData.append("viandero_id", data.viandero_id);
-    // console.log(formData);
+    console.log(formData);
     let icono = "success"
+    
     Swal.fire({
       title:"Vianda creada correctamente.",
       text:"Desea crear otra?",
       icon:`${icono}`,
       showDenyButton:true,
       confirmButtonText:"Si, crear otra mas"
-
     })
       .then(resp=>{
-        // enviarForm(formData);
         if(resp.isConfirmed){
+           enviarForm(formData);
           console.log(resp)
           reset()
           setImagen(null)

@@ -37,7 +37,6 @@ const EditarVianda = () => {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
-
   const onchangeNombre = (e) => {
     setNombre(e.target.value);
   };
@@ -69,7 +68,7 @@ const EditarVianda = () => {
   const onSubmit = (data) => {
     const formData = new FormData();
 
-    console.log(data);
+    console.log(data, "data ");
 
     data.viandero_id = 36;
     data.horarioPedido = "12:00 am";
@@ -77,15 +76,16 @@ const EditarVianda = () => {
     data.publicado = 0;
     data.cantidad = 0;
 
-     formData.append("urlFoto", data.urlFoto[0]);
-     formData.append("nombre", data.nombre);
-     formData.append("descripcion", data.descripcion);
-     formData.append("tipoVianda_id", data.tipoVianda_id);
-     formData.append("cantidad", data.cantidad);
-     formData.append("precio", data.precio);
-     formData.append("horarioPedido", data.horarioPedido);
-     formData.append("publicado", data.publicado);
-     formData.append("viandero_id", data.viandero_id);
+    formData.append("id", id);
+    formData.append("urlFoto", data.urlFoto[0]);
+    formData.append("nombre", data.nombre);
+    formData.append("descripcion", data.descripcion);
+    formData.append("tipoVianda_id", data.tipoVianda_id);
+    formData.append("cantidad", data.cantidad);
+    formData.append("precio", data.precio);
+    formData.append("horarioPedido", data.horarioPedido);
+    formData.append("publicado", data.publicado);
+    formData.append("viandero_id", data.viandero_id);
     //  console.log(formData);
     let icono = "success";
     Swal.fire({
@@ -108,9 +108,10 @@ const EditarVianda = () => {
   };
 
   const enviarForm = async (data) => {
+    console.log(data);
     try {
       await axios
-        .put(`${SERVER}${id}`, data, {
+        .put(`${SERVER}viandas${data}`, data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -125,6 +126,40 @@ const EditarVianda = () => {
     }
     // console.log(response)
   };
+  const eliminarVianda = async (data) => {
+    console.log(data, "borarr");
+    Swal.fire({
+      title: "Eliminar vianda?.",
+      text: "Los datos seran eliminados",
+      icon: `warning`,
+      showDenyButton: true,
+      confirmButtonText: "Si",
+    }).then((resp) => {
+      // enviarForm(formData);
+      if (resp.isConfirmed) {
+        deleteVianda(id)
+        console.log(resp);
+        reset();
+        setImagen(null);
+         navigate("/crear-viandas");
+      } else {
+        navigate("/editar-viandas");
+      }
+    });
+  };
+  
+  const deleteVianda = async (id) => {
+    
+    try {
+      await axios.delete(`${SERVER}viandas/${id}`).then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    
+  }
+  
 
   return (
     <>
@@ -319,12 +354,13 @@ const EditarVianda = () => {
                 >
                   Guardar Cambios
                 </button>
-                {/* <button
-                 
-                  className="mb-8 w-full bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
+                <button
+                  type="button"
+                  onClick={eliminarVianda}
+                  className="mb-8 w-full bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-white"
                 >
                   Eliminar Vianda
-                </button> */}
+                </button>
               </div>
             </div>
           </form>
