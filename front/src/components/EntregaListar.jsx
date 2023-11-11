@@ -27,7 +27,7 @@ const EntregaListar = () => {
        console.log(res)
       if (res.data===null || res.data.mensaje){
         console.log("sin lugares");
-        navigate("/EntregaNuevo");
+        navigate("/EntregaListar");
       }else{
         setLugarEntrega(res.data);
       }

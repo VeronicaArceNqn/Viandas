@@ -1,15 +1,12 @@
-import React, { useContext, useEffect,  useState } from "react";
-import { NavLink, useNavigate, Link} from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import "../index.css";
 import "../App.css";
-import { GlobalContext} from "../context/GlobalContext";
-import icoUser from '../images/iconos/Usuario.png'
-
-
+import { GlobalContext } from "../context/GlobalContext";
+import icoUser from "../images/iconos/Usuario.png";
 
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import {
- 
   RiArrowDownSLine,
   RiSettings3Line,
   RiLogoutCircleRLine,
@@ -22,7 +19,6 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import axios from "axios";
 import { registerLocale } from "react-datepicker";
-
 
 // import axios from "axios";
 
@@ -37,21 +33,17 @@ export default function Nav() {
   const [msj, setMsj] = useState("");
   const [zReparto, setZreparto] = useState([]);
   const navigate = useNavigate();
-  
-  
 
   const vistaViandero = () => {
     // getViandero()
-    console.log(viandero[0])
-      if(viandero?.[0]?.id){
-        // console.log(navigate())
-        navigate("/crear-viandas")
-        // history.push('/crear-viandas')
-      }else{
-
-        setShowModal(true);
-      }
-  
+    console.log(viandero[0]);
+    if (viandero?.[0]?.id) {
+      // console.log(navigate())
+      navigate("/crear-viandas");
+      // history.push('/crear-viandas')
+    } else {
+      setShowModal(true);
+    }
   };
   // async function getViandero() {
   //   const arrVianderos = await axios.get(`${SERVER}viandero`);
@@ -70,8 +62,6 @@ export default function Nav() {
   //     getViandero();
   //   }
   // }, [user]);
-
-
 
   useEffect(() => {
     // Realizar una solicitud GET a la API externa para obtener las opciones
@@ -108,7 +98,7 @@ export default function Nav() {
       // .then((res)=>{
       // })
       // setViandero()
-      getViandero()
+      getViandero();
       navigate("/crear-viandas");
     } catch (err) {
       console.log(err.message);
@@ -169,7 +159,6 @@ export default function Nav() {
               <hr className="my-4 border-gray-500" />
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-
                   to="/Perfil"
                   className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
@@ -182,12 +171,14 @@ export default function Nav() {
                   className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Administrar mis pedidos
-
+                </Link>
+              </MenuItem>
+              <MenuItem className="p-0 hover:bg-transparent">
+                <Link
                   to="/"
                   className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Configuración
-
                 </Link>
               </MenuItem>
               <MenuItem className="p-0 hover:bg-transparent">
@@ -206,25 +197,25 @@ export default function Nav() {
         </nav>
         {user ? (
           <span className="text-white  ">
-            <RiShoppingCart2Fill onClick={()=>{
-              console.log("carrito")
-            }} className="text-3xl pointer-events-auto" />
+            <RiShoppingCart2Fill
+              onClick={() => {
+                console.log("carrito");
+              }}
+              className="text-3xl pointer-events-auto"
+            />
           </span>
         ) : (
           ""
         )}
         {user ? (
           <span className="text-white  ">
-          
-              <RiStore3Line
-                title="Crear viandas"
-                className="text-3xl"
-                onClick={() => {
-                  vistaViandero();
-                 
-                }}
-              />
-           
+            <RiStore3Line
+              title="Crear viandas"
+              className="text-3xl"
+              onClick={() => {
+                vistaViandero();
+              }}
+            />
           </span>
         ) : (
           ""
@@ -232,7 +223,6 @@ export default function Nav() {
       </div>
       {showModal ? (
         <>
-        
           <form onSubmit={venderVianda}>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
               <div className="relative w-auto my-6 mx-auto max-w-3xl">

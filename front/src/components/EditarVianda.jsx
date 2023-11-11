@@ -69,7 +69,7 @@ const EditarVianda = () => {
     const formData = new FormData();
 
     console.log(data, "data ");
-
+    data.id = id
     data.viandero_id = 36;
     data.horarioPedido = "12:00 am";
     data.precio = 0;
@@ -95,12 +95,12 @@ const EditarVianda = () => {
       showDenyButton: true,
       confirmButtonText: "Si",
     }).then((resp) => {
-      enviarForm(formData);
       if (resp.isConfirmed) {
+        enviarForm(data);
         console.log(resp);
         reset();
         setImagen(null);
-        // navigate("/nueva-vianda");
+        // navigate("/crear-viandas");
       } else {
         navigate("/crear-viandas");
       }
@@ -108,10 +108,10 @@ const EditarVianda = () => {
   };
 
   const enviarForm = async (data) => {
-    console.log(data);
+    console.log(data.nombre);
     try {
       await axios
-        .put(`${SERVER}viandas${data}`, data, {
+        .put(`${SERVER}viandas/${id}`, data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

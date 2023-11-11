@@ -84,7 +84,7 @@ class ViandaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vianda $vianda)
+    public function update(Request $request)
     {
         $vianda = Vianda::findOrFail($request->id);
         $vianda->nombre = $request->nombre;
