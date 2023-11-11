@@ -26,5 +26,14 @@ class PedidoVianda extends Model
     public function vianda(){
         return $this->belongsTo('App\Models\Vianda');
     }
+
+    public function lugarEntrega(){
+        return $this->belongsTo('App\Models\LugarEntrega');
+    }
     
+    //Relación muchos a muchos
+    public function estados(){
+        return $this->belongsToMany(Estado::class, 'estado_viandas');
+    }
+
 }

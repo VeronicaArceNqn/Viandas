@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ViandaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,15 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('user', 'App\Http\Controllers\UserController@index');
 Route::get('user/{user}', 'App\Http\Controllers\UserController@show');
+Route::put('user/{id}', [UserController::class, 'update']);
 
  Route::get('viandas', [ViandaController::class, 'index']);
  Route::get('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@show');
- Route::put('/viandas/{id}', 'App\Http\Controllers\ViandaController@update');
+ Route::put('/viandas/{vianda}', 'App\Http\Controllers\ViandaController@update');
  Route::post('/viandas', 'App\Http\Controllers\ViandaController@store');
 Route::delete('/viandas/{id}', 'App\Http\Controllers\ViandaController@destroy');
 //Route::resource('/viandas', ViandaController::class);
+Route::get('/viandas/filtrar/{id}', 'App\Http\Controllers\ViandaController@filtrarPorTipoVianda');
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
 Route::get('/tipoVianda/{tipoViandas}', 'App\Http\Controllers\TipoViandaController@show');
@@ -53,6 +56,7 @@ Route::delete('/zonaReparto/{id}', 'App\Http\Controllers\ZonaRepartoController@d
 
 Route::get('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@index');
 Route::get('/lugarEntrega/{lugarEntrega}', 'App\Http\Controllers\LugarEntregaController@show');
+Route::get('/lugarEntrega/User/{user_id}', 'App\Http\Controllers\LugarEntregaController@getLugaresPorUsuario');
 Route::post('/lugarEntrega', 'App\Http\Controllers\LugarEntregaController@store');
 Route::put('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@update');
 Route::delete('/lugarEntrega/{id}', 'App\Http\Controllers\LugarEntregaController@destroy');
@@ -62,6 +66,8 @@ Route::get('/viandero/{viandero}', 'App\Http\Controllers\VianderoController@show
 Route::post('/viandero', 'App\Http\Controllers\VianderoController@store');
 Route::put('/viandero/{id}', 'App\Http\Controllers\VianderoController@update');
 Route::delete('/viandero/{id}', 'App\Http\Controllers\VianderoController@destroy');
+Route::get('/viandero/zona-reparto/{zonaRepartoId}', 'App\Http\Controllers\VianderoController@obtenerVianderosZona');
+
 
 Route::get('/estado', 'App\Http\Controllers\EstadoController@index');
 Route::get('/estado/{estado}', 'App\Http\Controllers\EstadoController@show');
@@ -81,6 +87,7 @@ Route::post('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@store'
 Route::put('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@update');
 Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@destroy');
 
+Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@cambiarEstado');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);

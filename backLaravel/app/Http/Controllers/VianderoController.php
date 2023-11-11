@@ -90,4 +90,27 @@ class VianderoController extends Controller
         ];
         return response()->json($data);
     }
+    public function obtenerVianderosZona($zonaRepartoId)
+{
+    // Obtén los vianderos filtrados por zonaReparto_id
+    $vianderosFiltrados = Viandero::where('zonaReparto_id', $zonaRepartoId)->get();
+
+    // Verifica si hay vianderos
+    if ($vianderosFiltrados->isEmpty()) {
+        // No hay vianderos, devuelve un mensaje indicando que no hay resultados
+        return response()->json(['message' => 'No hay vianderos para la zona de reparto especificada'], 404);
+    }
+
+    // Para cada viandero, carga los datos del usuario asociado
+    foreach ($vianderosFiltrados as $viandero) {
+        $viandero->user; // Esto asume que hay una relación llamada "usuario" en tu modelo Viandero
+    }
+
+    // Hay vianderos, devuelve los vianderos filtrados en formato JSON
+    $data = [
+        'message' => 'Listado de vianderos generado correctamente',
+        'vianderos' => $vianderosFiltrados
+    ];
+    return response()->json($data);
+}
 }

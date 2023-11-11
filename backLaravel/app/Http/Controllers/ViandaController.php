@@ -90,7 +90,7 @@ class ViandaController extends Controller
         $vianda->nombre = $request->nombre;
         $vianda->descripcion = $request->descripcion;
         $vianda->tipoVianda_id = $request->tipoVianda_id;
-        //$vianda->urlFoto = $request->urlFoto;
+        $vianda->urlFoto = $request->urlFoto;
         $vianda->cantidad = $request->cantidad;
         $vianda->precio = $request->precio;
         $vianda->horarioPedido = $request->horarioPedido;
@@ -123,4 +123,24 @@ class ViandaController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function filtrarPorTipoVianda($tipoViandaId)
+    {
+        // Obtén las viandas filtradas por tipoVianda_id
+        $viandasFiltradas = Vianda::where('tipoVianda_id', $tipoViandaId)->get();
+
+         // Verifica si hay viandas
+    if ($viandasFiltradas->isEmpty()) {
+        // No hay viandas, devuelve un mensaje indicando que no hay resultados
+        return response()->json(['message' => 'No hay viandas disponibles para el tipo especificado'], 404);
+    }
+
+        // Devuelve las viandas filtradas en formato JSON
+        $data= [
+            'message' => 'Listado de viandas generado correctamente',
+            'vianda' => $viandasFiltradas
+        ];
+        return response()->json(['viandas' => $data]);
+    }
+
 }

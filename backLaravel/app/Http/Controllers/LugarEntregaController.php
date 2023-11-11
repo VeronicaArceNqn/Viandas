@@ -88,11 +88,29 @@ class LugarEntregaController extends Controller
      */
     public function destroy(Request $request)
     {
-        $lugarEntrega = LugarEntrega::destroy($request->id);
+        $lugarEntrega = LugarEntrega::find($request->id);
+
+        if (!$lugarEntrega) {
+            return response()->json(['message' => 'El lugar de entrega no fue encontrado'], 404);
+        }
+
+        $lugarEntrega->delete();
         $data= [
             'message' => 'El lugar de entrega se borró correctamente',
             'lugarEntrega' => $lugarEntrega
         ];
         return response()->json($data);
+    }
+
+    public function getLugaresPorUsuario($user_id) {
+        $lugares = LugarEntrega::where('user_id', $user_id)->get();
+    
+        if ($lugares->isEmpty()) {
+            return response()->json([
+                'mensaje' => 'Aún no ha registrado ningún lugar de entrega'
+            ]);
+        }
+    
+        return response()->json($lugares);
     }
 }
