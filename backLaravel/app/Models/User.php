@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function pedidos(){
         return $this->hasMany('App\Models\Pedido');
     }
+
+    public function lugarEntregas(){
+        return $this->hasMany('App\Models\LugarEntrega');
+    }
 }
