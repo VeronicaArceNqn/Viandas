@@ -4,6 +4,7 @@ import "../index.css";
 import "../App.css";
 import { GlobalContext } from "../context/GlobalContext";
 import icoUser from "../images/iconos/Usuario.png";
+import {format } from 'date-fns'
 
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import {
@@ -26,7 +27,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
 export default function Nav() {
+  const fecha = format(new Date(),'dd-MM-yy')
   const { user, setUser, logout, SERVER, viandero, getViandero } =
     useContext(GlobalContext);
   const [showModal, setShowModal] = useState(false);
@@ -107,10 +110,11 @@ export default function Nav() {
 
   return (
     <nav>
-      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
-        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
-          <NavLink to="/"> Viandas</NavLink>
+      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-11 gap-4 items-center justify-center">
+        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-2xl">
+          <NavLink to="/"> Viandas </NavLink> <br />
         </h1>
+          <div className="text-lg border-l-2 text-zinc-950">{fecha}</div>
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <NavLink to="/"> Inicio </NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>

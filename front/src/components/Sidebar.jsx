@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 const Sidebar = () => {
   return (
     <>
-     <div className="flex flex-col  justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 ">
+     <div className="flex flex-col  justify-between gap-8 bg-gray-100 h-screen max-h-screen w-80 p-4 ">
   {/* <!-- Top --> */}
   <section>
     {/* <!-- Logo --> */}
