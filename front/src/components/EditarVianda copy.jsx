@@ -21,11 +21,11 @@ const EditarVianda = () => {
   // console.log(id);
   //-
   const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+      register,
+      reset,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
 
   // console.log(errors)
   const { SERVER, viandero } = useContext(GlobalContext);
@@ -33,28 +33,17 @@ const EditarVianda = () => {
   const navigate = useNavigate();
 
   const [imagen, setImagen] = useState(null);
-
+  //  const [vianda, setVianda] = useState({});
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
 
-
+  //  console.log(vianda.nombre)
   const onchangeNombre = (e) => {
     setNombre(e.target.value);
   };
   const onchangeDescripcion = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setDescripcion(e.target.descripcion);
-  };
-  const handleOnChange = (e) => {
-    const file = e.target.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImagen(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   useEffect(() => {
@@ -66,51 +55,66 @@ const EditarVianda = () => {
     });
   }, []);
 
+  const onSubmittt = (form) => {
+    e.preventDefault();
+    console.log(e.target.nombre.value);
+    data = {
+      nombre: e.target.nombre.value,
+      nombre: e.target.nombre.value,
+      nombre: e.target.nombre.value,
+    };
+  };
   const onSubmit = (data) => {
-    const formData = new FormData();
-
+    data.preventDefault();
     console.log(data);
+  };
 
-    data.viandero_id = 36;
-    data.horarioPedido = "12:00 am";
-    data.precio = 0;
-    data.publicado = 0;
-    data.cantidad = 0;
+  const onSubmits = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    const data = e;
+    console.log(data.files);
 
-     formData.append("urlFoto", data.urlFoto[0]);
-     formData.append("nombre", data.nombre);
-     formData.append("descripcion", data.descripcion);
-     formData.append("tipoVianda_id", data.tipoVianda_id);
-     formData.append("cantidad", data.cantidad);
-     formData.append("precio", data.precio);
-     formData.append("horarioPedido", data.horarioPedido);
-     formData.append("publicado", data.publicado);
-     formData.append("viandero_id", data.viandero_id);
+    // data.viandero_id = 36;
+    // data.horarioPedido = "12:00 am";
+    // data.precio = 0;
+    // data.publicado = 0;
+    // data.cantidad = 0;
+
+    //  formData.append("urlFoto", data.urlFoto[0]);
+    //  formData.append("nombre", data.nombre);
+    //  formData.append("descripcion", data.descripcion);
+    //  formData.append("tipoVianda_id", data.tipoVianda_id);
+    //  formData.append("cantidad", data.cantidad);
+    //  formData.append("precio", data.precio);
+    //  formData.append("horarioPedido", data.horarioPedido);
+    //  formData.append("publicado", data.publicado);
+    //  formData.append("viandero_id", data.viandero_id);
     //  console.log(formData);
-    let icono = "success";
-    Swal.fire({
-      title: "La vianda sera modificada.",
-      text: "Los datos seran actualizados",
-      icon: `${icono}`,
-      showDenyButton: true,
-      confirmButtonText: "Si",
-    }).then((resp) => {
-      enviarForm(formData);
-      if (resp.isConfirmed) {
-        console.log(resp);
-        reset();
-        setImagen(null);
-        // navigate("/nueva-vianda");
-      } else {
-        navigate("/crear-viandas");
-      }
-    });
+    // let icono = "success";
+    // Swal.fire({
+    //   title: "Vianda creada correctamente.",
+    //   text: "Desea crear otra?",
+    //   icon: `${icono}`,
+    //   showDenyButton: true,
+    //   confirmButtonText: "Si, crear otra mas",
+    // }).then((resp) => {
+    //   enviarForm(formData);
+    //   if (resp.isConfirmed) {
+    //     console.log(resp);
+    //     reset();
+    //     setImagen(null);
+    //     navigate("/nueva-vianda");
+    //   } else {
+    //     navigate("/crear-viandas");
+    //   }
+    // });
   };
 
   const enviarForm = async (data) => {
     try {
       await axios
-        .put(`${SERVER}${id}`, data, {
+        .put(`${SERVER}viandas`, data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -126,6 +130,19 @@ const EditarVianda = () => {
     // console.log(response)
   };
 
+  
+  const handleOnChange = (e) => {
+    const file = e.target.files[0];
+
+    // Mostrar la imagen en el formulario
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagen(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <>
       <Nav />
@@ -135,7 +152,7 @@ const EditarVianda = () => {
           <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg ">
             Editar Vianda
           </h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={onSubmit}>
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-8">
               <div className="w-full md:w-1/4">
                 <p className="">
@@ -267,6 +284,7 @@ const EditarVianda = () => {
               <div className="flex-1 ">
                 <div className="relative my-1">
                   <img
+                    
                     src={imagen != null ? imagen : img}
                     className="w-24 h-24 rounded-lg"
                     alt="nada"
@@ -327,6 +345,8 @@ const EditarVianda = () => {
                 </button> */}
               </div>
             </div>
+           
+           
           </form>
         </div>
       </div>

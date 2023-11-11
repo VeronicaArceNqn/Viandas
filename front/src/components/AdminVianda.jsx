@@ -26,7 +26,7 @@ fetchViandas()
     await axios.get(`${SERVER}viandas`)
       .then((res) => {
       console.log(res.data);
-       setViandas(res.data);
+       setViandas(res.data);//cargo todas las viandas
     });
   };
   //--

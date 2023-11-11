@@ -21,8 +21,8 @@ function GlobalContextProvider({ children }) {
    console.log(result[0]);
    setViandero(result);
    if ((result.lenght == 1)) {
-     console.log("1 viandero");
-     // navigate("/crear-viandas")
+     console.log("setViandero");
+     
    }
  }
 

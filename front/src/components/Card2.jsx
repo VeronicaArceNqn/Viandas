@@ -26,6 +26,7 @@ const Card2 = ({id, nombre, precio, img }) => {
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-auto w-60">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
+          {/* validar si viandero existe  para mostrar icono de edicion */}
           <Link to={`/editar-vianda/${id}`} >
 
             <RiEdit2Line/>

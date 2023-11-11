@@ -58,7 +58,7 @@ const NuevaVianda = () => {
 
     })
       .then(resp=>{
-        enviarForm(formData);
+        // enviarForm(formData);
         if(resp.isConfirmed){
           console.log(resp)
           reset()
