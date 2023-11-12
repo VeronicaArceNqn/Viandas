@@ -14,9 +14,9 @@ import {Link, NavLink} from 'react-router-dom'
 //
 //
 //
-const Card2 = ({id, nombre, precio, img }) => {
+const Card2 = ({id, nombre, precio, img ,home, descripcion}) => {
 
-  const { user } = useContext(GlobalContext);
+  const { user,viandero } = useContext(GlobalContext);
   
 
   return (
@@ -26,11 +26,15 @@ const Card2 = ({id, nombre, precio, img }) => {
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-1 my-1 w-60">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
-          {/* validar si viandero existe  para mostrar icono de edicion */}
+          {/* validar si viandero existe  para mostrar icono de edicion */ }
+          {viandero &&          
+          
           <Link to={`/editar-vianda/${id}`} >
-
-            <RiEdit2Line/>
+            {home?"":<RiEdit2Line/>}
+            
           </Link>
+          
+          }
           <div>
             <img
               className="rounded-3xl p-4 cursor-pointer "
@@ -45,7 +49,9 @@ const Card2 = ({id, nombre, precio, img }) => {
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
                 {/* Milanesa napolitana con pure */}
                 {nombre}
+                <hr className="border-t-2 border-blue-300 my-1"/>
               </h3>
+                <p>{descripcion}</p>
             </a>
             <div className="flex items-center mt-2.5 mb-5">
               <svg
@@ -96,7 +102,7 @@ const Card2 = ({id, nombre, precio, img }) => {
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}${precio}
               </span>
-              {user ? (
+              {user?.id != viandero?.user_id? (
                 //
                 <button className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors">
                   Agregar

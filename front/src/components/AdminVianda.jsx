@@ -47,6 +47,7 @@ fetchViandas()
               nombre={vianda.nombre}
               precio={vianda.precio}
               img={vianda.urlFoto}
+              descripcion = {vianda.descripcion}
               
             />
           ))}

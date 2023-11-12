@@ -58,8 +58,8 @@ const NuevaVianda = () => {
       confirmButtonText:"Si, crear otra mas"
     })
       .then(resp=>{
+        enviarForm(formData);
         if(resp.isConfirmed){
-           enviarForm(formData);
           console.log(resp)
           reset()
           setImagen(null)
