@@ -5,13 +5,20 @@ import { NavLink } from 'react-router-dom'
 const SidebarCliente = () => {
     const { user, SERVER } = useContext(GlobalContext);
   //console.log("Valor de user:", user);
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
-     <div className="flex flex-col justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 ">
+    <div
+        className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+          showMenu ? "left-0" : "-left-full"
+        }`}
+      >
+     {/* <div className="flex flex-col justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 "> */}
   {/* <!-- Top --> */}
-  <section>
+  {/* <section> */}
     {/* <!-- Logo --> */}
-    <div className="logo flex items-center gap-4 mb-8">
+    <div className="flex flex-col items-center justify-center p-2 gap-2 h-[20vh]">
+    {/* <div className="logo flex items-center gap-4 mb-8"> */}
       {/* <img
         src="vianda.png"
         className="w-10 h-10 bg-indigo-600 p-2 rounded-xl"
@@ -33,7 +40,7 @@ const SidebarCliente = () => {
     </form>*/}
     <ul className="mt-4 mb-8">
       <li>
-      <NavLink to=''
+      <NavLink to='/AdminCliente'
 
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -235,7 +242,7 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
     </ul>
-  </section>
+  {/* </section> */}
   {/* <!-- Bottom --> */}
   {/* <section>
 
