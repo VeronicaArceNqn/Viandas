@@ -80,12 +80,15 @@ Route::get('/pedido/{pedido}', 'App\Http\Controllers\PedidoController@show');
 Route::post('/pedido', 'App\Http\Controllers\PedidoController@store');
 Route::put('/pedido/{id}', 'App\Http\Controllers\PedidoController@update');
 Route::delete('/pedido/{id}', 'App\Http\Controllers\PedidoController@destroy');
+Route::get('/pedido/user/{id}', 'App\Http\Controllers\PedidoController@obtenerPedidosUsuario');
 
 Route::get('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@index');
 Route::get('/pedidoVianda/{pedidoVianda}', 'App\Http\Controllers\PedidoViandaController@show');
 Route::post('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@store');
 Route::put('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@update');
 Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@destroy');
+Route::get('/pedidoVianda/{fecha}', 'App\Http\Controllers\PedidoViandaController@obtenerPedidoViandasPorFecha')
+    ->where('fecha', '[0-9]{4}-[0-9]{2}-[0-9]{2}');
 
 Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@cambiarEstado');
 
