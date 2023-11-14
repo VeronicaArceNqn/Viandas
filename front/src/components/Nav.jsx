@@ -119,7 +119,7 @@ export default function Nav() {
       
 
         </h1>
-          <div className="text-lg border-l-2 text-zinc-950">{fecha}</div>
+          <div className="text-lg border-l-2 text-white ">{fecha}</div>
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <NavLink to="/"> Inicio </NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>

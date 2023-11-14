@@ -12,7 +12,7 @@ import { GlobalContext } from "../context/GlobalContext";
 function App() {
   const [viandas, setViandas] = useState([]); // estado con arreglo vacio
   const { SERVER } = useContext(GlobalContext);
-
+  const home = "home";
   const fetchViandas = async () => {
     await axios.get(`${SERVER}viandas`)
       .then((res) => {
@@ -42,6 +42,8 @@ function App() {
               nombre={vianda.nombre}
               precio={vianda.precio}
               img={vianda.urlFoto}
+              home = {home}
+              descripcion = {vianda.descripcion}
             />
           ))}
         </div>

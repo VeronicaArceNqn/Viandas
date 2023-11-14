@@ -90,7 +90,7 @@ class ViandaController extends Controller
         $vianda->nombre = $request->nombre;
         $vianda->descripcion = $request->descripcion;
         $vianda->tipoVianda_id = $request->tipoVianda_id;
-        $vianda->urlFoto = $request->urlFoto;
+        // $vianda->urlFoto = $request->urlFoto;
         $vianda->cantidad = $request->cantidad;
         $vianda->precio = $request->precio;
         $vianda->horarioPedido = $request->horarioPedido;
