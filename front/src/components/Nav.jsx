@@ -6,6 +6,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import icoUser from "../images/iconos/Usuario.png";
 import { format } from "date-fns";
 import { Badge } from "@mui/material";
+import AddHomeIcon from '@mui/icons-material/AddHome';
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import {
   RiArrowDownSLine,
@@ -117,7 +118,7 @@ export default function Nav() {
         </h1>
         <div className="text-lg border-l-2 text-zinc-950">{fecha}</div>
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
-          <NavLink to="/"> Inicio </NavLink>
+          <NavLink to="/"><AddHomeIcon fontSize="large"/></NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>
           <NavLink to="/"> Servicios</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}

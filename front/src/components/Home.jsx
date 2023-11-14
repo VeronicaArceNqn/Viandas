@@ -45,7 +45,7 @@ function App() {
       {/* <div className="text-3xl bg-black">Hola francisco</div> */}
       <Nav />
       <div className="flex flex-col justify-center w-full p-1 bg-gray-50 dark:bg-gray-400 text-black max-h-screem ">
-        <HomeSearchBar />
+        <HomeSearchBar setViandas={setViandas}  />
         <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5">
           {/* <div className="hidden xl:block"><Card /></div> */}
           {/* <div className="hidden xl:block"></div> */}
