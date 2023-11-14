@@ -80,6 +80,7 @@ const AdminCliente = () => {
                                           precio={pedidoVianda.precio}
                                           fechaEntrega={pedidoVianda.fechaEntrega}
                                           vianda_id={pedidoVianda.vianda_id}
+                                          lugarEntrega_id={pedidoVianda.lugarEntrega_id}
                                           id={pedidoVianda.id}
                                         />
                                       );

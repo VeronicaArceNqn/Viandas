@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import PerfilEditar from "./PerfilEditar";
 import SidebarCliente from "./SidebarCliente";
+import icoUser from "../images/iconos/Usuario.png";
 
 const Perfil = () => {
   const [editing, setEditing] = useState(false);
@@ -30,7 +31,7 @@ const Perfil = () => {
 
                   <section className="col-span-1 flex items-center justify-center p-8 z-20">
                       <img
-                        src="https://img.freepik.com/foto-gratis/retrato-hermoso-mujer-joven-posicion-pared-gris_231208-10760.jpg"
+                        src={icoUser}
                         className="mt-8 md:mt-0 w-40 h-40 object-cover rounded-full p-1 bg-indigo-500 ring-8 ring-white"
                       />
                     </section>
@@ -116,7 +117,7 @@ const Perfil = () => {
                      
                     <div>  
                         {editing && <PerfilEditar usuario={user} setEditing={setEditing} />}
-                        {!editing && <button className="text-white w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 m-5  transition-colors" onClick={handleEditClick}>Editar mi perfil</button>}
+                        {!editing && <button className="text-white w-52 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 m-5  transition-colors " onClick={handleEditClick}>Editar mi perfil</button>}
                         </div>
                   </div>
               </div>

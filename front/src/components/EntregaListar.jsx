@@ -98,7 +98,7 @@ const EntregaListar = () => {
                 <div className="mt-4 order-1 md:order-2">
               <button
                 type="button"
-                className="w-full bg-indigo-700 p-2 mt-3 rounded-full hover:bg-indigo-800 transition-colors text-sm text-white"
+                className="w-80 bg-indigo-700 p-2 mt-3 rounded-full hover:bg-indigo-800 transition-colors text-sm text-white"
                 onClick={entregaNuevaClick}
               >
                 ¿Desea agregar un lugar de entrega?
