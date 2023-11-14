@@ -171,9 +171,11 @@ const EditarVianda = () => {
   return (
     <>
       <Nav />
-      <div className=" flex  w-full p-1  bg-gray-50 dark:bg-gray-400 text-black">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen dark:bg-gray-100 text-black"> 
+      {/* <div className=" flex  w-full p-1  bg-gray-50 dark:bg-gray-400 text-black"> */}
         <Sidebar />
-        <div className="ml-9 text-center w-1/2 ">
+        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-100 dark:bg-gray-400 text-black">
+        {/* <div className="ml-9 text-center w-1/2 "> */}
           <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg ">
             Editar Vianda
           </h1>
@@ -186,7 +188,7 @@ const EditarVianda = () => {
                 </p>
               </div>
               <div className="flex-1 flex items-center gap-4">
-                <div className="w-full text-gray-100">
+                <div className="w-full text-gray-600">
                   <input
                     {...register("nombre")}
                     defaultValue={nombre}
@@ -196,12 +198,12 @@ const EditarVianda = () => {
                     placeholder="Nombre de la vianda"
                   />
                 </div>
-                <div className="w-full md:w-1/4">
+                <div className="w-full md:w-1/4 text-gray-600">
                   <p>
                     Precio:<span className="text-red-500 ">*</span>
                   </p>
                 </div>
-                <div className="w-full">
+                <div className="w-full text-gray-600">
                   <input
                     {...register("precio")}
                     type="number"
@@ -220,7 +222,7 @@ const EditarVianda = () => {
               <div className="flex-1  ">
                 <select
                   {...register("tipoVianda_id")}
-                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-white appearance-none"
+                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-gray-600 appearance-none"
                 >
                   <option value="1">Tradicional</option>
                   <option value="2">Vegetariana</option>
@@ -287,12 +289,12 @@ const EditarVianda = () => {
                 </p>
               </div>
             </div>
-            <div className="w-full mx-auto text-2xl md:w-1/4">
+            <div className="w-full mx-auto text-2xl md:w-1/4 ">
               <p>
                 Stock:<span className="text-red-500 ">*</span>
               </p>
             </div>
-            <div className="w-full ">
+            <div className="w-full text-black">
               <input
                 {...register("cantidad")}
                 type="number"
