@@ -1,21 +1,40 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { NavLink } from 'react-router-dom'
+import {
+  RiHome3Line,
+  RiFileCopyLine,
+  RiWalletLine,
+  RiPieChartLine,
+  RiMore2Fill,
+  RiCloseFill,
+} from "react-icons/ri";
 
 const SidebarCliente = () => {
     const { user, SERVER } = useContext(GlobalContext);
   //console.log("Valor de user:", user);
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
-     <div className="flex flex-col justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 ">
-  {/* <!-- Top --> */}
-  <section>
+    <div
+        className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+          showMenu ? "left-0" : "-left-full"
+        }`}
+      >
+    
+ 
+  {/* <section> */}
     {/* <!-- Logo --> */}
-    <div className="logo flex items-center gap-4 mb-8">
-      {/* <img
-        src="vianda.png"
-        className="w-10 h-10 bg-indigo-600 p-2 rounded-xl"
-      /> */}
+    <div className="flex flex-col items-center justify-center p-2 gap-2 h-[20vh]">
+    {/* <div className="logo flex items-center gap-4 mb-8"> */}
+      <span
+        src=""
+        className="w-15 h-15 bg-purple-400 p-2 rounded-xl">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+  </svg>
+      </span>
+      
       <div>
         <h3 className="font-bold text-indigo-600">Gestion de mis pedidos </h3>
         <p className="text-gray-800 text-xs">
@@ -23,17 +42,17 @@ const SidebarCliente = () => {
         </p>
       </div>
     </div>
-    {/* <!-- Search --> 
-    <form>
+    {/* <!-- Search -->  */}
+    {/* <form>
       <input
         type="text"
         className="w-full p-2 rounded-lg outline-none bg-gray-200"
         placeholder="Buscador"
       />
-    </form>*/}
+    </form> */}
     <ul className="mt-4 mb-8">
       <li>
-      <NavLink to=''
+      <NavLink to='/AdminCliente'
 
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -77,6 +96,7 @@ const SidebarCliente = () => {
       </li>
       <li>
       <NavLink
+      to='/BuscarPedidoPorFecha'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -166,6 +186,7 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
     </ul>
+    <hr className="my-8" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] my-4">
       Personal
     </h5>
@@ -235,11 +256,11 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
     </ul>
-  </section>
+  {/* </section> */}
   {/* <!-- Bottom --> */}
-  {/* <section>
+  <section>
 
-    <ul className="my-4">
+    {/* <ul className="my-4">
       <li>
         <a
           href="#"
@@ -289,7 +310,7 @@ const SidebarCliente = () => {
           <span>Ayuda</span>
         </a>
       </li>
-    </ul>
+    </ul> */}
   
     <div className="flex items-center gap-4 pt-4 border-t">
       <img
@@ -298,13 +319,21 @@ const SidebarCliente = () => {
       />
       <div>
         <h3 className="font-bold text-gray-900">
-          Viandas fai fai
+          Viandas FAI
         </h3>
         <p className="text-gray-800 text-xs">Desarrollador fullstack</p>
       </div>
     </div>
-  </section> */}
+    <button
+        onClick={() => setShowMenu(!showMenu)}
+        className="lg:hidden fixed right-5 top-12 text-4xl bg-primary-900 p-3 rounded-full text-white z-50"
+      >
+        {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
+      </button>
+  </section>
+  
 </div> 
+
     </>
   )
 }

@@ -20,8 +20,13 @@ import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para e
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
+
 import { CarritoProvider } from "./context/CarritoProvider";
 import Carrito from "./components/Carrito";
+
+import PedidosHoyViandero from "./components/PedidosHoyViandero";
+
+
 function App() {
   return (
     <GlobalContextProvider>
@@ -44,12 +49,19 @@ function App() {
             <Route path="/CardEntrega" element={<CardEntrega />} />
             <Route path="/Sidebar" element={<Sidebar />} />
 
+
             <Route path="/editar-vianda/:id" element={<EditarVianda />} />
             <Route path="/*" element={<Navigate to="/" />} />
             <Route path="/carrito" element={<Carrito/>} />
           </Routes>
         </BrowserRouter>
       </CarritoProvider>
+
+        <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />   
+      </Routes>
+     
+    </BrowserRouter>
+
     </GlobalContextProvider>
   );
 }

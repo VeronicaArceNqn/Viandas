@@ -100,4 +100,121 @@ class PedidoViandaController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function obtenerPedidoViandasPorFecha(Request $request)
+    {
+        try {
+            // Valida que se haya proporcionado la fecha en la solicitud
+            $request->validate([
+                'fecha' => 'required|date',
+            ], [
+                'fecha.required' => 'El campo fecha es obligatorio.',
+                'fecha.date' => 'El campo fecha debe ser una fecha válida en formato YYYY-MM-DD.',
+            ]);
+    
+            // Obtén la fecha desde la solicitud
+            $fecha = $request->input('fecha');
+    
+            // Verifica si hay PedidoViandas para la fecha específica
+            $pedidoViandas = PedidoVianda::whereDate('fechaEntrega', $fecha)->get();
+    
+            // Verifica si hay PedidoViandas
+            if ($pedidoViandas->isEmpty()) {
+                // No hay PedidoViandas, devuelve un mensaje indicando que no hay resultados
+                return response()->json(['message' => 'No hay PedidoViandas para la fecha especificada'], 404);
+            }
+    
+            // Hay PedidoViandas, devuelve las PedidoViandas en formato JSON
+            $data = [
+                'message' => 'Listado de PedidoViandas para la fecha especificada generado correctamente',
+                'pedido_viandas' => $pedidoViandas
+            ];
+            return response()->json($data);
+        } catch (\Exception $e) {
+            // Captura cualquier excepción y devuelve un mensaje genérico
+            return response()->json(['message' => 'Se produjo un error al procesar la solicitud'], 500);
+        }
+    }
+    
+
+
+
+
+
+
+
+//     public function obtenerPedidoViandasPorFecha($fecha)
+//     {
+//         // Valida que se haya proporcionado la fecha en la solicitud
+//         // $this->validate($request, [
+//         //      'fecha' => 'required|date',
+//         //  ], [
+//         //     'fecha.required' => 'El campo fecha es obligatorio.',
+//         //     'fecha.date' => 'El campo fecha debe ser una fecha válida en formato YYYY-MM-DD.',
+//         // ]);
+
+//         // Obtén la fecha desde la solicitud
+//       //  $fecha = $request->input('fecha');
+
+//         // Obtén las PedidoViandas para la fecha específica
+//         $pedidoViandas = PedidoVianda::where('fechaEntrega', 'like', $fecha . '%')->get();
+
+//         // // Verifica si hay PedidoViandas
+//        if ($pedidoViandas->isEmpty()) {
+//         //     // No hay PedidoViandas, devuelve un mensaje indicando que no hay resultados
+//             return response()->json(['message' => 'No hay PedidoViandas para la fecha especificada'], 200);
+//          }
+
+//         // // Hay PedidoViandas, devuelve las PedidoViandas en formato JSON
+//         $data = [
+//             'message' => 'Listado de PedidoViandas para la fecha especificada generado correctamente',
+//             'pedido_viandas' => $pedidoViandas
+//         ];
+//         return response()->json($data);
+//     // Verifica si se proporcionó una fecha
+
+
+
+//     // if ($fecha) {
+//     //     // Obtén las PedidoViandas para la fecha específica
+//     //     $pedidoViandas = PedidoVianda::where('fechaEntrega', $fecha)->get();
+
+//     //     // Verifica si hay PedidoViandas
+//     //     if ($pedidoViandas->isEmpty()) {
+//     //         // No hay PedidoViandas, devuelve un mensaje indicando que no hay resultados
+//     //         return response()->json([
+//     //             'fecha' => $fecha,
+//     //             'data' => $pedidoViandas,
+//     //             'message' => 'No hay PedidoViandas para la fecha especificada'], 404);
+//     //     }
+
+//     //     // Hay PedidoViandas, devuelve las PedidoViandas en formato JSON
+//     //     $data = [
+//     //         'message' => 'Listado de PedidoViandas para la fecha especificada generado correctamente',
+//     //         'pedido_viandas' => $pedidoViandas
+//     //     ];
+//     //     return response()->json($data);
+//     // } else {
+//     //     // No se proporcionó una fecha, devuelve un mensaje indicando que se necesita una fecha
+//     //     return response()->json(['message' => 'Se requiere proporcionar una fecha para la búsqueda'], 400);
+//     // }
+
+//     // try {
+//     //     // Lógica para obtener registros
+//     //     $pedidoViandas = PedidoVianda::where('fechaEntrega', $fecha)->get();
+
+//     //     // Verifica si hay registros
+//     //     if ($pedidoViandas->isEmpty()) {
+//     //         return response()->json(['message' => 'No hay PedidoViandas para la fecha especificada'], 404);
+//     //     }
+
+//     //     // Devuelve los registros en formato JSON
+//     //     return response()->json(['pedido_viandas' => $pedidoViandas]);
+//     // } catch (\Exception $e) {
+//     //     // Manejo de errores
+//     //     return response()->json(['error' => $e->getMessage()], 500);
+//     // }
+
+
+// }
 }

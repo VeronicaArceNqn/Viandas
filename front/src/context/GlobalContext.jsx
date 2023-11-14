@@ -14,7 +14,7 @@ function GlobalContextProvider({ children }) {
   async  function getViandero() {
    const arrVianderos = await axios.get(`${SERVER}viandero`);
    const vianderos = arrVianderos.data;
-   console.log(viandero);
+  //  console.log(viandero);
    const result = vianderos.filter(
      (viandero) => viandero.user_id === user.user.id
    );

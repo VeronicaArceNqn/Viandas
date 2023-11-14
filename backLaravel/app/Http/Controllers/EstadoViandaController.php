@@ -14,7 +14,8 @@ class EstadoViandaController extends Controller
      */
     public function index()
     {
-        
+        $estadoVianda = EstadoVianda::all();       
+        return $estadoVianda;
     }
 
     /**
@@ -39,6 +40,7 @@ class EstadoViandaController extends Controller
     public function show(EstadoVianda $estadoVianda)
     {
         //
+        return response()->json($estadoVianda);
     }
 
     /**
@@ -109,5 +111,31 @@ class EstadoViandaController extends Controller
     ];
     return response()->json($data);
     }
+
+   
+public function obtenerEstadoActual($pedidoVianda_id) {
+    $estadoActual = EstadoVianda::where('pedidoVianda_id', $pedidoVianda_id)
+                    ->whereNull('fechaFin')
+                    ->first();
+
+    if (!$estadoActual) {
+        return response()->json(['mensaje' => 'No se encontró un estado actual para este pedidoVianda_id']);
+    }
+
+    $estado = $estadoActual->estado; // Obtener el modelo de Estado asociado
+
+    if (!$estado) {
+        return response()->json(['mensaje' => 'No se encontró un estado asociado al estado actual']);
+    }
+
+    $data= [
+        'message' => 'Estado actual del pedido obtenido con éxito',
+        
+        'estadoActual' => $estado
+    ];
+
+    return response()->json($data);
+}
+
 
 }

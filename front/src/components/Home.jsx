@@ -13,6 +13,7 @@ import { CarritoContext } from "../context/CarritoContext";
 function App() {
   const [viandas, setViandas] = useState([]); // estado con arreglo vacio
   const { SERVER } = useContext(GlobalContext);
+
   //--carrito
   const { listaCompra, agregarCompra, disminurCompra, quitarCompra } =
     useContext(CarritoContext);
@@ -26,6 +27,9 @@ function App() {
   const handleAumentar = (id) => {};
   const handleDisminuir = (id) => {};
   //--carrito
+
+
+  const home = "home";
 
   const fetchViandas = async () => {
     await axios.get(`${SERVER}viandas`).then((res) => {
@@ -55,8 +59,13 @@ function App() {
               nombre={vianda.nombre}
               precio={vianda.precio}
               img={vianda.urlFoto}
+
               handleAgregar={() => handleAgregar(vianda)}
               handleQuitar={() => handleQuitar(vianda.id)}
+
+              home = {home}
+              descripcion = {vianda.descripcion}
+
             />
           ))}
         </div>
