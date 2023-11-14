@@ -13,7 +13,6 @@ import NuevaVianda from "./components/NuevaVianda";
 import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
 import EditarVianda from "./components/editarVianda";
 
-
 import AdminCliente from "./components/AdminCliente";
 import Sidebar from "./components/Sidebar";
 
@@ -21,32 +20,36 @@ import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para e
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
+import { CarritoProvider } from "./context/CarritoProvider";
+import Carrito from "./components/Carrito";
 function App() {
   return (
     <GlobalContextProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />        
-        <Route path="/register" element={<Register />} />
-        <Route path="/nosotros" element={<Error404 />} />
-        <Route path="/crear-viandas" element={<AdminVianda />} />
-        <Route path="/entrega" element={<Entrega />} /> 
-        <Route path="/nueva-vianda" element={<NuevaVianda />} />   
+      <CarritoProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/nosotros" element={<Error404 />} />
+            <Route path="/crear-viandas" element={<AdminVianda />} />
+            <Route path="/entrega" element={<Entrega />} />
+            <Route path="/nueva-vianda" element={<NuevaVianda />} />
 
-        <Route path="/entregaNuevo" element={<EntregaNuevo />} />
-        <Route path="/entregaListar" element={<EntregaListar />} />
-        <Route path="/perfil" element={<Perfil />} />
-       
-        <Route path="/AdminCliente" element={<AdminCliente />} />
-        <Route path="/CardEntrega" element={<CardEntrega />} />
-        <Route path="/Sidebar" element={<Sidebar />} />
+            <Route path="/entregaNuevo" element={<EntregaNuevo />} />
+            <Route path="/entregaListar" element={<EntregaListar />} />
+            <Route path="/perfil" element={<Perfil />} />
 
-        <Route path="/editar-vianda/:id" element={<EditarVianda />} />   
+            <Route path="/AdminCliente" element={<AdminCliente />} />
+            <Route path="/CardEntrega" element={<CardEntrega />} />
+            <Route path="/Sidebar" element={<Sidebar />} />
 
-      </Routes>
-     
-    </BrowserRouter>
+            <Route path="/editar-vianda/:id" element={<EditarVianda />} />
+            <Route path="/*" element={<Navigate to="/" />} />
+            <Route path="/carrito" element={<Carrito/>} />
+          </Routes>
+        </BrowserRouter>
+      </CarritoProvider>
     </GlobalContextProvider>
   );
 }

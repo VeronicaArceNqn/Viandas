@@ -10,14 +10,21 @@ import {
   RiShieldCheckLine,
   RiErrorWarningLine,
 } from "react-icons/ri";
-import {Link, NavLink} from 'react-router-dom'
+import { Link, NavLink } from "react-router-dom";
 //
 //
 //
-const Card2 = ({id, nombre, precio, img }) => {
-
+const Card2 = ({ id, nombre, precio, img,handleAgregar,handelQuitar,handleAumentar,handleDisminuir  }) => {
   const { user } = useContext(GlobalContext);
-  
+  const [added, setAdded] = useState(true);
+
+  const agregar = () => {
+    handleAgregar()
+    setAdded(false);
+  };
+  const quitar = () => {
+    setAdded(true);
+  };
 
   return (
     <>
@@ -27,9 +34,8 @@ const Card2 = ({id, nombre, precio, img }) => {
       <div className="max-w-xl mx-1 my-1 w-60">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
           {/* validar si viandero existe  para mostrar icono de edicion */}
-          <Link to={`/editar-vianda/${id}`} >
-
-            <RiEdit2Line/>
+          <Link to={`/editar-vianda/${id}`}>
+            <RiEdit2Line style={{ color: "green" }} />
           </Link>
           <div>
             <img
@@ -96,14 +102,26 @@ const Card2 = ({id, nombre, precio, img }) => {
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}${precio}
               </span>
-              {user ? (
-                //
-                <button className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors">
+              {added ? (
+                <button
+                  className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                  onClick={agregar}
+                >
                   Agregar
                 </button>
               ) : (
-                ""
+                <button
+                  className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
+                  onClick={quitar}
+                >
+                  Quitar
+                </button>
               )}
+              {/* {user ? (
+                //
+              ) : ( // aqui el boton 
+                ""
+              )} */}
             </div>
           </div>
         </div>
