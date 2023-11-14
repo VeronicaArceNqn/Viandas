@@ -1,6 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { NavLink } from 'react-router-dom'
+import {
+  RiHome3Line,
+  RiFileCopyLine,
+  RiWalletLine,
+  RiPieChartLine,
+  RiMore2Fill,
+  RiCloseFill,
+} from "react-icons/ri";
 
 const SidebarCliente = () => {
     const { user, SERVER } = useContext(GlobalContext);
@@ -13,16 +21,16 @@ const SidebarCliente = () => {
           showMenu ? "left-0" : "-left-full"
         }`}
       >
-     {/* <div className="flex flex-col justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 "> */}
-  {/* <!-- Top --> */}
+    
+ 
   {/* <section> */}
     {/* <!-- Logo --> */}
     <div className="flex flex-col items-center justify-center p-2 gap-2 h-[20vh]">
     {/* <div className="logo flex items-center gap-4 mb-8"> */}
-      {/* <img
-        src="vianda.png"
+      <img
+        src=""
         className="w-10 h-10 bg-indigo-600 p-2 rounded-xl"
-      /> */}
+      />
       <div>
         <h3 className="font-bold text-indigo-600">Gestion de mis pedidos </h3>
         <p className="text-gray-800 text-xs">
@@ -30,14 +38,14 @@ const SidebarCliente = () => {
         </p>
       </div>
     </div>
-    {/* <!-- Search --> 
-    <form>
+    {/* <!-- Search -->  */}
+    {/* <form>
       <input
         type="text"
         className="w-full p-2 rounded-lg outline-none bg-gray-200"
         placeholder="Buscador"
       />
-    </form>*/}
+    </form> */}
     <ul className="mt-4 mb-8">
       <li>
       <NavLink to='/AdminCliente'
@@ -84,6 +92,7 @@ const SidebarCliente = () => {
       </li>
       <li>
       <NavLink
+      to='/BuscarPedidoPorFecha'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -173,6 +182,7 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
     </ul>
+    <hr className="my-8" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] my-4">
       Personal
     </h5>
@@ -244,9 +254,9 @@ const SidebarCliente = () => {
     </ul>
   {/* </section> */}
   {/* <!-- Bottom --> */}
-  {/* <section>
+  <section>
 
-    <ul className="my-4">
+    {/* <ul className="my-4">
       <li>
         <a
           href="#"
@@ -296,7 +306,7 @@ const SidebarCliente = () => {
           <span>Ayuda</span>
         </a>
       </li>
-    </ul>
+    </ul> */}
   
     <div className="flex items-center gap-4 pt-4 border-t">
       <img
@@ -305,13 +315,21 @@ const SidebarCliente = () => {
       />
       <div>
         <h3 className="font-bold text-gray-900">
-          Viandas fai fai
+          Viandas FAI
         </h3>
         <p className="text-gray-800 text-xs">Desarrollador fullstack</p>
       </div>
     </div>
-  </section> */}
+    <button
+        onClick={() => setShowMenu(!showMenu)}
+        className="lg:hidden fixed right-5 top-12 text-4xl bg-primary-900 p-3 rounded-full text-white z-50"
+      >
+        {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
+      </button>
+  </section>
+  
 </div> 
+
     </>
   )
 }
