@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 
-const HomeSearchBar = (props) => {
-  
+const HomeSearchBar = ({setViandas}) => {
+  const {SERVER} = useContext(GlobalContext)
   // const [tv, setTv] = useState("");
-  const handleSubmitSearch = (e) => {
+  const handleSubmitSearch = async (e) => {
     e.preventDefault();
-    // console.log(e.target.tipoVianda.value);
-    // setTv(e.target.tipoVianda.value);
+    console.log(e.target.tipoVianda.value);
+    const id =e.target.tipoVianda.value;
+    
+    try{
+      const res = await axios.get(`${SERVER}viandas/filtrar/${id}`)
+      console.log(res.data.viandas.vianda)
+      setViandas(res.data.viandas.vianda)
+
+    }catch(error){
+      console.log(error)
+    }
   };
   return (
     <>

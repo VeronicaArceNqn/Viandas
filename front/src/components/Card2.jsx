@@ -10,14 +10,24 @@ import {
   RiShieldCheckLine,
   RiErrorWarningLine,
 } from "react-icons/ri";
-import {Link, NavLink} from 'react-router-dom'
+import { Link, NavLink } from "react-router-dom";
 //
 //
 //
-const Card2 = ({id, nombre, precio, img ,home, descripcion}) => {
 
+const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleAumentar,handleDisminuir,descripcion  }) => {
   const { user,viandero } = useContext(GlobalContext);
-  
+  const [added, setAdded] = useState(true);
+
+  const agregar = () => {
+    handleAgregar()
+    setAdded(false);
+  };
+  const quitar = () => {
+    setAdded(true);
+  };
+
+
 
   return (
     <>
@@ -26,12 +36,15 @@ const Card2 = ({id, nombre, precio, img ,home, descripcion}) => {
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-1 my-1 w-60">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
+
+
           {/* validar si viandero existe  para mostrar icono de edicion */ }
           {viandero &&          
           
           <Link to={`/editar-vianda/${id}`} >
             {home?"":<RiEdit2Line/>}
             
+
           </Link>
           
           }
@@ -102,14 +115,29 @@ const Card2 = ({id, nombre, precio, img ,home, descripcion}) => {
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}${precio}
               </span>
-              {user?.id != viandero?.user_id? (
-                //
-                <button className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors">
+
+              {added ? (
+                <button
+                  className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                  onClick={agregar}
+                >
+
+
                   Agregar
                 </button>
               ) : (
-                ""
+                <button
+                  className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
+                  onClick={quitar}
+                >
+                  Quitar
+                </button>
               )}
+              {/* {user ? (
+                //
+              ) : ( // aqui el boton 
+                ""
+              )} */}
             </div>
           </div>
         </div>

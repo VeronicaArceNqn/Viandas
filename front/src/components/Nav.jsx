@@ -4,8 +4,9 @@ import "../index.css";
 import "../App.css";
 import { GlobalContext } from "../context/GlobalContext";
 import icoUser from "../images/iconos/Usuario.png";
-import {format } from 'date-fns'
-
+import { format } from "date-fns";
+import { Badge } from "@mui/material";
+import AddHomeIcon from '@mui/icons-material/AddHome';
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import {
   RiArrowDownSLine,
@@ -20,6 +21,7 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import axios from "axios";
 import { registerLocale } from "react-datepicker";
+import { CarritoContext } from "../context/CarritoContext";
 
 // import axios from "axios";
 
@@ -27,11 +29,11 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-
 export default function Nav() {
-  const fecha = format(new Date(),'dd-MM-yy')
+  const fecha = format(new Date(), "dd-MM-yy");
   const { user, setUser, logout, SERVER, viandero, getViandero } =
     useContext(GlobalContext);
+  const {listaCompras} = useContext(CarritoContext)
   const [showModal, setShowModal] = useState(false);
   const [msj, setMsj] = useState("");
   const [zReparto, setZreparto] = useState([]);
@@ -119,9 +121,11 @@ export default function Nav() {
       
 
         </h1>
+
           <div className="text-lg border-l-2 text-white ">{fecha}</div>
+
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
-          <NavLink to="/"> Inicio </NavLink>
+          <NavLink to="/"><AddHomeIcon fontSize="large"/></NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>
           <NavLink to="/"> Servicios</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
@@ -204,18 +208,23 @@ export default function Nav() {
             <NavLink to="/Login"> Login</NavLink>
           )}
         </nav>
-        {user ? (
-          <span className="text-white  ">
-            <RiShoppingCart2Fill
-              onClick={() => {
-                console.log("carrito");
-              }}
-              className="text-3xl pointer-events-auto"
-            />
-          </span>
+        <span className="text-white  ">
+          <NavLink to="/carrito">
+            <Badge badgeContent={listaCompras.length} color="secondary">
+              <RiShoppingCart2Fill
+                // onClick={() => {
+                //   console.log("carrito");
+                // }}
+                className="text-3xl pointer-events-auto"
+              />
+            </Badge>
+          </NavLink>
+        </span>
+        {/* {user? (
+          ""
         ) : (
           ""
-        )}
+        )} */}
         {user ? (
           <span className="text-white  ">
             <RiStore3Line
