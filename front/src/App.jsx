@@ -53,14 +53,15 @@ function App() {
             <Route path="/editar-vianda/:id" element={<EditarVianda />} />
             <Route path="/*" element={<Navigate to="/" />} />
             <Route path="/carrito" element={<Carrito/>} />
+            <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />
           </Routes>
         </BrowserRouter>
       </CarritoProvider>
 
-        <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />   
-      </Routes>
+        
      
-    </BrowserRouter>
+     
+   
 
     </GlobalContextProvider>
   );

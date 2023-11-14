@@ -167,7 +167,7 @@ return (
 
             <td class="p-3">
               <span class="bg-green-400 text-gray-50 rounded-md px-2"
-                >{estadoVianda.estadoActual.nombreEstado}</span
+                ></span
               >
             </td>
             <td class="p-3">

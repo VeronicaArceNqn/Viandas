@@ -19,7 +19,14 @@
     "react-hook-form": "^7.46.2",
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
-    "sweetalert2": "^11.7.32"
+    "sweetalert2": "^11.7.32",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/material": "^5.14.17",
+    "date-fns": "^2.30.0",
+    "react-datepicker": "^4.18.0",
+    "react-select": "^5.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

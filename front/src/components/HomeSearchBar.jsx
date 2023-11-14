@@ -40,14 +40,14 @@ const HomeSearchBar = ({setViandas}) => {
               </select>
           
           </div>
-          <div className="flex justify-center md:border-0 md:rounded-none w-full md:w-1/2 h-full md:h-[60%] border-gray-900 rounded-full dark:border-white-ghost border md:mr-2 text-black dark:text-black-400">
+          <div className="flex justify-center md:border-0 md:rounded-none w-full md:w-1/2 h-full md:h-[60%] border-gray-900 rounded-full dark:border-white-ghost border md:mr-2 text-black dark:text-black-800">
             <input
               className="w-11/12 overflow-clip h-full placeholder:text-indigo-50 bg-transparent outline-none "
               placeholder="Vianderos por zonas"
             />
           </div>
           <div className="flex space-x-12 items-center w-2/3 justify-center h-full ml-2 md:w-52 bg-orange-brand rounded-full">
-            <button type="submit" className=" text-3xl font-medium text-white">
+            <button type="submit" className=" text-3xl font-medium text-indigo-700">
               Buscar
             </button>
           </div>

@@ -154,7 +154,7 @@ export default function Nav() {
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <img
                     // src="https://img.freepik.com/foto-gratis/feliz-optimista-guapo-gerente-ventas-latina-apuntando-lado-mirando-camara_1262-12679.jpg"
@@ -163,7 +163,7 @@ export default function Nav() {
                   />
                   <div className="flex flex-col text-sm">
                     <span className="text-sm"> {user.user.nombre}</span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-gray-600">
                       {user.user.email}
                     </span>
                   </div>
@@ -173,7 +173,7 @@ export default function Nav() {
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/Perfil"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Mi perfil
                 </Link>
@@ -181,7 +181,7 @@ export default function Nav() {
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/AdminCliente"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Administrar mis pedidos
                 </Link>
@@ -189,7 +189,7 @@ export default function Nav() {
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/"
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Configuración
                 </Link>
@@ -198,7 +198,7 @@ export default function Nav() {
                 <Link
                   to="/"
                   onClick={logout}
-                  className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiLogoutCircleRLine /> Cerrar sesión
                 </Link>

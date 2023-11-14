@@ -54,7 +54,7 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
 return (
     <>
 
-    <div className="grid grid-cols-1 xl:grid-cols-4 items-center mb-1 p-1 bg-purple-50">
+    <div className="grid grid-cols-1 xl:grid-cols-4 items-center mb-1 p-1 bg-purple-100">
                 <div className="col-span-2 flex items-center gap-4"> 
                   <img
                     src={vianda.urlFoto}
@@ -67,8 +67,8 @@ return (
                   </div>
                 </div>
                 <div className="col-span-1 flex items-center gap-4">
-                  <button className="bg-green-100 text-green-800 py-1 px-3 rounded-full font-medium">
-                    {estadoVianda.estadoActual.nombreEstado}
+                  <button className="bg-green-200 text-green-800 py-1 px-3 rounded-full font-medium">
+                    {/* {estadoVianda.estadoActual.nombreEstado} */}
                   </button>
                  
                 </div>
