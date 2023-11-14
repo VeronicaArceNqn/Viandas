@@ -13,12 +13,14 @@ const Sidebar = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <>
+
     <div
         className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
           showMenu ? "left-0" : "-left-full"
         }`}
       >
-     {/* <div className="flex flex-col  justify-between gap-8 bg-gray-100 min-h-screen max-h-screen w-80 p-4 "> */}
+    
+
   {/* <!-- Top --> */}
   <section>
     {/* <!-- Logo --> */}
@@ -307,6 +309,7 @@ const Sidebar = () => {
       >
         {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
       </button>
+      
 
   </section>
  
