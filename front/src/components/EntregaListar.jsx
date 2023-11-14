@@ -23,10 +23,10 @@ const EntregaListar = () => {
   const fetchLugarEntrega = async () => {
     await axios.get(`${SERVER}lugarEntrega/User/${user.user.id}`)
       .then((res) => {
-       console.log(res.data);
-       console.log(res)
+       //console.log(res.data);
+       //console.log(res)
       if (res.data===null || res.data.mensaje){
-        console.log("sin lugares");
+        //console.log("sin lugares");
         navigate("/EntregaListar");
       }else{
         setLugarEntrega(res.data);
@@ -35,7 +35,7 @@ const EntregaListar = () => {
   };
   useEffect(() => {
     fetchLugarEntrega();
-    console.log("lugar???");
+    
   }, []);
 
   //console.log(lugarEntrega)
@@ -62,11 +62,11 @@ const EntregaListar = () => {
   return (
     <>
      <Nav />
-      <div className="flex justify-between w-full  bg-gray-600 dark:bg-gray-400  ">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
+        <SidebarCliente /> 
         
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8  text-dark"> */}
-          <div className="grid grid-cols-1  md:grid-cols-2 gap-8  text-dark">
-            <SidebarCliente />
+        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
+            
             <div className=" mt-5">
                   <span className="text-white font-bold text-2xl">Mis lugares de entrega</span>
             
