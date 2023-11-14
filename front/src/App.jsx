@@ -21,7 +21,7 @@ import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para e
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
-import BuscarPedidoPorFecha from "./components/BuscarPedidoPorFecha";
+import PedidosHoyViandero from "./components/PedidosHoyViandero";
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
 
         <Route path="/editar-vianda/:id" element={<EditarVianda />} />   
 
-        <Route path="/BuscarPedidoPorFecha" element={<BuscarPedidoPorFecha />} />   
+        <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />   
       </Routes>
      
     </BrowserRouter>
