@@ -110,9 +110,14 @@ export default function Nav() {
 
   return (
     <nav>
-      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-11 gap-4 items-center justify-center">
-        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-2xl">
-          <NavLink to="/"> Viandas </NavLink> <br />
+
+      
+      <div className="flex flex-col md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
+          <NavLink to="/"> Viandas</NavLink>
+
+      
+
         </h1>
           <div className="text-lg border-l-2 text-zinc-950">{fecha}</div>
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">

@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import Nav from "./Nav";
 import Footer from "./Footer";
-import SidebarCliente from "./SidebarCliente";
+import Sidebar from "./Sidebar";
 import axios from "axios";
 
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 import { GlobalContext } from "../context/GlobalContext";
-import CardPedidoCliente from "./CardPedidoCliente";
+import CardTablePedidosHoy from "./CardTablePedidosHoy";
 
-const AdminCliente = () => {
+const PedidosHoyViandero = () => {
   const { user, SERVER } = useContext(GlobalContext);
   const [pedidosViandaHoy, setPedidosViandaHoy] = useState([]);
 
@@ -58,15 +58,21 @@ const AdminCliente = () => {
     <>
       <Nav />     
         <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">       
-          <SidebarCliente />        
+          <Sidebar />        
             <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
-              <section className="grid grid-cols-1 mt-10 gap-8">
-                <div>
-                  <h1 className="text-2xl font-bold text-white mb-8">Mi pedido de hoy </h1>
-                    <div className="bg-white p-4 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">
+              <section className="grid grid-cols-1 mt-6 gap-8">
+              <div class="col-span-12">
+    <div class="bg-white overflow-auto lg:overflow-visible p-3 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
+      <div class="bg-white flex lg:justify-between border-b-2 border-fuchsia-900 pb-1">
+        <h2 class="text-2xl text-gray-500 font-bold">All Users</h2></div>
+
+
+                {/* <div>
+                  <h1 className="text-2xl font-bold text-white mb-6">Pedidos de hoy </h1>
+                    <div className="bg-white p-3 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
                     
                     
-                            <h1 className="text-indigo-600 font-bold">{fechaHoy}</h1>
+                            <h1 className="text-indigo-600 font-bold">{fechaHoy}</h1> */}
                             {loading ? (
                                   <div>Cargando...</div>
                                 ) : (
@@ -74,7 +80,7 @@ const AdminCliente = () => {
                                     pedidosViandaHoy.pedido_viandas.map(pedidoVianda => {
                                       
                                       return (
-                                        <CardPedidoCliente 
+                                        <CardTablePedidosHoy 
                                           key={pedidoVianda.id} 
                                           cantidad={pedidoVianda.cantidad}
                                           precio={pedidoVianda.precio}
@@ -91,9 +97,12 @@ const AdminCliente = () => {
                                 )} 
                            
                                     
-                    </div>         
-                </div>        
+                    {/* </div>         
+                </div>         */}
+                </div>
+        </div>
               </section>
+              
             </div>
         </div>
       <Footer />
@@ -102,6 +111,6 @@ const AdminCliente = () => {
       );
     };
     
-    export default AdminCliente;
+    export default PedidosHoyViandero;
 
   

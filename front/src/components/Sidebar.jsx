@@ -1,14 +1,38 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from 'react-router-dom'
+import {
+  RiHome3Line,
+  RiFileCopyLine,
+  RiWalletLine,
+  RiPieChartLine,
+  RiMore2Fill,
+  RiCloseFill,
+} from "react-icons/ri";
 
 const Sidebar = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
-     <div className="flex flex-col  justify-between gap-8 bg-gray-100 h-screen max-h-screen w-80 p-4 ">
+
+    <div
+        className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+          showMenu ? "left-0" : "-left-full"
+        }`}
+      >
+    
+
   {/* <!-- Top --> */}
   <section>
     {/* <!-- Logo --> */}
-    <div className="logo flex items-center gap-4 mb-8">
+    <div className="flex flex-col items-center justify-center p-2 gap-2 h-[20vh]">
+    <span
+        src=""
+        className="w-15 h-15 bg-purple-400 p-2 rounded-xl">
+        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+  </svg>
+      </span>
+    {/* <div className="logo flex items-center gap-4 mb-8"> */}
       {/* <img
         src="vianda.png"
         className="w-10 h-10 bg-indigo-600 p-2 rounded-xl"
@@ -16,10 +40,10 @@ const Sidebar = () => {
       <div>
         <NavLink to='/crear-viandas' > 
 
-        <h3 className="font-bold text-indigo-600 text-2xl">Gestion de viandas </h3>
+        <h3 className="font-bold text-indigo-600 text-2xl">Gestión de viandas </h3>
         </NavLink>
         <p className="text-gray-800 text-xs">
-         Administracion de viandas
+         Administración de viandas
         </p>
       </div>
     </div>
@@ -57,7 +81,8 @@ const Sidebar = () => {
         
       </li>
       <li>
-        <NavLink         
+        <NavLink
+          to='/crear-viandas'         
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -74,7 +99,7 @@ const Sidebar = () => {
               d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
             />
           </svg>
-          <span>Cerrar Pedidos </span>
+          <span>Mis viandas </span>
         </NavLink>
       </li>
       <li>
@@ -101,12 +126,34 @@ const Sidebar = () => {
     </ul>
     <hr className="my-8" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] mb-4">
-      Informes
+      Pedidos
     </h5>
     <ul>
       <li>
         <NavLink
-       
+            to='/PedidosHoyViandero'
+          className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z"
+            />
+          </svg>
+          <span>Viandas para hoy</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+            to='/'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -241,6 +288,29 @@ const Sidebar = () => {
         </NavLink>
       </li>
     </ul>
+    </section>
+    <section>
+
+    <div className="flex items-center gap-4 pt-4 border-t">
+      <img
+        src="https://img.freepik.com/fotos-premium/retrato-viejo-mexicano-sombrero_379858-2229.jpg"
+        className="w-10 h-10 object-cover rounded-xl ring-4 ring-gray-200"
+      />
+      <div>
+        <h3 className="font-bold text-gray-900">
+          Viandas FAI
+        </h3>
+        <p className="text-gray-800 text-xs">Desarrollador fullstack</p>
+      </div>
+    </div>
+    <button
+        onClick={() => setShowMenu(!showMenu)}
+        className="lg:hidden fixed right-5 top-12 text-4xl bg-primary-900 p-3 rounded-full text-white z-50"
+      >
+        {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
+      </button>
+      
+
   </section>
  
 </div> 

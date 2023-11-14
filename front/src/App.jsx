@@ -21,6 +21,8 @@ import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para e
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
+import PedidosHoyViandero from "./components/PedidosHoyViandero";
+
 function App() {
   return (
     <GlobalContextProvider>
@@ -44,6 +46,7 @@ function App() {
 
         <Route path="/editar-vianda/:id" element={<EditarVianda />} />   
 
+        <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />   
       </Routes>
      
     </BrowserRouter>

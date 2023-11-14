@@ -38,7 +38,7 @@ return (
     <>
     <div>
 
-        <div className="mt-3 sm:max-w-xl sm:mx-auto rounded-2xl sm:rounded-full flex bg-indigo-50 border-4 border-indigo-700 flex-col sm:flex-row" id="widget">
+        <div className="mt-3 sm:max-w-xl sm:mx-auto  rounded-xl shadow-2xl flex bg-indigo-50 border-4 border-indigo-700 flex-col sm:flex-row" id="widget">
         <div className="py-6 sm:rounded-l-full pr-10 relative rounded-xl mx-auto bg-white w-full sm:w-auto">
             
             <svg className="rounded-full w-28 h-28 object-cover border-indigo-200 border-4 relative left-8 sm:inline-block mx-auto 
@@ -66,15 +66,15 @@ return (
             Provincia: <span className="text-black">{provincia}</span> 
             </div>
             
-            <div className=" relative right-6 top-6 "> 
+            <div className=" relative right-3 top-3 "> 
                 <button
                     onClick={handleDelete}                    
                     className=" p-2 mt-3 rounded-full hover:bg-red-300 transition-colors"
-                   
-                        >Borrar
-                            {/* <svg class="h-8 w-8 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg> */}
+                                       
+                        >
+                            <svg class="h-10 w-10 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/> 
+                        </svg>
                     
                 </button>
                 
