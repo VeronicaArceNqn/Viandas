@@ -34,7 +34,7 @@ const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleA
       {/* <!-- component --> */}
       {/* <!-- component --> */}
       {/* <!-- This is an example component --> */}
-      <div className="max-w-xl mx-1 my-1 w-60">
+      <div className="max-w-xl mx-1 my-1 w-54">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
 
 

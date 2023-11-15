@@ -36,6 +36,9 @@ const Carrito = () => {
               <th scope="col" className="border border-slate-600">
                 Cantidad
               </th>
+              <th scope="col" className="border border-slate-600">
+               Fecha de Entrega
+              </th>
 
               <th scope="col" className="border border-slate-600">
                 Eliminar
@@ -67,6 +70,7 @@ const Carrito = () => {
                   </button>
                   {/* {item.cant} */}
                 </td>
+                <td className="border border-slate-700 ..."></td>
                 <td className="border border-slate-700 ...">
                   <button
                     className="relative py-2 px-6 text-center hover:bg-red-500 text-red-600 border border-red-600 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white"

@@ -68,7 +68,7 @@ return (
                 </div>
                 <div className="col-span-1 flex items-center gap-4">
                   <button className="bg-green-200 text-green-800 py-1 px-3 rounded-full font-medium">
-                    {/* {estadoVianda.estadoActual.nombreEstado} */}
+                    {estadoVianda?.estadoActual?.nombreEstado}
                   </button>
                  
                 </div>

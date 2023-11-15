@@ -15,7 +15,7 @@ const AdminVianda = () => {
   const [viandas, setViandas] = useState([])
   const {SERVER} = useContext(GlobalContext)
   const viandero={
-    id:36
+    id:5
   } 
   //--
   useEffect(()=>{
@@ -38,10 +38,10 @@ fetchViandas()
       {/* <div className=" flex  gap-8 w-full p-1  bg-gray-50 dark:bg-gray-400 text-black  "> */}
         {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
               <Sidebar />
-              <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
+              <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5 bg-gray-100 p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
-            {/* <div className=" flex flex-wrap "> */}
+            {/* <div className="flex flex-wrap "> */}
             {viandas.filter(vianda => vianda.viandero_id === viandero.id).map(vianda => (
             <Card2
               key={vianda.id}
@@ -243,8 +243,8 @@ fetchViandas()
                   </MenuItem>
                 </Menu>
               </div>
-            </div>
-          </div> */}
+            </div>*/}
+          {/* </div>  */}
         </div>
       </div>
       <Footer />

@@ -32,7 +32,7 @@ const NuevaVianda = () => {
     const formData = new FormData();
 
     console.log(data);
-    data.viandero_id = 36;
+    data.viandero_id = 5;
     data.horarioPedido = "12:00 am";
     data.precio = 0;
     data.publicado = 0;
@@ -123,7 +123,7 @@ const NuevaVianda = () => {
                 </p>
               </div>
               <div className="flex-1 flex items-center gap-4">
-                <div className="w-full text-gray-100">
+                <div className="w-full text-gray-600">
                   <input
                     {...register("nombre", {
                       required: {
@@ -172,7 +172,7 @@ const NuevaVianda = () => {
                     },
                   })}
                   name="tipoVianda"
-                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-white appearance-none"
+                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-gray-700 appearance-none"
                 >
                   <option value="1">Tradicional</option>
                   <option value="2">Vegetariana</option>
@@ -204,7 +204,7 @@ const NuevaVianda = () => {
                   Detalle <span className="text-red-500">*</span>
                 </p>
               </div>
-              <div className="flex-1">
+              <div className="flex-1 text-gray-700">
                 <textarea
                   {...register("descripcion", {
                     required: {

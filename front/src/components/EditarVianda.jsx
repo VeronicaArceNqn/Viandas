@@ -207,7 +207,7 @@ const EditarVianda = () => {
                   <input
                     {...register("precio")}
                     type="number"
-                    className="w-full py-2 text-white px-1 outline-none rounded-lg bg-secondary-900"
+                    className="w-full py-2 text-gray-600 px-1 outline-none rounded-lg bg-secondary-900"
                     placeholder="Valor de la vianda"
                   />
                 </div>
@@ -298,28 +298,31 @@ const EditarVianda = () => {
               <input
                 {...register("cantidad")}
                 type="number"
-                className="w-64 py-2 my-4 text-white px-1 outline-none rounded-lg bg-secondary-900"
+                className="w-64 py-2 my-4 text-gray-600 px-1 outline-none rounded-lg bg-secondary-900"
                 placeholder="Cantidad de esta vianda"
               />
             </div>
             <hr className="py-3" />
             <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-8">
-              <div className="w-full md:w-1/4"></div>
-              <div className="flex-1">
+              {/* <div className="w-full md:w-1/4"></div> */}
+              <div className="w-full flex-1 ">
                 <button
                   type="submit"
-                  className="mb-8 w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
+                  className="mb-8 w-72 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
                 >
                   Guardar Cambios
                 </button>
+                </div>
+                <div className="flex-1 w-full">
                 <button
                   type="button"
                   onClick={eliminarVianda}
-                  className="mb-8 w-full bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-white"
+                  className="mb-8  bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-white"
                 >
                   Eliminar Vianda
                 </button>
               </div>
+              
             </div>
           </form>
         </div>
