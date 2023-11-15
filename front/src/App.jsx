@@ -11,7 +11,7 @@ import AdminVianda from "./components/AdminVianda";
 import NuevaVianda from "./components/NuevaVianda";
 
 import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
-import EditarVianda from "./components/editarVianda";
+import EditarVianda from "./components/EditarVianda";
 
 import AdminCliente from "./components/AdminCliente";
 import Sidebar from "./components/Sidebar";
@@ -21,10 +21,12 @@ import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
 
+
 import { CarritoProvider } from "./context/CarritoProvider";
 import Carrito from "./components/Carrito";
 
 import PedidosHoyViandero from "./components/PedidosHoyViandero";
+import HistoricoViandasCliente from "./components/HistoricoViandasCliente";
 
 
 function App() {
@@ -54,6 +56,8 @@ function App() {
             <Route path="/*" element={<Navigate to="/" />} />
             <Route path="/carrito" element={<Carrito/>} />
             <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />
+            
+            <Route path="/HistoricoViandasCliente" element={<HistoricoViandasCliente />} />
           </Routes>
         </BrowserRouter>
       </CarritoProvider>
