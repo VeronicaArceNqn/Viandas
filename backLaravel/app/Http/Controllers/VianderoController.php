@@ -12,13 +12,8 @@ class VianderoController extends Controller
      */
     public function index()
     {
-       $vianderos = Viandero::with('user')->get();
-      
-    $data = [
-        'message' => 'Listado de vianderos generado correctamente',
-        'vianderos' => $vianderos
-    ];
-    return response()->json($data);        
+       $viandero = Viandero::all();       
+       return $viandero;       
     }
 
     /**
