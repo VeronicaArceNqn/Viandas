@@ -91,6 +91,7 @@ Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController
  Route::get('/porFecha', 'App\Http\Controllers\PedidoViandaController@obtenerPedidoViandasPorFecha');
  Route::get('/porPedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@obtenerPedidosViandasporPedido');
 // Route::get('/pedidoVianda/pedidosViandaHoy', 'App\Http\Controllers\PedidoViandaController@obtenerPedidosViandaParaHoy');
+Route::get('/pedido-viandas/por-fecha-y-viandero', 'App\Http\Controllers\PedidoViandaController@obtenerPedidoViandasPorFechaYViandero');
 
 Route::get('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@index');
 Route::get('/estadoVianda/{estadoVianda}', 'App\Http\Controllers\EstadoViandaController@show');

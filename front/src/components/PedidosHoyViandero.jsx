@@ -10,7 +10,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import CardTablePedidosHoy from "./CardTablePedidosHoy";
 
 const PedidosHoyViandero = () => {
-  const { user, SERVER } = useContext(GlobalContext);
+  const { viandero, SERVER } = useContext(GlobalContext);
   const [pedidosViandaHoy, setPedidosViandaHoy] = useState([]);
 
   const [fechaHoy, setFechaHoy] = useState("");
@@ -27,17 +27,28 @@ const PedidosHoyViandero = () => {
         // Establecer la fecha en el estado
         setFechaHoy(fecha);
         
-        //console.log(`${SERVER}porFecha?fecha=${fecha}`);
-        const res = await axios.get(`${SERVER}porFecha?fecha=${fecha}`);
+        console.log(`${SERVER}pedido-viandas/por-fecha-y-viandero`, {
+          params: {
+            fecha: fecha,
+            viandero_id: viandero?.id
+          }
+        })
+          const res = await axios.get(`${SERVER}pedido-viandas/por-fecha-y-viandero`, {
+            params: {
+              fecha: fecha,
+              viandero_id: viandero?.id
+            }
+          });
+          
         
-        //console.log("res data:", res.data);
+        console.log("res data:", res.data);
         
         if (res.data === null || res.data.mensaje) {
           throw new Error("Error en la respuesta del servidor");
         }
   
         setPedidosViandaHoy(res.data);
-        //console.log("res pedidosViandaHoy:", pedidosViandaHoy);
+        console.log("res pedidosViandaHoy:", pedidosViandaHoy);
         setLoading(false); // Se ha completado la carga de datos
       } catch (error) {
         //console.error("Error al obtener pedidosViandaHoy:", error.message);
@@ -46,7 +57,7 @@ const PedidosHoyViandero = () => {
     };
   
     fetchPedidoViandaHoy ();
-  }, [SERVER]);
+  }, [SERVER, viandero]);
   
   useEffect(() => {
     //console.log("pedidosViandaHoy actualizado:", pedidosViandaHoy);

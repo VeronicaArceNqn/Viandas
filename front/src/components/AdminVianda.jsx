@@ -13,11 +13,12 @@ import axios from "axios";
 const AdminVianda = () => {
   //---
   const [viandas, setViandas] = useState([])
-  const {SERVER} = useContext(GlobalContext)
-  const viandero={
-    id:5
-  } 
+  const {viandero, SERVER} = useContext(GlobalContext)
+  // const viandero={
+  //   id:4
+  // } 
   //--
+  console.log("AdminVianda", viandero)
   useEffect(()=>{
 fetchViandas()
   },[])
@@ -38,7 +39,7 @@ fetchViandas()
       {/* <div className=" flex  gap-8 w-full p-1  bg-gray-50 dark:bg-gray-400 text-black  "> */}
         {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
               <Sidebar />
-              <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5 bg-gray-100 p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
+              <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5  p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
             {/* <div className="flex flex-wrap "> */}

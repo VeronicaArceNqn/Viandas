@@ -30,7 +30,7 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
-  const fecha = format(new Date(), "dd-MM-yy");
+  const fecha = format(new Date(), "dd-MM-yyyy");
   const { user, setUser, logout, SERVER, viandero, getViandero } =
     useContext(GlobalContext);
   const {listaCompras} = useContext(CarritoContext)
@@ -41,8 +41,8 @@ export default function Nav() {
 
   const vistaViandero = () => {
     // getViandero()
-    console.log(viandero[0]);
-    if (viandero?.[0]?.id) {
+    console.log("nav. viandero",viandero);
+    if (viandero) {
       // console.log(navigate())
       navigate("/crear-viandas");
       // history.push('/crear-viandas')
@@ -114,7 +114,7 @@ export default function Nav() {
     <nav>
 
       
-      <div className="flex flex-col md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           <NavLink to="/"> Viandas</NavLink>
 
@@ -122,7 +122,7 @@ export default function Nav() {
 
         </h1>
 
-          <div className="text-lg border-l-2 text-white ">{fecha}</div>
+          <div className="text-sm border-l-2 text-white ">{fecha}</div>
 
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <NavLink to="/"><AddHomeIcon fontSize="large"/></NavLink>
