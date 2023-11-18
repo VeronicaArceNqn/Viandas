@@ -105,9 +105,9 @@ class PedidoController extends Controller
             return response()->json(['message' => 'Aún no has realizado ningún pedido'], 404);
         }
         // Itera sobre los pedidos y obtén las PedidoViandas asociadas
-        foreach ($pedidos as $pedido) {
-            $pedido->pedido_viandas = $this->obtenerPedidoViandas($pedido->id);
-        }
+        // foreach ($pedidos as $pedido) {
+        //     $pedido->pedido_viandas = $this->obtenerPedidoViandas($pedido->id);
+        // }
 
         $data = [
             'message' => 'Listado de pedidos generado correctamente',

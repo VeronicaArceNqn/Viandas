@@ -137,6 +137,30 @@ class PedidoViandaController extends Controller
     }
     
 
+    public function obtenerPedidosViandasporPedido($pedidoId)
+    {
+        // Obtén los vianderos filtrados por zonaReparto_id
+        $pedidoViandaFiltrados = PedidoVianda::where('pedido_id', $pedidoId)->get();
+    
+        // Verifica si hay vianderos
+        if ($pedidoViandaFiltrados->isEmpty()) {
+            // No hay vianderos, devuelve un mensaje indicando que no hay resultados
+            return response()->json(['message' => 'No hay pedidos anteriores'], 404);
+        }
+    
+        // Para cada viandero, carga los datos del usuario asociado
+        foreach ($pedidoViandaFiltrados as $pedidoVianda) {
+            $pedidoVianda->vianda; // Esto asume que hay una relación llamada "usuario" en tu modelo Viandero
+        }
+    
+        // Hay vianderos, devuelve los vianderos filtrados en formato JSON
+        $data = [
+            'message' => 'Listado de vianderos generado correctamente',
+            'pedidoVianda' => $pedidoViandaFiltrados
+        ];
+        return response()->json($data);
+    }
+
 
 
 
