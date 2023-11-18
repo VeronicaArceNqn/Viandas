@@ -32,7 +32,7 @@ const NuevaVianda = () => {
     const formData = new FormData();
 
     console.log(data);
-    data.viandero_id = 5;
+    data.viandero_id = viandero[0].id;
     data.horarioPedido = "12:00 am";
     data.precio = 0;
     data.publicado = 0;

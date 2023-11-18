@@ -15,19 +15,27 @@ import { Link, NavLink } from "react-router-dom";
 //
 //
 
-const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleAumentar,handleDisminuir,descripcion  }) => {
-  const { user,viandero } = useContext(GlobalContext);
+const Card2 = ({
+  id,
+  nombre,
+  precio,
+  img,
+  handleAgregar,
+  handleQuitar,
+  descripcion,
+}) => {
+  const { user, viandero } = useContext(GlobalContext);
   const [added, setAdded] = useState(true);
 
   const agregar = () => {
-    handleAgregar()
+    handleAgregar();
     setAdded(false);
   };
   const quitar = () => {
+    handleQuitar();
     setAdded(true);
   };
-
-
+  console.log(id)
 
   return (
     <>
@@ -36,18 +44,14 @@ const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleA
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-1 my-1 w-54">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
+          {/* validar si viandero existe  para mostrar icono de edicion */}
 
-
-          {/* validar si viandero existe  para mostrar icono de edicion */ }
-          {viandero &&          
-          
+          {/*           
           <Link to={`/editar-vianda/${id}`} >
-            {home?"":<RiEdit2Line/>}
-            
+           <RiEdit2Line/>          
 
-          </Link>
-          
-          }
+           </Link> */}
+
           <div>
             <img
               className="rounded-3xl p-4 cursor-pointer "
@@ -62,10 +66,11 @@ const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleA
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
                 {/* Milanesa napolitana con pure */}
                 {nombre}
-                <hr className="border-t-2 border-blue-300 my-1"/>
+                <hr className="border-t-2 border-blue-300 my-1" />
               </h3>
-                <p>{descripcion}</p>
+              <p>{descripcion}</p>
             </a>
+            {/* //Rating */}
             <div className="flex items-center mt-2.5 mb-5">
               <svg
                 className="w-5 h-5 text-yellow-300"
@@ -111,33 +116,31 @@ const Card2 = ({ id, nombre, precio, img,handleAgregar,home,handelQuitar,handleA
                 5.0
               </span>
             </div>
+            {/* //Rating */}
             <div className="flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}${precio}
               </span>
 
-              {added ? (
-                <button
-                  className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
-                  onClick={agregar}
-                >
-
-
-                  Agregar
-                </button>
+              {user ? (
+                added ? (
+                  <button
+                    className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                    onClick={agregar}
+                  >
+                    Agregar
+                  </button>
+                ) : (
+                  <button
+                    className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
+                    onClick={quitar}
+                  >
+                    Quitar
+                  </button>
+                )
               ) : (
-                <button
-                  className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
-                  onClick={quitar}
-                >
-                  Quitar
-                </button>
-              )}
-              {/* {user ? (
-                //
-              ) : ( // aqui el boton 
                 ""
-              )} */}
+              )}
             </div>
           </div>
         </div>

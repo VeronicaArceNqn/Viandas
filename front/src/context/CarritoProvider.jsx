@@ -1,15 +1,15 @@
 import { useReducer } from "react";
 import { CarritoContext } from "./CarritoContext";
 import { stepButtonClasses } from "@mui/material";
+import axios from "axios";
 
 const initialState = [];
 export const CarritoProvider = ({ children }) => {
   const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-      case "[carrito] Agregar Compra":
-         
-          // console.log(action.payload)
-         return [...state, action.payload];
+      case "[carrito] agregar compra":
+        // console.log(action.payload)
+        return [...state, action.payload];
 
       //logica para que si es de igual id, no lo agregra a la lista
 
@@ -26,7 +26,7 @@ export const CarritoProvider = ({ children }) => {
             return { ...item, cant: canti };
           return item;
         });
-        break;
+      // break;
       case "[carrito] quitar compra":
         return state.filter((compra) => compra.id !== action.payload);
       default:
@@ -40,7 +40,7 @@ export const CarritoProvider = ({ children }) => {
     // console.log(compra);
     compra.cant = 1;
     const action = {
-      type: "[carrito] Agregar Compra",
+      type: "[carrito] agregar compra",
       payload: compra,
     };
     dispatch(action);
@@ -67,6 +67,15 @@ export const CarritoProvider = ({ children }) => {
     };
     dispatch(action);
   };
+
+  const comprar = async (id) => {
+    id = 3
+    try {
+      axios.post()
+    } catch (error) {
+        console.error(error)
+    }
+  }
 
   return (
     <CarritoContext.Provider

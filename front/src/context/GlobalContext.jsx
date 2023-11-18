@@ -16,9 +16,9 @@ function GlobalContextProvider({ children }) {
    const vianderos = arrVianderos.data;
   //  console.log(viandero);
    const result = vianderos.filter(
-     (viandero) => viandero.user_id === user.user.id
+     (viandero) => viandero?.user_id === user?.user?.id
    );
-   console.log(result[0]);
+  //  console.log(result[0]);
    setViandero(result);
    if ((result.lenght == 1)) {
      console.log("setViandero");

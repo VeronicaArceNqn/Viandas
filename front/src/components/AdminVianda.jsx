@@ -9,14 +9,13 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import Card2 from "./Card2";
 import { GlobalContext } from "../context/GlobalContext";
 import axios from "axios";
+import Card2Viand from "./Card2Vind";
 
 const AdminVianda = () => {
   //---
   const [viandas, setViandas] = useState([])
-  const {SERVER} = useContext(GlobalContext)
-  const viandero={
-    id:5
-  } 
+  const {SERVER, viandero} = useContext(GlobalContext)
+
   //--
   useEffect(()=>{
 fetchViandas()
@@ -30,7 +29,7 @@ fetchViandas()
     });
   };
   //--
-
+  // console.log(viandero)
   return (
     <>
       <Nav />
@@ -38,19 +37,19 @@ fetchViandas()
       {/* <div className=" flex  gap-8 w-full p-1  bg-gray-50 dark:bg-gray-400 text-black  "> */}
         {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
               <Sidebar />
-              <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5 bg-gray-100 p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
+              <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5  p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
             {/* <div className="flex flex-wrap "> */}
-            {viandas.filter(vianda => vianda.viandero_id === viandero.id).map(vianda => (
-            <Card2
+            {viandas.filter(vianda => vianda.viandero_id === viandero[0].id).map(vianda => (
+            <Card2Viand
               key={vianda.id}
               id = {vianda.id}
               nombre={vianda.nombre}
               precio={vianda.precio}
               img={vianda.urlFoto}
               descripcion = {vianda.descripcion}
-              
+              cantidad={vianda.cantidad}
             />
           ))}
               

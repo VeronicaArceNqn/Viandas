@@ -11,7 +11,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import { CarritoContext } from "../context/CarritoContext";
 
 function App() {
-  const [viandas, setViandas] = useState([]); // estado con arreglo vacio
+  const [viandas, setViandas] = useState([]); 
   const { SERVER } = useContext(GlobalContext);
 
   //--carrito
@@ -56,10 +56,10 @@ function App() {
           {viandas.map((vianda) => (
             <Card2
               key={vianda.id}
+              id = {vianda.id}
               nombre={vianda.nombre}
               precio={vianda.precio}
               img={vianda.urlFoto}
-
               handleAgregar={() => handleAgregar(vianda)}
               handleQuitar={() => handleQuitar(vianda.id)}
 
