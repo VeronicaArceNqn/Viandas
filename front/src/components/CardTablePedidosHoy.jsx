@@ -153,8 +153,8 @@ return (
             <th class="p-3 text-left">Entrega</th>
             <th class="p-3 text-left">Precio</th>
 
-            {/* <th class="p-3 text-left">Status</th> */}
-            <th class="p-3 text-left">Accion</th>
+            <th class="p-3 text-left">Estado</th>
+            <th class="p-3 text-left">Acciones</th>
           </tr>
         </thead>
         <tbody>

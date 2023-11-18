@@ -59,7 +59,7 @@ const AdminCliente = () => {
       <Nav />     
         <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen dark:bg-gray-400 text-black">       
           <SidebarCliente />        
-            <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
+            <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
               <section className="grid grid-cols-1 mt-10 gap-8">
                 <div>
                   <h1 className="text-2xl font-bold text-white mb-8">Mi pedido de hoy </h1>

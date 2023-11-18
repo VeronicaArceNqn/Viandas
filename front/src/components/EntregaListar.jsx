@@ -116,4 +116,4 @@ const EntregaListar = () => {
   )
 }
 
-export default EntregaListar
+export default EntregaListar;

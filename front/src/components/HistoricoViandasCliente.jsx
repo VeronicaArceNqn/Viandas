@@ -68,7 +68,7 @@ const HistoricoViandasCliente = () => {
       <Nav />     
         <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">       
           <SidebarCliente />        
-            <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
+            <div className="lg:col-span-3 xl:col-span-5 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
               <section className="grid grid-cols-1 mt-6 gap-8">
               <div class="col-span-12">
     <div class="bg-white overflow-auto lg:overflow-visible p-3 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
@@ -83,7 +83,7 @@ const HistoricoViandasCliente = () => {
                  
                 histViandasCliente.length > 0 ? (
                   histViandasCliente.map(pedidos => {
-                    // console.log("Pedido:", pedidos);
+                  
                     if (pedidos && pedidos.id && pedidos.user_id){ 
                     return (
                       <CardTableHistPedCliente 
