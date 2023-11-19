@@ -35,7 +35,7 @@ const Card2 = ({
     handleQuitar();
     setAdded(true);
   };
-  console.log(id)
+  // console.log(id)
 
   return (
     <>

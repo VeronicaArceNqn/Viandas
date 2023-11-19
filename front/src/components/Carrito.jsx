@@ -52,7 +52,7 @@ const Carrito = () => {
       lugarEntrega_id: 1,
     }
     /**
-     * enviar id usuario para crear pedido
+     * Nuevo pedido
      */
     try {
      await axios.post(`${SERVER}pedido`, user )
@@ -66,11 +66,20 @@ const Carrito = () => {
      * solicitar id pedido para crear pedidoVianda
      */
     try {
-      const response = await axios.get(`${SERVER}pedido` );
+      const response = await axios.get(`${SERVER}pedido/user/${user.user_id}` );
       console.log(response.data);
-      const filteVinada = response.data.filter((item) => new Date(item.created_at) == new Date().toLocaleDateString() );
-      console.log(filteVinada);
-      console.log(new Date().toLocaleDateString())
+      const filterVianda = response.data.filter((item) => {
+        const fechaItem = new Date(item.created_at).toLocaleDateString();
+        const fechaActual = new Date().toLocaleDateString();
+      
+        console.log(fechaItem);
+        console.log(fechaActual);
+        return fechaItem === fechaActual;
+      });
+      // const filterVianda = response.data.filter((item) => new Date(item.created_at).toLocaleString() === new Date().toLocaleDateString() );
+      console.log(filterVianda);
+     
+      // console.log(item.created_at)
       // await axios.get(`${SERVER}pedido` )
       // .then((res) => {
       //   console.log(res.data);
