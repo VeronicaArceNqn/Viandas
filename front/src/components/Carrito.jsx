@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CarritoContext } from "../context/CarritoContext";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
 import { NavLink } from "react-router-dom";
+import { set } from "date-fns";
 
 const Carrito = () => {
+  const [pedidoVianda, setPedidoVianda] = useState([]);
   /**
    * context carrito
    */
@@ -34,72 +36,65 @@ const Carrito = () => {
     print();
     console.log(user);
   };
-
+  // console.log(user)
   /**
    * fx para realizar la compra
    */
-  const comprar = async() => {
-    const user = {
-      user_id:3
+  const comprar = async () => {
+    const user_id = {
+      user_id: user.user.id,
     };
+    console.log(listaCompras);
 
-    let pedidoVianda = {
-      pedido_Id: 1,
-      vianda_Id: 1,
-      cantidad: 1,
-      precio: 1,
-      fechaEntrega: "2021-10-10",
-      lugarEntrega_id: 1,
-    }
     /**
      * Nuevo pedido
      */
     try {
-     await axios.post(`${SERVER}pedido`, user )
-      .then((res) => {
+      await axios.post(`${SERVER}pedido`, user_id).then((res) => {
         console.log(res.data);
-
       });
-      
-    } catch (error) {console.log(error)}
+    } catch (error) {
+      console.log(error);
+    }
     /**
      * solicitar id pedido para crear pedidoVianda
      */
     try {
-      const response = await axios.get(`${SERVER}pedido/user/${user.user_id}` );
-      console.log(response.data);
-      const filterVianda = response.data.filter((item) => {
-        const fechaItem = new Date(item.created_at).toLocaleDateString();
-        const fechaActual = new Date().toLocaleDateString();
-      
-        console.log(fechaItem);
-        console.log(fechaActual);
-        return fechaItem === fechaActual;
-      });
-      // const filterVianda = response.data.filter((item) => new Date(item.created_at).toLocaleString() === new Date().toLocaleDateString() );
-      console.log(filterVianda);
-     
-      // console.log(item.created_at)
-      // await axios.get(`${SERVER}pedido` )
-      // .then((res) => {
-      //   console.log(res.data);
-      //   //crear filter para obtener el ultimo id  de pedido
-                
-      // });
-    } catch (error) {console.log(error)}
-
-    /**
-     * enviar lista de compras para crear pedidoVianda
-     //  */    
-
-     
-    // try { 
-    //   await axios.post(`${SERVER}pedidoVianda`, listaCompras )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
-    // } catch (error) {console.log(error)}
+      // Obtener el pedido del usuario
+      const response = await axios.get(`${SERVER}pedido/user/${user_id.user_id}`);
+      const pedidoVianda = response.data.pedidos;
+      console.log(pedidoVianda);
     
+      if (pedidoVianda.length > 0) {
+        const pedidoId = pedidoVianda[0].id;
+    
+        // Crear un array para almacenar las viandas
+        const viandasArray = listaCompras.map((item) => ({
+          pedido_id: pedidoId,
+          vianda_id: item.id,
+          cantidad: item.cantidad,
+          precio: item.precio,
+          fechaEntrega: "2023-11-19",
+          lugarEntrega_id: 1,
+        }));
+    
+        console.log(viandasArray);
+    
+        // Realizar una única solicitud POST para todas las viandas
+        try {
+          const response = await axios.post(`${SERVER}pedidoVianda`, viandasArray);
+          console.log(response);
+        } catch (error) {
+          console.log("Error al enviar viandas:", error);
+        }
+      } else {
+        console.log("No se encontraron pedidos para el usuario");
+      }
+    } catch (error) {
+      console.log("Error al obtener el pedido del usuario:", error);
+    } 
+
+
   };
   //dar formato a fecha que viene de base de datos
   const fechaFormateada = (fecha) => {
@@ -107,7 +102,7 @@ const Carrito = () => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return fechaFormateada.toLocaleDateString("es-ES", options);
   };
-  console.log(listaCompras)
+  console.log(listaCompras);
   return (
     <>
       <Nav />

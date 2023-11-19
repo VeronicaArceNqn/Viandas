@@ -68,14 +68,7 @@ export const CarritoProvider = ({ children }) => {
     dispatch(action);
   };
 
-  const comprar = async (id) => {
-    id = 3
-    try {
-      axios.post()
-    } catch (error) {
-        console.error(error)
-    }
-  }
+  
 
   return (
     <CarritoContext.Provider
