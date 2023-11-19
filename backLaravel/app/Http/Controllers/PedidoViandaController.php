@@ -30,21 +30,27 @@ class PedidoViandaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $pedidoVianda = new PedidoVianda();
-        $pedidoVianda->pedido_id = $request->pedido_id;
-        $pedidoVianda->vianda_id = $request->vianda_id;        
-        $pedidoVianda->cantidad = $request->cantidad;
-        $pedidoVianda->precio = $request->precio;
-        $pedidoVianda->fechaEntrega = $request->fechaEntrega;
-        $pedidoVianda->lugarEntrega_id = $request->lugarEntrega_id;
-       
-        $pedidoVianda->save();
-        $data= [
-            'message' => 'El pedido de la vianda fue creado correctamente',
-            'pedidoVianda' => $pedidoVianda
-        ];
-        return response()->json($data);
+        try {
+            $pedidoId = $request->input('pedido_id');
+            $viandas = $request->input('viandas'); // Aquí asumo que las viandas son un array de objetos con los datos necesarios para crear los PedidoViandas
+
+            foreach ($viandas as $vianda) {
+                PedidoVianda::create([
+                    'pedido_id' => $pedidoId,
+                    'vianda_id' => $vianda['vianda_id'],
+                    'cantidad' => $vianda['cantidad'],
+                    'fechaEntrega' => $vianda['fechaEntrega'],
+                    'lugarEntrega_id' => $vianda['lugarEntrega_id'],
+                    'precio' => $vianda['precio']
+                   
+                ]);
+            }
+
+            return response()->json(['message' => 'PedidoViandas creados correctamente'], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al crear los PedidoViandas'], 500);
+        }
+
     }
 
     /**
