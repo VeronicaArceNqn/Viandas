@@ -6,8 +6,9 @@ import { GlobalContext } from "../context/GlobalContext";
 import icoUser from "../images/iconos/Usuario.png";
 import { format } from "date-fns";
 import { Badge } from "@mui/material";
-import AddHomeIcon from '@mui/icons-material/AddHome';
+import AddHomeIcon from "@mui/icons-material/AddHome";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
+import imgCocinero from '../images/iconos/cocinero2.png'
 import {
   RiArrowDownSLine,
   RiSettings3Line,
@@ -33,7 +34,7 @@ export default function Nav() {
   const fecha = format(new Date(), "dd-MM-yyyy");
   const { user, setUser, logout, SERVER, viandero, getViandero } =
     useContext(GlobalContext);
-  const {listaCompras} = useContext(CarritoContext)
+  const { listaCompras } = useContext(CarritoContext);
   const [showModal, setShowModal] = useState(false);
   const [msj, setMsj] = useState("");
   const [zReparto, setZreparto] = useState([]);
@@ -111,21 +112,28 @@ export default function Nav() {
   };
 
   return (
-    <nav>
+
+//     <nav>
 
       
-      <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+//       <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+
+    <nav className="sticky top-0" >
+     
+      <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
+
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           <NavLink to="/"> Viandas</NavLink>
-
-      
-
         </h1>
+
 
           <div className="text-sm border-l-2 text-white ">{fecha}</div>
 
+
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
-          <NavLink to="/"><AddHomeIcon fontSize="large"/></NavLink>
+          <NavLink to="/">
+            <AddHomeIcon fontSize="large" />
+          </NavLink>
           <NavLink to="/nosotros"> Nosotros</NavLink>
           <NavLink to="/"> Servicios</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
@@ -194,6 +202,15 @@ export default function Nav() {
                   <RiSettings3Line /> Configuración
                 </Link>
               </MenuItem>
+              {/* <MenuItem className="p-0 hover:bg-transparent">
+                <NavLink
+                  to="/carrito"
+                  onClick={vistaViandero()}
+                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+                >
+                  <RiLogoutCircleRLine /> Menu de viandas
+                </NavLink>
+              </MenuItem> */}
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/"
@@ -202,34 +219,36 @@ export default function Nav() {
                 >
                   <RiLogoutCircleRLine /> Cerrar sesión
                 </Link>
+                
               </MenuItem>
             </Menu>
           ) : (
             <NavLink to="/Login"> Login</NavLink>
           )}
         </nav>
-        <span className="text-white  ">
+        {user? (
+        <span className="text-white ">
           <NavLink to="/carrito">
             <Badge badgeContent={listaCompras.length} color="secondary">
               <RiShoppingCart2Fill
-                // onClick={() => {
-                //   console.log("carrito");
-                // }}
+                onClick={() => {
+                  console.log("carrito");
+                }}
                 className="text-3xl pointer-events-auto"
               />
             </Badge>
           </NavLink>
         </span>
-        {/* {user? (
-          ""
+          
         ) : (
           ""
-        )} */}
+        )}
         {user ? (
           <span className="text-white  ">
-            <RiStore3Line
+            {/* <RiStore3Line */}
+            <img src={imgCocinero}
               title="Crear viandas"
-              className="text-3xl"
+              className="text-2xl w-10 cursor-pointer "
               onClick={() => {
                 vistaViandero();
               }}

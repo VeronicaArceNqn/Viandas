@@ -15,49 +15,45 @@ export default function Loggin() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(errors);
+  // console.log(errors);
+ 
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
+    // console.log(data);
     fetchData(data);
   });
 
-  const id = 4; //var testing envio parametro a ./nosotros
-
-  // const [email, setEmail] = useState("");
-  // const [pass, setPass] = useState("");
-  // const [msj, setMsj] = useState("");
+  
   const navigate = useNavigate();
   const { setUser, SERVER } = useContext(GlobalContext);
 
   // --------------------------------------------------
 
-  // const data = {
-  //   email: email,
-  //   password: pass,
-  // };
+
   const fetchData = async (data) => {
-    // e.preventDefault();
-    // console.log(data);
+ 
     try {
       const result = await axios.post(`${SERVER}login`, data);
-      console.log(result);
+      
       // setMsj(result.data.message);
       setUser(result.data);
+      // console.log(result)
       Swal.fire("Bienvenido al sistema!");
       navigate("/");
     } catch (err) {
-      console.log(err);
-      if (err.response.status == 401) {
+      // console.error(err);
+      if (err?.response?.status == 401) {
         // alert(err.response.status)
          Swal.fire("Usuario o clave no coinciden!");
       }
     }
-  };
 
+  };
+ 
   return (
     <>
       {/* <!-- HTML --> */}
-      <div className="min-h-screen bg-[#2e313b] grid grid-cols-1 lg:grid-cols-1 container mx-auto ">
+      <div className="min-h-screen  bg-[#2e313b] grid grid-cols-1 lg:grid-cols-1 container mx-auto ">
         <Nav />
         <div className="text-white flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto text-center">
           {/* <!-- Titulo --> */}
@@ -211,7 +207,7 @@ export default function Loggin() {
               </a> */}
               {/* El siguiente cod prueba enviar datos por parametros */}
               <NavLink
-                to={`/nosotros/${id}`}
+                // to={`/nosotros/${id}`}
                 className={
                   "text-gray-400 hover:text-gray-200 transition-colors"
                 }

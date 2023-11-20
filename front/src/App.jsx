@@ -21,17 +21,17 @@ import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import CardEntrega from "./components/CardEntrega";
 
-
 import { CarritoProvider } from "./context/CarritoProvider";
 import Carrito from "./components/Carrito";
 
 import PedidosHoyViandero from "./components/PedidosHoyViandero";
 import HistoricoViandasCliente from "./components/HistoricoViandasCliente";
-
+import Ubicar from "./components/Ubicar";
 
 function App() {
   return (
     <GlobalContextProvider>
+      <Ubicar />
       <CarritoProvider>
         <BrowserRouter>
           <Routes>
@@ -51,22 +51,21 @@ function App() {
             <Route path="/CardEntrega" element={<CardEntrega />} />
             <Route path="/Sidebar" element={<Sidebar />} />
 
-
             <Route path="/editar-vianda/:id" element={<EditarVianda />} />
             <Route path="/*" element={<Navigate to="/" />} />
-            <Route path="/carrito" element={<Carrito/>} />
-            <Route path="/PedidosHoyViandero" element={<PedidosHoyViandero />} />
-            
-            <Route path="/HistoricoViandasCliente" element={<HistoricoViandasCliente />} />
+            <Route path="/carrito" element={<Carrito />} />
+            <Route
+              path="/PedidosHoyViandero"
+              element={<PedidosHoyViandero />}
+            />
+
+            <Route
+              path="/HistoricoViandasCliente"
+              element={<HistoricoViandasCliente />}
+            />
           </Routes>
         </BrowserRouter>
       </CarritoProvider>
-
-        
-     
-     
-   
-
     </GlobalContextProvider>
   );
 }

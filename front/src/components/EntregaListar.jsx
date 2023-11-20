@@ -65,7 +65,7 @@ const EntregaListar = () => {
       <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
         <SidebarCliente /> 
         
-        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
+        <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
             
             <div className=" mt-5">
                   <span className="text-white font-bold text-2xl">Mis lugares de entrega</span>
