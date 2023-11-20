@@ -1,14 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CarritoContext } from "../context/CarritoContext";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import axios from "axios";
 import { GlobalContext } from "../context/GlobalContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { set } from "date-fns";
+import moment from "moment";
+import Swal from "sweetalert2";
 
 const Carrito = () => {
-  const [pedidoVianda, setPedidoVianda] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   /**
    * context carrito
    */
@@ -18,6 +21,7 @@ const Carrito = () => {
     aumentarCompra,
     disminuirCompra,
     quitarCompra,
+    vaciarCarrito,
   } = useContext(CarritoContext);
 
   /**
@@ -40,68 +44,59 @@ const Carrito = () => {
   /**
    * fx para realizar la compra
    */
-  const comprar = async () => {
-    const user_id = {
-      user_id: user.user.id,
-    };
-    console.log(listaCompras);
+  const comprar = async () => {// Funcion comprar elementos del carrito
+    // console.log(listaCompras);
+    setLoading(true);//
+    const viandasArray = listaCompras.map((item) => ({
+      vianda_id: item.id,
+      cantidad: item.cant,
+      precio: item.precio,
+      fechaEntrega: moment(item.created_at).format("YYYY-MM-DD"),
+      lugarEntrega_id: lugarEntrega[0].id,
+    }));
+    // console.log(viandasArray);
 
-    /**
-     * Nuevo pedido
-     */
+    const data = {
+      user_id: user.user.id,
+      items: viandasArray,
+    };
+
     try {
-      await axios.post(`${SERVER}pedido`, user_id).then((res) => {
-        console.log(res.data);
-      });
+      const res = await axios.post(`${SERVER}pedido`, data);
+
+      console.log(res.data);
+
+      Swal.fire("Compra realizada con exito!");
+      // alert("Compra realizada con exito!");
+      vaciarCarrito();
+      navigate("/");
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);  
     }
-    /**
-     * solicitar id pedido para crear pedidoVianda
-     */
-    try {
-      // Obtener el pedido del usuario
-      const response = await axios.get(`${SERVER}pedido/user/${user_id.user_id}`);
-      const pedidoVianda = response.data.pedidos;
-      console.log(pedidoVianda);
     
-      if (pedidoVianda.length > 0) {
-        const pedidoId = pedidoVianda[0].id;
-    
-        // Crear un array para almacenar las viandas
-        const viandasArray = listaCompras.map((item) => ({
-          pedido_id: pedidoId,
-          vianda_id: item.id,
-          cantidad: item.cantidad,
-          precio: item.precio,
-          fechaEntrega: "2023-11-19",
-          lugarEntrega_id: 1,
-        }));
-    
-        console.log(viandasArray);
-    
-        // Realizar una única solicitud POST para todas las viandas
-        try {
-          const response = await axios.post(`${SERVER}pedidoVianda`, viandasArray);
-          console.log(response);
-        } catch (error) {
-          console.log("Error al enviar viandas:", error);
+
+    console.log(data);
+  };
+
+  const [lugarEntrega, setLugarEntrega] = useState([]);
+  const fetchLugarEntrega = async () => {
+    await axios
+      .get(`${SERVER}lugarEntrega/User/${user.user.id}`)
+      .then((res) => {
+        if (res.data === null || res.data.mensaje) {
+          alert("No tiene lugar de entrega registrado");
+          navigate("/");
+        } else {
+          setLugarEntrega(res.data);
         }
-      } else {
-        console.log("No se encontraron pedidos para el usuario");
-      }
-    } catch (error) {
-      console.log("Error al obtener el pedido del usuario:", error);
-    } 
-
-
+      });
   };
-  //dar formato a fecha que viene de base de datos
-  const fechaFormateada = (fecha) => {
-    const fechaFormateada = new Date(fecha);
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return fechaFormateada.toLocaleDateString("es-ES", options);
-  };
+  useEffect(() => {
+    fetchLugarEntrega();
+  }, []);
+
   console.log(listaCompras);
   return (
     <>
@@ -157,7 +152,8 @@ const Carrito = () => {
                   {/* {item.cant} */}
                 </td>
                 <td className="border border-slate-700 ...">
-                  {fechaFormateada(item.created_at)}{" "}
+                  {moment(item.created_at).format("DD-MM-yyyy")}{" "}
+                  {/* {fechaFormateada(item.created_at)}{" "} */}
                 </td>
                 <td className="border border-slate-700 ...">
                   <button
@@ -201,14 +197,25 @@ const Carrito = () => {
               disabled={listaCompras < 1}
               className="relative py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-green-500 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
             >
-              Comprar
+              {/* Comprar */}
+              {loading? <Spinner />: "Comprar"}
             </button>
-          )}
+            )}
         </div>
       </div>
       <Footer />
     </>
   );
 };
+const Spinner = () => {
+  
+  return <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+  role="status">
+  <span
+    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span>
+</div>
 
+
+}
 export default Carrito;

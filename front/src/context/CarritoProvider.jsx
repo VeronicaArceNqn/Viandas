@@ -8,6 +8,7 @@ export const CarritoProvider = ({ children }) => {
   const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
       case "[carrito] agregar compra":
+        //
         // console.log(action.payload)
         return [...state, action.payload];
 
@@ -16,7 +17,13 @@ export const CarritoProvider = ({ children }) => {
       case "[carrito] aumentar cantidad":
         return state.map((item) => {
           const cant = item.cant + 1;
-          if (item.id === action.payload) return { ...item, cant: cant };
+          //descontar stock con axios put
+          // const data = {
+          //   stock: item.stock - 1,
+          // };
+          // axios.put(`${SERVER}viandas/${item.id}`, data);
+
+          if (item.id === action.payload ) return { ...item, cant: cant };
           return item;
         });
       case "[carrito] disminuir compra":
@@ -29,10 +36,14 @@ export const CarritoProvider = ({ children }) => {
       // break;
       case "[carrito] quitar compra":
         return state.filter((compra) => compra.id !== action.payload);
+      case "[carrito] vaciar carrito":
+        return action.payload;
+        
       default:
         return state;
     }
   };
+  
 
   const [listaCompras, dispatch] = useReducer(comprasReducer, initialState);
 
@@ -68,6 +79,16 @@ export const CarritoProvider = ({ children }) => {
     dispatch(action);
   };
 
+  //vaciar carrito
+   const vaciarCarrito = () => {
+    const action = {
+      type: "[carrito] vaciar carrito",
+      payload: [],
+    };
+    dispatch(action);
+  }
+
+
   
 
   return (
@@ -78,6 +99,7 @@ export const CarritoProvider = ({ children }) => {
         aumentarCompra,
         disminuirCompra,
         quitarCompra,
+        vaciarCarrito,
       }}
     >
       {children}
