@@ -89,13 +89,16 @@ Route::put('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@up
 Route::delete('/pedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@destroy');
 //Route::get('/fechaHoy', 'App\Http\Controllers\PedidoViandaController@fechaHoy');
  Route::get('/porFecha', 'App\Http\Controllers\PedidoViandaController@obtenerPedidoViandasPorFecha');
+ Route::get('/porPedidoVianda/{id}', 'App\Http\Controllers\PedidoViandaController@obtenerPedidosViandasporPedido');
 // Route::get('/pedidoVianda/pedidosViandaHoy', 'App\Http\Controllers\PedidoViandaController@obtenerPedidosViandaParaHoy');
+Route::get('/pedido-viandas/por-fecha-y-viandero', 'App\Http\Controllers\PedidoViandaController@obtenerPedidoViandasPorFechaYViandero');
 
 Route::get('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@index');
 Route::get('/estadoVianda/{estadoVianda}', 'App\Http\Controllers\EstadoViandaController@show');
 Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@store');
 Route::put('/estadoVianda/{id}', 'App\Http\Controllers\EstadoViandaController@update');
 Route::get('/estadoVianda/obtenerEstado/{pedidoVianda_id}', 'App\Http\Controllers\EstadoViandaController@obtenerEstadoActual');
+
 
 
 

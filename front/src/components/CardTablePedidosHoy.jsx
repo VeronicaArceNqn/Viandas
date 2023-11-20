@@ -52,98 +52,11 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
       }, []);
            
 return (
-    <>
-
-    {/* <div className="grid grid-cols-1 xl:grid-cols-4 items-center mb-1 p-1 bg-purple-50">
-                <div className="col-span-2 flex items-center gap-4"> 
-                  <img
-                    src={vianda.urlFoto}
-                    className="w-14 h-14 object-cover rounded-xl"
-                  />
-                  <div>
-                    <h3 className="font-bold">{vianda.nombre}</h3>
-                    <p className="text-gray-500">Cantidad: {cantidad}</p>
-                    <p className="text-gray-500">Entrega: {lugarEntrega.calle} {lugarEntrega.nroCalle} ({lugarEntrega.nombreLugar})</p>
-                  </div>
-                </div>
-                <div className="col-span-1 flex items-center gap-4">
-                  <button className="bg-green-100 text-green-800 py-1 px-3 rounded-full font-medium">
-                    {estadoVianda.estadoActual.nombreEstado}
-                  </button>
-                 
-                </div>
-                <div>
-                  <span className="font-bold">$ {precio}</span>
-                </div>
-              </div>
-              <div class="flex items-center justify-center min-h-screen bg-white"> */}
+    <>   
 
   <div class="col-span-12">
-    <div class="overflow-auto lg:overflow-visible">
-      
+    <div class="overflow-auto lg:overflow-visible">      
         
-        {/* <div class="text-center flex-auto">
-          <input
-            type="text"
-            name="name"
-            placeholder="Search..."
-            class="
-              w-1/3
-              py-2
-              border-b-2 border-blue-600
-              outline-none
-              focus:border-yellow-400
-            "
-          />
-        </div> */}
-
-        {/* <div>
-          <a href="#">
-            <button
-              class="
-                bg-blue-500
-                hover:bg-blue-700
-                text-white
-                py-1
-                px-3
-                sm
-                rounded-full
-              "
-            >
-              All
-            </button>
-          </a>
-          <a href="#">
-            <button
-              class="
-                bg-blue-500
-                hover:bg-blue-700
-                text-white
-                py-1
-                px-3
-                sm
-                rounded-full
-              "
-            >
-              Admin
-            </button>
-          </a>
-          <a href="#">
-            <button
-              class="
-                bg-blue-500
-                hover:bg-blue-700
-                text-white
-                py-1
-                px-3
-                sm
-                rounded-full
-              "
-            >
-              User
-            </button></a
-          >
-        </div>*/}
       </div> 
       <table class="table text-gray-400 border-separate space-y-6 text-sm">
         <thead class="bg-indigo-500 text-white">
@@ -153,8 +66,8 @@ return (
             <th class="p-3 text-left">Entrega</th>
             <th class="p-3 text-left">Precio</th>
 
-            {/* <th class="p-3 text-left">Status</th> */}
-            <th class="p-3 text-left">Accion</th>
+            <th class="p-3 text-left">Estado</th>
+            <th class="p-3 text-left">Acciones</th>
           </tr>
         </thead>
         <tbody>

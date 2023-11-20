@@ -14,14 +14,24 @@ function GlobalContextProvider({ children }) {
   async  function getViandero() {
    const arrVianderos = await axios.get(`${SERVER}viandero`);
    const vianderos = arrVianderos.data;
-  //  console.log(viandero);
+   // console.log("viandero: ", vianderos);
    const result = vianderos.filter(
      (viandero) => viandero?.user_id === user?.user?.id
    );
+
+   console.log("result: ",result[0]);
+   setViandero(result[0]);
+   console.log("setViandero:", viandero);
+   
+   if ((result[0].lenght > 1)) {
+     //console.log("setViandero:", setViandero);
+     console.log("Viandero:", viandero);
+
   //  console.log(result[0]);
-   setViandero(result);
-   if ((result.lenght == 1)) {
-     console.log("setViandero");
+//    setViandero(result);
+//    if ((result.lenght == 1)) {
+//      console.log("setViandero");
+
      
    }
  }

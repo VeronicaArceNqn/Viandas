@@ -12,8 +12,8 @@ class VianderoController extends Controller
      */
     public function index()
     {
-        $viandero = Viandero::all();       
-        return $viandero;
+       $viandero = Viandero::all();       
+       return $viandero;       
     }
 
     /**
@@ -48,7 +48,12 @@ class VianderoController extends Controller
     public function show(Viandero $viandero)
     {
         //
-        return response()->json($viandero);
+        $viandero->user;
+        $data = [
+        'message' => 'Listado de vianderos generado correctamente',
+        'vianderos' => $viandero
+    ];
+    return response()->json($data); 
     }
 
     /**

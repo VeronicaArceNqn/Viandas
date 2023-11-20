@@ -10,7 +10,7 @@ import { GlobalContext } from "../context/GlobalContext";
 import CardTablePedidosHoy from "./CardTablePedidosHoy";
 
 const PedidosHoyViandero = () => {
-  const { user, SERVER } = useContext(GlobalContext);
+  const { viandero, SERVER } = useContext(GlobalContext);
   const [pedidosViandaHoy, setPedidosViandaHoy] = useState([]);
 
   const [fechaHoy, setFechaHoy] = useState("");
@@ -27,17 +27,28 @@ const PedidosHoyViandero = () => {
         // Establecer la fecha en el estado
         setFechaHoy(fecha);
         
-        //console.log(`${SERVER}porFecha?fecha=${fecha}`);
-        const res = await axios.get(`${SERVER}porFecha?fecha=${fecha}`);
+        console.log(`${SERVER}pedido-viandas/por-fecha-y-viandero`, {
+          params: {
+            fecha: fecha,
+            viandero_id: viandero?.id
+          }
+        })
+          const res = await axios.get(`${SERVER}pedido-viandas/por-fecha-y-viandero`, {
+            params: {
+              fecha: fecha,
+              viandero_id: viandero?.id
+            }
+          });
+          
         
-        //console.log("res data:", res.data);
+        console.log("res data:", res.data);
         
         if (res.data === null || res.data.mensaje) {
           throw new Error("Error en la respuesta del servidor");
         }
   
         setPedidosViandaHoy(res.data);
-        //console.log("res pedidosViandaHoy:", pedidosViandaHoy);
+        console.log("res pedidosViandaHoy:", pedidosViandaHoy);
         setLoading(false); // Se ha completado la carga de datos
       } catch (error) {
         //console.error("Error al obtener pedidosViandaHoy:", error.message);
@@ -46,7 +57,7 @@ const PedidosHoyViandero = () => {
     };
   
     fetchPedidoViandaHoy ();
-  }, [SERVER]);
+  }, [SERVER, viandero]);
   
   useEffect(() => {
     //console.log("pedidosViandaHoy actualizado:", pedidosViandaHoy);
@@ -59,12 +70,12 @@ const PedidosHoyViandero = () => {
       <Nav />     
         <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">       
           <Sidebar />        
-            <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
+            <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
               <section className="grid grid-cols-1 mt-6 gap-8">
               <div class="col-span-12">
     <div class="bg-white overflow-auto lg:overflow-visible p-3 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
       <div class="bg-white flex lg:justify-between border-b-2 border-fuchsia-900 pb-1">
-        <h2 class="text-2xl text-gray-500 font-bold"></h2></div>
+        <h2 class="text-2xl text-gray-500 font-bold">Pedidos de viandas para hoy</h2></div>
 
 
                 {/* <div>

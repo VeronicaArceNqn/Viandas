@@ -42,9 +42,12 @@ const Card2 = ({
       {/* <!-- component --> */}
       {/* <!-- component --> */}
       {/* <!-- This is an example component --> */}
-      <div className="max-w-xl mx-1 my-1 w-54">
-        <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
+
+      <div className="max-w-xl mx-1 my-1 w-auto">
+        <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700 justify-center">
+
           {/* validar si viandero existe  para mostrar icono de edicion */}
+
 
           {/*           
           <Link to={`/editar-vianda/${id}`} >
@@ -52,12 +55,14 @@ const Card2 = ({
 
            </Link> */}
 
-          <div>
+
+          <div className="grid justify-items-center p-2 ">       
+
             <img
-              className="rounded-3xl p-4 cursor-pointer "
+              className="object-cover object-center h-40 w-40 rounded-3xl cursor-pointer"
               src={img}
               // src="viandaNapo.png"
-              alt="product image"
+              alt={nombre}
               // onClick={cambiarImagen}
             />
           </div>

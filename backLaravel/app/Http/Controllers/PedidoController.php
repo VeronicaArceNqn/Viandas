@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pedido;
 use App\Models\PedidoVianda;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PedidoController extends Controller
 {
@@ -31,16 +32,57 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $pedido = new Pedido();
-        $pedido->user_id = $request->user_id;
-               
-       $pedido->save();
-       $data= [
-            'message' => 'El pedido se guardó correctamente',
-            'pedido' => $pedido
-        ];
-        return response()->json($data);
+        DB::beginTransaction();
+
+        try {
+            $data = $request->validate([
+                'user_id' => 'required|exists:users,id',
+                'items' => 'required|array', // Suponiendo que los items están llegando en un array
+                'items.*.vianda_id' => 'required',
+                'items.*.cantidad' => 'required',
+                'items.*.precio' => 'required',
+                'items.*.fechaEntrega' => 'required',
+                'items.*.lugarEntrega_id' => 'required',
+            ]);
+    
+            // Crear el pedido
+            $pedido = Pedido::create([
+                'user_id' => $data['user_id'],
+                // ...otros datos del pedido si los hay
+            ]);
+    
+            // Crear los pedidoViandas asociados al pedido
+            $pedidoViandas = [];
+            foreach ($data['items'] as $item) {
+                $pedidoViandas[] = new PedidoVianda([
+                    'pedido_id' => $pedido->id,
+                    'vianda_id' => $item['vianda_id'],
+                    'cantidad' => $item['cantidad'],
+                    'precio' => $item['precio'],
+                    'fechaEntrega' => $item['fechaEntrega'],
+                   'lugarEntrega_id' => $item['lugarEntrega_id']
+                ]);
+            }
+    
+            // Asociar los pedidoViandas al pedido y guardarlos en una sola transacción
+            $pedido->pedidoViandas()->saveMany($pedidoViandas);
+    
+            DB::commit();
+    
+            return response()->json([
+                'message' => 'El pedido y los pedidoViandas se guardaron correctamente',
+                'data' => $data,
+                'pedido' => $pedido,
+                'pedidoViandas' => $pedidoViandas
+            ], 201);
+        } catch (\Exception $e) {
+            DB::rollback();
+    
+            return response()->json([
+                'message' => 'Error al guardar el pedido y los pedidoViandas',
+                'data' => $data
+            ], 500);
+        }        
     }
 
     /**
@@ -105,9 +147,9 @@ class PedidoController extends Controller
             return response()->json(['message' => 'Aún no has realizado ningún pedido'], 404);
         }
         // Itera sobre los pedidos y obtén las PedidoViandas asociadas
-        foreach ($pedidos as $pedido) {
-            $pedido->pedido_viandas = $this->obtenerPedidoViandas($pedido->id);
-        }
+        // foreach ($pedidos as $pedido) {
+        //     $pedido->pedido_viandas = $this->obtenerPedidoViandas($pedido->id);
+        // }
 
         $data = [
             'message' => 'Listado de pedidos generado correctamente',

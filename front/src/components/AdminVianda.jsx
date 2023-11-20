@@ -14,9 +14,12 @@ import Card2Viand from "./Card2Vind";
 const AdminVianda = () => {
   //---
   const [viandas, setViandas] = useState([])
+
   const {SERVER, viandero} = useContext(GlobalContext)
 
+
   //--
+  console.log("AdminVianda", viandero)
   useEffect(()=>{
 fetchViandas()
   },[])
