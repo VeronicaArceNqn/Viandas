@@ -28,7 +28,7 @@ function GlobalContextProvider({ children }) {
      console.log("Viandero:", viandero);
 
   //  console.log(result[0]);
-//    setViandero(result);
+    setViandero(result);
 //    if ((result.lenght == 1)) {
 //      console.log("setViandero");
 

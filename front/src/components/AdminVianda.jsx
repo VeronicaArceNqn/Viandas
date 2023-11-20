@@ -44,7 +44,7 @@ fetchViandas()
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
             {/* <div className="flex flex-wrap "> */}
-            {viandas.filter(vianda => vianda.viandero_id === viandero[0].id).map(vianda => (
+            {viandas.filter(vianda => vianda.viandero_id === viandero.id).map(vianda => (
             <Card2Viand
               key={vianda.id}
               id = {vianda.id}
