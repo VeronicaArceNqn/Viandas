@@ -1,22 +1,29 @@
 import { useReducer } from "react";
 import { CarritoContext } from "./CarritoContext";
 import { stepButtonClasses } from "@mui/material";
+import axios from "axios";
 
 const initialState = [];
 export const CarritoProvider = ({ children }) => {
   const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
-      case "[carrito] Agregar Compra":
-         
-          // console.log(action.payload)
-         return [...state, action.payload];
+      case "[carrito] agregar compra":
+        //
+        // console.log(action.payload)
+        return [...state, action.payload];
 
       //logica para que si es de igual id, no lo agregra a la lista
 
       case "[carrito] aumentar cantidad":
         return state.map((item) => {
           const cant = item.cant + 1;
-          if (item.id === action.payload) return { ...item, cant: cant };
+          //descontar stock con axios put
+          // const data = {
+          //   stock: item.stock - 1,
+          // };
+          // axios.put(`${SERVER}viandas/${item.id}`, data);
+
+          if (item.id === action.payload ) return { ...item, cant: cant };
           return item;
         });
       case "[carrito] disminuir compra":
@@ -26,13 +33,17 @@ export const CarritoProvider = ({ children }) => {
             return { ...item, cant: canti };
           return item;
         });
-        break;
+      // break;
       case "[carrito] quitar compra":
         return state.filter((compra) => compra.id !== action.payload);
+      case "[carrito] vaciar carrito":
+        return action.payload;
+        
       default:
         return state;
     }
   };
+  
 
   const [listaCompras, dispatch] = useReducer(comprasReducer, initialState);
 
@@ -40,7 +51,7 @@ export const CarritoProvider = ({ children }) => {
     // console.log(compra);
     compra.cant = 1;
     const action = {
-      type: "[carrito] Agregar Compra",
+      type: "[carrito] agregar compra",
       payload: compra,
     };
     dispatch(action);
@@ -68,6 +79,18 @@ export const CarritoProvider = ({ children }) => {
     dispatch(action);
   };
 
+  //vaciar carrito
+   const vaciarCarrito = () => {
+    const action = {
+      type: "[carrito] vaciar carrito",
+      payload: [],
+    };
+    dispatch(action);
+  }
+
+
+  
+
   return (
     <CarritoContext.Provider
       value={{
@@ -76,6 +99,7 @@ export const CarritoProvider = ({ children }) => {
         aumentarCompra,
         disminuirCompra,
         quitarCompra,
+        vaciarCarrito,
       }}
     >
       {children}
