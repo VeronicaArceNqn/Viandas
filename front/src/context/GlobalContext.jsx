@@ -5,6 +5,7 @@ import { Navigate, redirect } from "react-router-dom";
 const GlobalContext = createContext(); //creo contexto
 
 function GlobalContextProvider({ children }) {
+  //
   const SERVER = "http://localhost:8000/api/";
   //
   const [user, setUser] = useState(undefined); //estados globales
@@ -19,7 +20,11 @@ function GlobalContextProvider({ children }) {
      (viandero) => viandero?.user_id === user?.user?.id
    );
 
-   console.log("result: ",result[0]);
+   console.log(user)
+  //  console.log(object)
+  //  console.log(object)
+  //  console.log(object)
+  //  console.log("result: ",result[0]);
    setViandero(result[0]);
    console.log("setViandero:", viandero);
    

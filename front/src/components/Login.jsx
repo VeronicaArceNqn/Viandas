@@ -39,7 +39,7 @@ export default function Loggin() {
       setUser(result.data);
       // console.log(result)
       Swal.fire("Bienvenido al sistema!");
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       // console.error(err);
       if (err?.response?.status == 401) {
