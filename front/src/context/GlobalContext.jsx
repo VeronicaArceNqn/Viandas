@@ -12,37 +12,26 @@ function GlobalContextProvider({ children }) {
   const [viandero, setViandero] = useState(undefined); //estados globales
   //
   //
-  async  function getViandero() {
-   const arrVianderos = await axios.get(`${SERVER}viandero`);
-   const vianderos = arrVianderos.data;
-   // console.log("viandero: ", vianderos);
-   const result = vianderos.filter(
-     (viandero) => viandero?.user_id === user?.user?.id
-   );
+  async function getViandero() {
+    const arrVianderos = await axios.get(`${SERVER}viandero`);
+    const vianderos = arrVianderos.data;
+    // console.log("viandero: ", vianderos);
+    const result = vianderos.filter(
+      (viandero) => viandero?.user_id === user?.user?.id
+    );
+    
+    // setViandero(result[0]);
+    console.log("viandero despues de axios: ", result);
 
-   console.log(user)
-  //  console.log(object)
-  //  console.log(object)
-  //  console.log(object)
-  //  console.log("result: ",result[0]);
-   setViandero(result[0]);
-   console.log("setViandero:", viandero);
-   
-   if ((result[0].lenght > 1)) {
-     //console.log("setViandero:", setViandero);
-     console.log("Viandero:", viandero);
+    if (result.length == 1) {  
+      setViandero(result[0]);      
+      console.log("Viandero en if :", viandero);   
+    }else{
+      console.log("sin viandero")
+    }
+  }
 
-  //  console.log(result[0]);
-    setViandero(result);
-//    if ((result.lenght == 1)) {
-//      console.log("setViandero");
-
-     
-   }
- }
-
-  useEffect(() => {
-    // console.log("se modif el user->modf viandero");
+  useEffect(() => {    
     getViandero();
   }, [user]);
 

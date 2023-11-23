@@ -15,8 +15,9 @@ function App() {
   const { SERVER } = useContext(GlobalContext);
 
   //--carrito
-  const { listaCompra, agregarCompra, disminurCompra, quitarCompra } =
+  const { listaCompras, agregarCompra, disminurCompra, quitarCompra } =
     useContext(CarritoContext);
+
 
   const handleAgregar = (compra) => {
     agregarCompra(compra);
@@ -27,7 +28,9 @@ function App() {
   const handleAumentar = (id) => {};
   const handleDisminuir = (id) => {};
   //--carrito
-
+  const estaEnCarrito = (id) => {
+    return listaCompras.some((producto) => producto.id === id);
+  };
 
   const home = "home";
 
@@ -49,9 +52,9 @@ function App() {
       {/* <div className="text-3xl bg-black">Hola francisco</div> */}
       <Nav />
       
-      <div className="flex flex-col justify-center w-auto p-1 bg-gray-50 bg-gray-400 text-black max-h-screem ">
+      <div className="flex flex-col justify-center w-auto p-1 bg-gray-400 text-black max-h-screem ">
         <HomeSearchBar setViandas={setViandas}  />
-        <div className="grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 min-h-screen bg-gray-400 text-black justify-center"> 
+        <div className="grid md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-4  min-h-screen bg-gray-400 text-black justify-center"> 
         {/* <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5"> */}
           {/* <div className="hidden xl:block"><Card /></div> */}
           {/* <div className="hidden xl:block"></div> */}
@@ -64,10 +67,10 @@ function App() {
               img={vianda.urlFoto}
               handleAgregar={() => handleAgregar(vianda)}
               handleQuitar={() => handleQuitar(vianda.id)}
-
               home = {home}
+              cantidad = {vianda.cantidad}
               descripcion = {vianda.descripcion}
-
+              agregado={estaEnCarrito(vianda.id)}
             />
           ))}
         </div>

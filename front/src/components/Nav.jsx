@@ -8,7 +8,7 @@ import { format } from "date-fns";
 import { Badge } from "@mui/material";
 import AddHomeIcon from "@mui/icons-material/AddHome";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
-import imgCocinero from '../images/iconos/cocinero2.png'
+import imgCocinero from "../images/iconos/cocinero2.png";
 import {
   RiArrowDownSLine,
   RiSettings3Line,
@@ -23,6 +23,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import axios from "axios";
 import { registerLocale } from "react-datepicker";
 import { CarritoContext } from "../context/CarritoContext";
+import { vi } from "date-fns/locale";
 
 // import axios from "axios";
 
@@ -30,27 +31,31 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Nav() {
+export default function Nav({ciudad,provincia}) {
   const fecha = format(new Date(), "dd-MM-yyyy");
   const { user, setUser, logout, SERVER, viandero, getViandero } =
     useContext(GlobalContext);
   const { listaCompras } = useContext(CarritoContext);
   const [showModal, setShowModal] = useState(false);
-  const [msj, setMsj] = useState("");
+  const [vender, setVender] = useState(false);
   const [zReparto, setZreparto] = useState([]);
   const navigate = useNavigate();
 
   const vistaViandero = () => {
-    // getViandero()
-    console.log("nav. viandero",viandero);
-    if (viandero) {
-      // console.log(navigate())
+    console.log("nav. viandero", viandero);
+    if (!user) {
+      navigate("/login");
+    } else if (user && viandero) {
       navigate("/crear-viandas");
-      // history.push('/crear-viandas')
     } else {
       setShowModal(true);
     }
   };
+
+
+
+
+  // };
   // async function getViandero() {
   //   const arrVianderos = await axios.get(`${SERVER}viandero`);
   //   const vianderos = arrVianderos.data;
@@ -112,30 +117,24 @@ export default function Nav() {
   };
 
   return (
+    //     <nav>
 
-//     <nav>
+    //       <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
 
-      
-//       <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
-
-    <nav className="sticky top-0" >
-     
+    <nav className="sticky top-0">
       <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
-
         <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
           <NavLink to="/"> Viandas</NavLink>
         </h1>
 
-
-          <div className="text-sm border-l-2 text-white ">{fecha}</div>
-
+        <div className="text-sm border-l-2 text-white ">{fecha}</div>
 
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
           <NavLink to="/">
             <AddHomeIcon fontSize="large" />
           </NavLink>
-          <NavLink to="/nosotros"> Nosotros</NavLink>
-          <NavLink to="/"> Servicios</NavLink>
+          {/* <NavLink to="/nosotros"> Nosotros</NavLink> */}
+          <NavLink to="/"> Todas las viandas</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
 
           {user ? (
@@ -169,6 +168,7 @@ export default function Nav() {
                     src={icoUser}
                     className="w-8 h-8 object-cover rounded-full"
                   />
+
                   <div className="flex flex-col text-sm">
                     <span className="text-sm"> {user.user.nombre}</span>
                     <span className="text-xs text-gray-600">
@@ -178,6 +178,47 @@ export default function Nav() {
                 </Link>
               </MenuItem>
               <hr className="my-4 border-gray-500" />
+              {viandero ? (
+                <div>
+                  <MenuItem
+                    onClick={() => {
+                      vistaViandero();
+                    }}
+                  >
+                    <img
+                      src={imgCocinero}
+                      title="Crear viandas"
+                      className="text-2xl ml-8 w-10 cursor-pointer "
+                    />
+                    <div className="flex flex-col text-sm">
+                      <span className="text-sm"> Viandero </span>
+                      <span className="text-xs text-gray-600">
+                        {user.user.nombre}
+                      </span>
+                    </div>
+                  </MenuItem>
+                  <hr className="my-4 border-gray-500" />
+                </div>
+              ) : (
+                ""
+              )}
+              {/* <MenuItem>
+              <img
+                    src={imgCocinero}
+                    title="Crear viandas"
+                    className="text-2xl ml-8 w-10 cursor-pointer "
+                    onClick={() => {
+                      vistaViandero();
+                    }}
+                  />
+                   <div className="flex flex-col text-sm">
+                    <span className="text-sm"> Viandero </span>
+                    <span className="text-xs text-gray-600">
+                      {user.user.nombre}
+                    </span>
+                  </div>
+              </MenuItem> */}
+              {/* <hr className="my-4 border-gray-500" /> */}
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/Perfil"
@@ -219,43 +260,72 @@ export default function Nav() {
                 >
                   <RiLogoutCircleRLine /> Cerrar sesión
                 </Link>
-                
               </MenuItem>
             </Menu>
           ) : (
             <NavLink to="/Login"> Login</NavLink>
           )}
         </nav>
-        {user? (
-        <span className="text-white ">
-          <NavLink to="/carrito">
-            <Badge badgeContent={listaCompras.length} color="secondary">
-              <RiShoppingCart2Fill
-                onClick={() => {
-                  console.log("carrito");
-                }}
-                className="text-3xl pointer-events-auto"
-              />
-            </Badge>
-          </NavLink>
-        </span>
-          
-        ) : (
-          ""
-        )}
         {user ? (
-          <span className="text-white  ">
-            {/* <RiStore3Line */}
-            <img src={imgCocinero}
-              title="Crear viandas"
-              className="text-2xl w-10 cursor-pointer "
-              onClick={() => {
-                vistaViandero();
-              }}
-            />
+          <span className="text-white ">
+            <NavLink to="/carrito">
+              <Badge badgeContent={listaCompras.length} color="secondary">
+                <RiShoppingCart2Fill
+                  onClick={() => {
+                    console.log("click ico carrito");
+                  }}
+                  className="text-3xl pointer-events-auto"
+                />
+              </Badge>
+            </NavLink>
           </span>
         ) : (
           ""
+        )}
+        {user && viandero ? (
+          <>
+            {/* <div
+              onClick={() => {
+                vistaViandero();
+              }}
+              className="flex-col items-center "
+            > */}
+            {/* <span className="text-white  "> */}
+            {/* <RiStore3Line */}
+            {/* <img
+                src={imgCocinero}
+                title="Crear viandas"
+                className="text-2xl w-10 cursor-pointer  "
+                onClick={() => {
+                  vistaViandero();
+                }}
+              />
+              <p className="text-start">Vender</p> */}
+            {/* </span> */}
+            {/* </div> */}
+          </>
+        ) : (
+          ""
+        )}
+        {!viandero && (
+          <div className="">
+            <button
+              onClick={() => {
+                vistaViandero();
+              }}
+              className="flex w-32 bg-transparent hover:bg-gray-300 text-white font-semibold hover:text-black py-2 px-4 border border-gray-300 hover:border-transparent rounded"
+            >
+              <img
+                src={imgCocinero}
+                title="Crear viandas"
+                className="text-2xl w-8 cursor-pointer  "
+                // onClick={() => {
+                //   vistaViandero();
+                // }}
+              />
+              Vender
+            </button>
+          </div>
         )}
       </div>
       {showModal ? (

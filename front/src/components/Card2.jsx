@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 // import Rating from "./Rating";
 // import ButtonCard from "./ButtonCard";
 // import img from "../images/vinda1.png";
+import imgSinStock from "../images/iconos/sinStock.png";
 import { GlobalContext } from "../context/GlobalContext";
 import {
   RiEdit2Line,
@@ -23,6 +24,8 @@ const Card2 = ({
   handleAgregar,
   handleQuitar,
   descripcion,
+  cantidad,
+  agregado
 }) => {
   const { user, viandero } = useContext(GlobalContext);
   const [added, setAdded] = useState(true);
@@ -36,6 +39,9 @@ const Card2 = ({
     setAdded(true);
   };
   // console.log(id)
+  useEffect(() => {
+    agregado ? setAdded(false) : setAdded(true);
+  },[]);
 
   return (
     <>
@@ -45,9 +51,7 @@ const Card2 = ({
 
       <div className="max-w-xl mx-1 my-1 w-auto">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700 justify-center">
-
           {/* validar si viandero existe  para mostrar icono de edicion */}
-
 
           {/*           
           <Link to={`/editar-vianda/${id}`} >
@@ -55,9 +59,7 @@ const Card2 = ({
 
            </Link> */}
 
-
-          <div className="grid justify-items-center p-2 ">       
-
+          <div className="grid justify-items-center p-2 ">
             <img
               className="object-cover object-center h-40 w-40 rounded-3xl cursor-pointer"
               src={img}
@@ -128,24 +130,24 @@ const Card2 = ({
               </span>
 
               {user ? (
-                added ? (
-                  <button
-                    className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
-                    onClick={agregar}
-                  >
-                    Agregar
-                  </button>
-                ) : (
-                  <button
-                    className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
-                    onClick={quitar}
-                  >
-                    Quitar
-                  </button>
-                )
-              ) : (
-                ""
-              )}
+                cantidad != 0 ? (
+                  added ? (
+                    <button
+                      className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                      onClick={agregar}
+                    >
+                      Agregar
+                    </button>
+                  ) : (
+                    <button
+                      className="border border-red-600 text-red-600 bg-red-200 py-2 px-4 hover:bg-red-600 hover:text-white rounded-full transition-colors"
+                      onClick={quitar}
+                    >
+                      Quitar
+                    </button>
+                  )
+                ) : (<img className="w-24" src={imgSinStock}/>)
+              ) : null}
             </div>
           </div>
         </div>

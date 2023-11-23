@@ -25,7 +25,7 @@ export default function Loggin() {
 
   
   const navigate = useNavigate();
-  const { setUser, SERVER } = useContext(GlobalContext);
+  const {viandero, getViandero, setUser, SERVER } = useContext(GlobalContext);
 
   // --------------------------------------------------
 
@@ -36,10 +36,14 @@ export default function Loggin() {
       const result = await axios.post(`${SERVER}login`, data);
       
       // setMsj(result.data.message);
+      console.log(result)
       setUser(result.data);
+      getViandero();
       // console.log(result)
       Swal.fire("Bienvenido al sistema!");
-      navigate("/home");
+      viandero?.lenght > 1 ? navigate("/crearVianda") : navigate("/");
+
+      // navigate("/home");
     } catch (err) {
       // console.error(err);
       if (err?.response?.status == 401) {

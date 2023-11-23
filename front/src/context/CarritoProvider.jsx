@@ -1,31 +1,62 @@
-import { useReducer } from "react";
+import { useContext, useReducer, useState } from "react";
 import { CarritoContext } from "./CarritoContext";
 import { stepButtonClasses } from "@mui/material";
 import axios from "axios";
+import { GlobalContext } from "./GlobalContext";
+import Swal from "sweetalert2";
 
 const initialState = [];
+// const{SERVER} = useContext(GlobalContext)
 export const CarritoProvider = ({ children }) => {
+  const [loading, setLoading] = useState(false);
   const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
       case "[carrito] agregar compra":
         //
         // console.log(action.payload)
-        return [...state, action.payload];
+        return [...state, action.payload]; // al array existe le agrega el nuevo item completo
 
       //logica para que si es de igual id, no lo agregra a la lista
 
       case "[carrito] aumentar cantidad":
-        return state.map((item) => {
-          const cant = item.cant + 1;
-          //descontar stock con axios put
-          // const data = {
-          //   stock: item.stock - 1,
-          // };
-          // axios.put(`${SERVER}viandas/${item.id}`, data);
+        //obtener item que se esta aumentado la cantidad
+        const itemm = state.find((item) => item.id ===  action.payload); //buscar el item en abj carrito que tenga el mismo id que el action.payload
+        if (!itemm) return state;
+        //relizar peticion backend
 
-          if (item.id === action.payload ) return { ...item, cant: cant };
-          return item;
-        });
+        axios
+          .post(
+            `http://localhost:8000/api/actualizarCarrito/${itemm.id}?_method=PATCH`,
+            { accion: "aumentar" }
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch((err) => {
+            // console.log(err.response.status);
+            if (err?.response?.status == 500) {
+              // alert(err.response.status)
+              Swal.fire("sin stock");
+              return state;
+            } else {
+              return state.map((item) => {
+                if (item.id === action.payload)
+                  return { ...item, cant: item.cant + 1 };
+                return item;
+              });
+            }
+          });
+      // return state.map((item) => {
+      // const cant = item.cant + 1;
+      //descontar stock con axios put
+      // const data = {
+      //   stock: item.stock - 1,
+      // };
+      // axios.put(`${SERVER}viandas/${item.id}`, data);
+
+      // if (item.id === action.payload ) return { ...item, cant: cant };
+      // return item;
+      // });
       case "[carrito] disminuir compra":
         return state.map((item) => {
           const canti = item.cant - 1;
@@ -38,12 +69,11 @@ export const CarritoProvider = ({ children }) => {
         return state.filter((compra) => compra.id !== action.payload);
       case "[carrito] vaciar carrito":
         return action.payload;
-        
+
       default:
         return state;
     }
   };
-  
 
   const [listaCompras, dispatch] = useReducer(comprasReducer, initialState);
 
@@ -80,20 +110,18 @@ export const CarritoProvider = ({ children }) => {
   };
 
   //vaciar carrito
-   const vaciarCarrito = () => {
+  const vaciarCarrito = () => {
     const action = {
       type: "[carrito] vaciar carrito",
       payload: [],
     };
     dispatch(action);
-  }
-
-
-  
+  };
 
   return (
     <CarritoContext.Provider
       value={{
+        loading,
         listaCompras,
         agregarCompra,
         aumentarCompra,
