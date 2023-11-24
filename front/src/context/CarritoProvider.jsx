@@ -4,6 +4,7 @@ import { stepButtonClasses } from "@mui/material";
 import axios from "axios";
 import { GlobalContext } from "./GlobalContext";
 import Swal from "sweetalert2";
+import { set } from "date-fns";
 
 const initialState = [];
 // const{SERVER} = useContext(GlobalContext)
@@ -12,8 +13,28 @@ export const CarritoProvider = ({ children }) => {
   const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
       case "[carrito] agregar compra":
-        //
+        setLoading(true);
+        
         // console.log(action.payload)
+        try {
+          axios
+            .post(`http://localhost:8000/api/actualizarCarrito/${action.payload.id}?_method=PATCH`,{accion: "aumentar"})
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err.response.status);
+              if (err?.response?.status == 500) {
+                // alert(err.response.status)
+                Swal.fire("sin stock");
+                return state;
+              } else {
+                return [...state, action.payload]; // al array existe le agrega el nuevo item completo
+              }
+            });
+        } catch (error) {
+          console.log(error);
+        }
         return [...state, action.payload]; // al array existe le agrega el nuevo item completo
 
       //logica para que si es de igual id, no lo agregra a la lista

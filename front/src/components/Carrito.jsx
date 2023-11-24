@@ -65,7 +65,7 @@ const Carrito = () => {
       vianda_id: item.id,
       cantidad: item.cant,
       precio: item.precio,
-      fechaEntrega: moment(item.created_at).format("YYYY-MM-DD"),
+      fechaEntrega: moment().format("YYYY-MM-DD"),
       lugarEntrega_id: lugarEntrega[0].id,
     }));
     // console.log(viandasArray);
