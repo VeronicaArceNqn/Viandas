@@ -12,7 +12,7 @@ class LugarEntregaController extends Controller
      */
     public function index()
     {
-        $entrega = LugarEntrega::all();       
+        $entrega = LugarEntrega::all();
         return $entrega;
     }
 
@@ -23,7 +23,7 @@ class LugarEntregaController extends Controller
     {
         //
     }
-   
+
     /**
      * Store a newly created resource in storage.
      */
@@ -36,9 +36,9 @@ class LugarEntregaController extends Controller
         $lugarEntrega->nombreLugar = $request->nombreLugar;
         $lugarEntrega->provincia = $request->provincia;
         $lugarEntrega->ciudad = $request->ciudad;
-       
-       $lugarEntrega->save();
-       $data= [
+
+        $lugarEntrega->save();
+        $data = [
             'message' => 'El lugar de entrega se registró correctamente',
             'lugarEntrega' => $lugarEntrega
         ];
@@ -74,9 +74,9 @@ class LugarEntregaController extends Controller
         $lugarEntrega->nombreLugar = $request->nombreLugar;
         $lugarEntrega->provincia = $request->provincia;
         $lugarEntrega->ciudad = $request->ciudad;
-       
+
         $lugarEntrega->save();
-        $data= [
+        $data = [
             'message' => 'El lugar de entrega se modificó correctamente',
             'lugarEntrega' => $lugarEntrega
         ];
@@ -95,22 +95,23 @@ class LugarEntregaController extends Controller
         }
 
         $lugarEntrega->delete();
-        $data= [
+        $data = [
             'message' => 'El lugar de entrega se borró correctamente',
             'lugarEntrega' => $lugarEntrega
         ];
         return response()->json($data);
     }
 
-    public function getLugaresPorUsuario($user_id) {
+    public function getLugaresPorUsuario($user_id)
+    {
         $lugares = LugarEntrega::where('user_id', $user_id)->get();
-    
+
         if ($lugares->isEmpty()) {
             return response()->json([
                 'mensaje' => 'Aún no ha registrado ningún lugar de entrega'
             ]);
         }
-    
+
         return response()->json($lugares);
     }
 }
