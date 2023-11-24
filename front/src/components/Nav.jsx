@@ -235,14 +235,14 @@ export default function Nav({ciudad,provincia}) {
                   <RiSettings3Line /> Administrar mis pedidos
                 </Link>
               </MenuItem>
-              <MenuItem className="p-0 hover:bg-transparent">
+              {/* <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/"
                   className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Configuración
                 </Link>
-              </MenuItem>
+              </MenuItem> */}
               {/* <MenuItem className="p-0 hover:bg-transparent">
                 <NavLink
                   to="/carrito"

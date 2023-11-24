@@ -216,7 +216,7 @@ export default function Loggin() {
                   "text-gray-400 hover:text-gray-200 transition-colors"
                 }
               >
-                ¿Olvidaste tu contraseña?
+                {/* ¿Olvidaste tu contraseña? */}
               </NavLink>
             </div>
             <div className="mt-4 order-1 md:order-2">

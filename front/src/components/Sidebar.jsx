@@ -40,7 +40,7 @@ const Sidebar = () => {
       <div>
         <NavLink to='/crear-viandas' > 
 
-        <h3 className="font-bold text-indigo-600 text-2xl">Gestión de viandas </h3>
+        <h3 className="font-bold text-indigo-600 text-2xl">Zona de viandas </h3>
         </NavLink>
         <p className="text-gray-800 text-xs">
          Administración de viandas
@@ -151,7 +151,7 @@ const Sidebar = () => {
           <span>Viandas para hoy</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
             to='/'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
@@ -172,8 +172,8 @@ const Sidebar = () => {
           </svg>
           <span>Viandas entregadas</span>
         </NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink
         
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
@@ -194,8 +194,8 @@ const Sidebar = () => {
           </svg>
           <span>Pedidos mensuales</span>
         </NavLink>
-      </li>
-      <li>
+      </li> */}
+      {/* <li>
         <NavLink      
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -215,7 +215,7 @@ const Sidebar = () => {
           </svg>
           <span>Usuarios frecuantes</span>
         </NavLink>
-      </li>
+      </li> */}
 
       </ul>
 
@@ -226,7 +226,8 @@ const Sidebar = () => {
     </h5>
     <ul>
       <li>
-        <NavLink     
+        <NavLink
+        to="/Perfil"     
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -243,7 +244,7 @@ const Sidebar = () => {
               d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
             />
           </svg>
-          <span>Mapa</span>
+          <span>Mi Perfil</span>
         </NavLink>
       </li>
       <li>
@@ -264,10 +265,10 @@ const Sidebar = () => {
               d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
             />
           </svg>
-          <span>Negocio</span>
+          <span>Editar viandero</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink to='/nosotros'     
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"        >
           <svg
@@ -286,7 +287,7 @@ const Sidebar = () => {
           </svg>
           <span>Viajes</span>
         </NavLink>
-      </li>
+      </li> */}
     </ul>
     </section>
     <section>

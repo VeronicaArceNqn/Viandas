@@ -66,7 +66,7 @@ const HistoricoViandasCliente = () => {
   return (
     <>
       <Nav />     
-        <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">       
+        <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen  bg-gray-100 dark:bg-gray-400 text-black">       
           <SidebarCliente />        
             <div className="lg:col-span-3 xl:col-span-5 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">                                
               <section className="grid grid-cols-1 mt-6 gap-8">

@@ -73,7 +73,7 @@ const SidebarCliente = () => {
           <span>Último pedido</span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
       <NavLink
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -93,7 +93,7 @@ const SidebarCliente = () => {
           </svg>
           <span>* </span>
           </NavLink>
-      </li>
+      </li> */}
       <li>
       <NavLink
       to='/BuscarPedidoPorFecha'
@@ -144,7 +144,7 @@ const SidebarCliente = () => {
           <span>Viandas consumidas</span>
           </NavLink>
       </li>
-      <li>
+      {/* <li>
       <NavLink
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -164,7 +164,7 @@ const SidebarCliente = () => {
           </svg>
           <span>Pedidos mensuales</span>
           </NavLink>
-      </li>
+      </li> */}
       <li>
       <NavLink
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
@@ -235,7 +235,7 @@ const SidebarCliente = () => {
           <span>Mis lugares de entrega</span>
           </NavLink>
       </li>
-      <li>
+      {/* <li>
       <NavLink to='/'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -255,7 +255,7 @@ const SidebarCliente = () => {
           </svg>
           <span>*</span>
           </NavLink>
-      </li>
+      </li> */}
     </ul>
   {/* </section> */}
   {/* <!-- Bottom --> */}

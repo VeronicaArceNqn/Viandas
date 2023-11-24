@@ -36,7 +36,7 @@ const PerfilEditar = ({ setEditing }) => {
   }
 
   return (
-    <div className="bg-indigo-300 rounded-lg p-3 w-full">
+    <div className="bg-indigo-500 rounded-lg p-3 w-full">
       <h2 className="text-2xl">Editar Perfil</h2>
       <form className="flex flex-col gap-2 ">
         {/* Campos de edición */}
