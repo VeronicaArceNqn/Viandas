@@ -20,7 +20,6 @@ export default function Register() {
     watch,
   } = useForm(); 
 
-
   // const [ciudades, setCiudades] = useState([]);
 
   const onSubmit = handleSubmit((data) => {
@@ -28,19 +27,19 @@ export default function Register() {
     saveRegister(data);
   });
 
-  const getCiudades = async () => {
-    await axios
-      .get("https://apis.datos.gob.ar/georef/api/provincias")
-      .then((response) => setCiudades(response.data.provincias));
-  };
+  // const getCiudades = async () => {
+  //   await axios
+  //     .get("https://apis.datos.gob.ar/georef/api/provincias")
+  //     .then((response) => setCiudades(response.data.provincias));
+  // };
   // console.log(watch("ciudade_id"))
-  const getLocalidades = () => {
-    axios
-      .get(
-        "https://apis.datos.gob.ar/georef/api/municipios?provincia=58&campos=id,nombre&max=100"
-      )
-      .then((loc) => console.log(loc));
-  };
+  // const getLocalidades = () => {
+  //   axios
+  //     .get(
+  //       "https://apis.datos.gob.ar/georef/api/municipios?provincia=58&campos=id,nombre&max=100"
+  //     )
+  //     .then((loc) => console.log(loc));
+  // };
 
   // useEffect(() => {
   //   getCiudades();
@@ -50,13 +49,13 @@ export default function Register() {
   //   getLocalidades();
   // }, []);
 
-  const saveRegister = (data) => {
+  const saveRegister = async (data) => {
     try {
-      const response = axios.post("http://localHost:8000/api/register", data);
+      const response = await axios.post("http://localHost:8000/api/register", data);
 
       console.log("Respuesta del servidor:", response.data);
       //swit alerta confirmacion
-      Swal.fire("Ya estas registrado al sistema, ahora puedes iniciar session !");
+      Swal.fire("Registro Exitoso!!, ahora puedes iniciar session !");
       navigate("/login");
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
@@ -76,8 +75,8 @@ export default function Register() {
           </div>
 
           {/* <!-- Form --> */}
-          <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-            <div>
+          <form className="flex flex-col  gap-4" onSubmit={onSubmit}>
+            <div className=" ">
               {/* Input Genero */}
 
               <label htmlFor="genero" className="text-gray-200">
@@ -131,14 +130,16 @@ export default function Register() {
                     message: "A superado el máximo de 10 caracteres!",
                   },
                   pattern: {
-                    value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g,
-                    message: "Solo texto !!",
+                    
+                    
+                    value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g, 
+                    message: "Solo se admite  texto ",
                   },
                 })}
                 type="text"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
-                placeholder="Ingresa tu nombre completo"
+                placeholder="Ingresa tu nombre "
               />
               {errors.nombre && (
                 <div className="flex  shadow-lg rounded-lg mt-1">
@@ -212,8 +213,7 @@ export default function Register() {
                     message: "A superado el máximo de caracteres",
                   },
                   pattern: {
-                    //value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    value: /^(([^<>()\[\]\\.,;:\s@”]+(\.[^<>()\[\]\\.,;:\s@”]+)*)|(“.+”))@((\[[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}\.[0–9]{1,3}])|(([a-zA-Z\-0–9]+\.)+[a-zA-Z]{2,}))$/,
+                  value:'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{3,}$',
                     message: "El correo no cumple el formato",
                   },
                 })}
@@ -259,7 +259,7 @@ export default function Register() {
                     message: "Faltan digitos...",
                   },
                 })}
-                type="texto"
+                type="number"
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
                 placeholder="Ingresa un nro de contacto"
@@ -407,7 +407,7 @@ export default function Register() {
 
                   validate: (value) =>
                     value == watch("password") ||
-                    "Las claves deben ser iguales",
+                    "Las claves deben ser iguales!!",
                 })}
                 autoComplete="off"
                 className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"

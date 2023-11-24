@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
+
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('user', 'App\Http\Controllers\UserController@index');
@@ -98,7 +100,7 @@ Route::get('/estadoVianda/{estadoVianda}', 'App\Http\Controllers\EstadoViandaCon
 Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@store');
 Route::put('/estadoVianda/{id}', 'App\Http\Controllers\EstadoViandaController@update');
 Route::get('/estadoVianda/obtenerEstado/{pedidoVianda_id}', 'App\Http\Controllers\EstadoViandaController@obtenerEstadoActual');
-
+Route::patch('/actualizarCarrito/{id}','App\Http\Controllers\ViandaController@actualizarCarrito');//actualizar stock de viandas
 
 
 

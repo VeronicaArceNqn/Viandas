@@ -22,12 +22,12 @@ const Perfil = () => {
       
       <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen">
         <SidebarCliente />
-          <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">            
+          <div className="lg:col-span-3 xl:col-span-5 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">            
             
                            
                 <div className=" bg-gray-200 shadow-md rounded-lg mb-8 flex flex-col dark:bg-gray-300 dark:border-gray-700 ">
 
-                  <article className="relative bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center md:gap-4 gap-8 overflow-hidden shadow-xl">
+                  <article className=" bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center md:gap-4 gap-8 overflow-hidden shadow-xl">
 
                   <section className="col-span-1 flex items-center justify-center p-8 z-20">
                       <img
@@ -35,7 +35,7 @@ const Perfil = () => {
                         className="mt-8 md:mt-0 w-40 h-40 object-cover rounded-full p-1 bg-indigo-500 ring-8 ring-white"
                       />
                     </section>
-                    <section className="md:col-span-1 lg:col-span-2 p-8 z-20">
+                    <section className="md:col-span-1 lg:col-span-2 p-8 ">
                                     <div className="absolute right-0 top-0 flex items-center gap-2 p-2 font-medium bg-gradient-to-r from-[#f69220] to-[#f9be40] text-white uppercase text-sm">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ const Perfil = () => {
                         <h5>Mi perfil</h5>
                       </div>
 
-                                    <div className="relative mt-4 before:absolute before:w-[150px] before:h-[1px] before:bg-[#f7a82f] before:left-0 before:-bottom-2 after:absolute after:w-2 after:h-2 after:bg-[#f7a82f] after:left-[148px] after:-bottom-[11.5px] after:rounded-full">
+                                    <div className=" mt-4 before:absolute before:w-[150px] before:h-[1px] before:bg-[#f7a82f] before:left-0 before:-bottom-2 after:absolute after:w-2 after:h-2 after:bg-[#f7a82f] after:left-[148px] after:-bottom-[11.5px] after:rounded-full">
                         <h1 className="text-gray-900 uppercase font-extrabold text-xl">
                         {user.user.nombre} {user.user.apellido}
                         </h1>

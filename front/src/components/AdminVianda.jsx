@@ -19,7 +19,7 @@ const AdminVianda = () => {
 
 
   //--
-  console.log("AdminVianda", viandero)
+  // console.log("AdminVianda", viandero)
   useEffect(()=>{
 fetchViandas()
   },[])
