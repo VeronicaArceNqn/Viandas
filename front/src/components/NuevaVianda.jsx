@@ -110,20 +110,20 @@ const NuevaVianda = () => {
       <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen bg-gray-100 dark:bg-gray-400 text-black">
       {/* <div className=" flex  w-full p-1  bg-gray-50 dark:bg-gray-400 text-black"> */}
         <Sidebar />
-        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll dark:bg-gray-400">
+        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll dark:bg-gray-300">
         {/* <div className="ml-9 text-center w-1/2 "> */}
           <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg ">
             Descripcion de viandas
           </h1>
           <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-8">
+            <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-8 ">
               <div className="w-full md:w-1/4">
                 <p className="">
                   Nombre <span className="text-red-500">*</span>
                 </p>
               </div>
               <div className="flex-1 flex items-center gap-4">
-                <div className="w-full text-gray-600">
+                <div className="w-full text-gray-300">
                   <input
                     {...register("nombre", {
                       required: {

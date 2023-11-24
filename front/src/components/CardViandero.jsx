@@ -84,11 +84,11 @@ const CardViandero = ({ vianderoId }) => {
                 </div>
                 
               </div>
-              <div className="bg-gray-100 rounded">
-                <h5 className="text-lg font-bold">
+              <div className=" rounded">
+                {/* <h5 className="text-lg font-bold">
                 Descripción
-                </h5>
-                <p className="text-gray-500">
+                </h5> */}
+                <p className="text-gray-600">
                 {viandero.descripcion}
                 </p>
               </div>
@@ -99,9 +99,9 @@ const CardViandero = ({ vianderoId }) => {
                   {/* <span className="text-sm text-gray-500">Descripción: </span> */}
                 </div>
                 <div>
-                  <span className="border border-primary-100 text-primary-100 py-2 px-4 rounded-full">
+                  {/* <span className="border border-primary-100 text-primary-100 py-2 px-4 rounded-full">
                     Full time
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>

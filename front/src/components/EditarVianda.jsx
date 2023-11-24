@@ -166,10 +166,10 @@ const EditarVianda = () => {
   return (
     <>
       <Nav />
-      <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen dark:bg-gray-100 text-black">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen bg-gray-100 dark:bg-gray-100 text-black">
         {/* <div className=" flex  w-full p-1  bg-gray-50 dark:bg-gray-400 text-black"> */}
         <Sidebar />
-        <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-100 dark:bg-gray-400 text-black">
+        <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-100 dark:bg-gray-300 text-black">
           {/* <div className="ml-9 text-center w-1/2 "> */}
           <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg ">
             Editar Vianda

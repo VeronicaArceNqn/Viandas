@@ -79,33 +79,32 @@ const Footer = (props) => {
         <div className=" bg-slate-500 w-full p-8 rounded-b-xl ">
   <div className="grid grid-rows-1 gap-8 md:grid-cols-12 xl:gap-8">
     <div className="md:col-span-12 xl:col-span-4 flex flex-col gap-4">
-      <h1 className="text-3xl font-bold text-gray-900">Viandas <span className='text-yellow-400'>Fai</span> </h1>
-      <p className="text-gray-600 text-justify">
-        Lorem Ipsum ha sido el texto de relleno estándar de las
-        industrias desde el año 1500, cuando un impresor (N. del T.
-        persona que se dedica a la imprenta) desconocido usó una galería
-        de textos y los mezcló de tal manera que logró hacer un libro de
-        textos especimen.
+      <h1 className="text-3xl font-bold text-gray-900">Viandas <span className='text-yellow-400'>FAI</span> </h1>
+      <p className="text-gray-200 text-center">
+        Proyecto Trabajo Final Viandas.
+      </p>
+      <p className="text-indigo-200 text-center">
+        Arce Verónica Lorena - Rubilar Francisco
       </p>
     </div>
     <div className="md:col-span-4 xl:col-span-2">
       <h2 className="font-bold mb-6 uppercase">Menu</h2>
       <nav className="flex flex-col gap-4">
         <a href="#" className="hover:underline">
-          Inicio
+          Todas las viandas
         </a>
         <a href="#" className="hover:underline">
-          Nosotros
+          Registro
         </a>
         <a href="#" className="hover:underline">
-          Servicios
+          Login
         </a>
-        <a href="#" className="hover:underline">
+        {/* <a href="#" className="hover:underline">
           Blog
         </a>
         <a href="#" className="hover:underline">
           Contacto
-        </a>
+        </a> */}
       </nav>
     </div>
     <div className="md:col-span-4 xl:col-span-3">
@@ -135,7 +134,7 @@ const Footer = (props) => {
           />
           viandasOk
         </a>
-        <a
+        {/* <a
           href="https://twitter.com/jtdevsmx"
           className="flex items-center gap-2 hover:bg-gray-100 p-2 rounded-lg transition-colors"
           target="_blank"
@@ -146,12 +145,12 @@ const Footer = (props) => {
             alt="JT Devs"
           />
           ViandasOk
-        </a>
+        </a> */}
       </nav>
     </div>
-    <div className="md:col-span-4 xl:col-span-3">
+    <div className="md:col-span-4 xl:col-span-3 ">
       <h2 className="font-bold mb-6 uppercase">Contacto</h2>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 items-center">
         <p className="flex items-center gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +171,7 @@ const Footer = (props) => {
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             />
           </svg>
-          Fai, Argentina
+          FAI, Argentina
         </p>
         <p className="flex items-center gap-2">
           <svg
@@ -214,11 +213,9 @@ const Footer = (props) => {
   <hr className="my-4" />
   <div className="flex flex-col xl:flex-row gap-4 items-center justify-between">
     <p className="text-gray-800 text-center md:text-left">
-      &copy; 
-      <span className="text-gray-900 font-bold"></span> Todos
-      los derechos reservados. La patria es el otro
+      &copy; Todos los derechos reservados. La patria es el otro
     </p>
-    <div className="flex flex-col md:flex-row items-center gap-2">
+    {/* <div className="flex flex-col md:flex-row items-center gap-2">
       <a
         href="#"
         className="text-gray-700 hover:text-gray-900 transition-colors"
@@ -232,7 +229,7 @@ const Footer = (props) => {
       >
         Política de privacidad
       </a>
-    </div>
+    </div> */}
   </div>
 </div>
         </>

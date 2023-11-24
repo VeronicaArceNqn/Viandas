@@ -42,7 +42,7 @@ const Card2Viand = ({
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-1 my-1 w-54">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
-         <p className="bg-blue-500 hover:bg-blue-700 $ text-lime-400 font-bold py-2 px-4 rounded transition duration-300">Stock: <span className={`${cantidad > 4? 'text-green-300': 'text-red-600'}   text-xl`}> {cantidad}</span></p> 
+         <p className="bg-purple-300 hover:bg-indigo-400 $ text-indigo-700 font-bold py-2 px-4 rounded transition duration-300">Stock: <span className={`${cantidad > 4? 'text-green-700': 'text-red-700'}   text-xl`}> {cantidad}</span></p> 
           <Link className="" to={`/editar-vianda/${id}`}>
             <RiEdit2Line  />
           </Link>
