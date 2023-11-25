@@ -21,6 +21,7 @@ import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
 import PerfilViandero from "./components/PerfilViandero";
 import CardEntrega from "./components/CardEntrega";
+import PerfilViandero2 from "./components/PerfilViandero2";
 
 import { CarritoProvider } from "./context/CarritoProvider";
 import Carrito from "./components/Carrito";
@@ -48,6 +49,7 @@ function App() {
             <Route path="/entregaListar" element={<EntregaListar />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/perfilViandero" element={<PerfilViandero />} />
+            <Route path="/PerfilViandero2" element={<PerfilViandero2 />} />
 
             <Route path="/AdminCliente" element={<AdminCliente />} />
             <Route path="/CardEntrega" element={<CardEntrega />} />
