@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import { RiThumbUpFill, RiEBike2Fill, RiCommunityFill, RiVerifiedBadgeFill, RiCloseFill } from "react-icons/ri";
 import { GlobalContext } from "../context/GlobalContext";
 import axios from "axios";
 
@@ -8,10 +9,31 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
     const [vianda, setVianda] = useState([]);
     const [lugarEntrega, setLugarEntrega] = useState({});
     const [estadoVianda, setEstadoVianda] = useState({});
+    //const [estadoId, setEstadoId] = useState();
+
+    const cambiarEstado = async (estadoId) => {
+      try {
+        // Llamada a la API para cambiar el estado
+        const response = await axios.post(`${SERVER}estadoVianda`, {
+          pedidoVianda_id: id,
+          estado_id: estadoId,
+        });
+  
+        const data = response.data;
+        console.log(data); // Puedes hacer algo con la respuesta, como mostrar un mensaje de éxito
+        // Actualizar el estadoVianda después de cambiar el estado
+        fetchEstadoVianda();
+      } catch (error) {
+        console.error('Error al cambiar el estado:', error);
+        // Manejar errores o mostrar un mensaje de error
+      }
+    };
+
+
     const fetchVianda = async () => {
         await axios.get(`${SERVER}viandas/${vianda_id}`)
           .then((res) => {
-           console.log(res.data);           
+           console.log("viandaHoy",res.data);           
           if (res.data===null || res.data.mensaje){
             console.log("");           
           }else{
@@ -22,7 +44,7 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
       const fetchLugarEntrega = async () => {
         await axios.get(`${SERVER}lugarEntrega/${lugarEntrega_id}`)
           .then((res) => {
-           console.log(res.data); 
+           //console.log(res.data); 
            console.log("res Lugar de entrega:", res);
           if (res.data===null || res.data.mensaje){
             console.log("hola");           
@@ -33,17 +55,16 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
       };
 
       const fetchEstadoVianda = async () => {
-        await axios.get(`${SERVER}estadoVianda/obtenerEstado/${id}`)
-          .then((res) => {
-           console.log(res.data); 
-           console.log("res estado actual:", res);
-          if (res.data===null || res.data.mensaje){
-            console.log("hola");           
-          }else{
-            setEstadoVianda(res.data);
-          }
-        });
-      };
+        try {
+          console.log(`${SERVER}estadoVianda/obtenerEstado/${id}`)
+          const response = await axios.get(`${SERVER}estadoVianda/obtenerEstado/${id}`);
+          const data = response.data;
+          console.log("estadosHoy", data);
+          setEstadoVianda(data);
+        } catch (error) {
+          console.error('Error al obtener el estado de la vianda:', error);
+        }
+      };   
 
       useEffect(() => {
         fetchVianda(),
@@ -51,63 +72,98 @@ function CardPedidoCliente ({id, vianda_id, fechaEntrega, cantidad, precio, luga
         fetchEstadoVianda();        
       }, []);
            
+    
+
+
+
 return (
     <>   
 
-  <div class="col-span-12">
-    <div class="overflow-auto lg:overflow-visible">      
-        
-      </div> 
-      <table class="table text-gray-400 border-separate space-y-6 text-sm">
-        <thead class="bg-indigo-500 text-white">
-          <tr>
-            <th class="p-3">Vianda</th>
-            <th class="p-3 text-left">Cantidad</th>
-            <th class="p-3 text-left">Entrega</th>
-            <th class="p-3 text-left">Precio</th>
-
-            <th class="p-3 text-left">Estado</th>
-            <th class="p-3 text-left">Acciones</th>
-          </tr>
-        </thead>
+ 
         <tbody>
       
           <tr class="bg-gray-200 text-black">
-            <td class="p-3 font-medium capitalize">{vianda.nombre}</td>
-            <td class="p-3">{cantidad}</td>
-            <td class="p-3">{lugarEntrega.calle} {lugarEntrega.nroCalle} ({lugarEntrega.nombreLugar})</td>
-            <td class="p-3 uppercase">${precio}</td>
+                <td class="p-2 font-medium capitalize">{vianda.nombre}</td>
+                <td class="p-1">{cantidad}</td>
+                <td class="p-2">{lugarEntrega.calle} {lugarEntrega.nroCalle} ({lugarEntrega.nombreLugar})</td>
+                <td class="p-3 uppercase">${precio}</td>
 
-            <td class="p-3">
-              <span class="bg-green-400 text-gray-50 rounded-md px-2"
-                >{estadoVianda?.estadoActual?.nombreEstado}</span
-              >
-            </td>
-            <td class="p-3">
-              <a href="#" class="text-gray-500 hover:text-gray-100 mr-2">
-                <i class="material-icons-outlined text-base">visibility</i>
-              </a>
-              <a href="#" class="text-yellow-400 hover:text-gray-100 mx-2">
-                <i class="material-icons-outlined text-base">edit</i>
-              </a>
-              <a
-                href="#"
-                class="text-red-400 hover:text-gray-100 ml-2"
-              >
-                <i class="material-icons-round text-base">delete_outline</i>
-              </a>
-            </td>
-          </tr>
-       
+                <td class="p-2">
+                  <span class="bg-green-600 text-gray-50 rounded-md px-2"
+                    >{estadoVianda?.estadoActual?.nombreEstado}</span>
+                </td>
+
+            <td className="">
+              
+                  <td className="">
+                    <button
+                      className="text-indigo-600 hover:text-gray-100 m-1"
+                      onClick={() => {
+                        //setEstadoId(2); // Cambiar el estado al hacer clic en este botón
+                        cambiarEstado(2); // Llamar a la función para cambiar el estado con el valor correspondiente
+                      }}
+                      title="Confirmar"
+                    >
+                      <RiThumbUpFill className={`text-lg p-1 box-content rounded-xl`}/>
+                    </button>
+                  </td>
+                  <td className="">
+                    <button
+                      className="text-red-600 hover:text-gray-100 m-1"
+                      onClick={() => {
+                        //setEstadoId(6); // Cambiar el estado al hacer clic en este botón
+                        cambiarEstado(6); // Llamar a la función para cambiar el estado con el valor correspondiente
+                      }}
+                      title="Cancelada"
+                    >
+                      <RiCloseFill className={`text-lg p-1 box-content rounded-xl`}/>
+                    </button>
+                  </td>
+               
+               
+                  <td>
+                    <button
+                      className="text-yellow-600 hover:text-gray-100 m-1"
+                      onClick={() => {
+                        //setEstadoId(3); // Cambiar el estado al hacer clic en este botón
+                        cambiarEstado(3); // Llamar a la función para cambiar el estado con el valor correspondiente
+                      }}
+                      title="En camino"
+                    >
+                      <RiEBike2Fill className={`text-lg p-1 box-content rounded-xl`}/>
+                    </button>
+                  </td>
+
+                  <td>
+                    <button
+                      className="text-yellow-600 hover:text-gray-100 m-1"
+                      onClick={() => {
+                        //setEstadoId(4); // Cambiar el estado al hacer clic en este botón
+                        cambiarEstado(4); // Llamar a la función para cambiar el estado con el valor correspondiente
+                      }}
+                      title="En destino"
+                    >
+                      <RiCommunityFill className={`text-lg p-1 box-content rounded-xl`}/>
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="text-green-700 hover:text-gray-100 m-1"
+                      onClick={() => {
+                        //setEstadoId(5); // Cambiar el estado al hacer clic en este botón
+                        cambiarEstado(5); // Llamar a la función para cambiar el estado con el valor correspondiente
+                      }}
+                      title="Entregada"
+                      >
+                      <RiVerifiedBadgeFill className={`text-lg p-1 box-content rounded-xl`}/>
+                    </button>
+                  </td>
+              
+              </td>
+          </tr>      
             
         </tbody>
-      </table>
-    </div>
- 
-{/* </div> */}
-
-
-   
+        
     </>
   )
 }
