@@ -19,6 +19,7 @@ import Sidebar from "./components/Sidebar";
 import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para el registro del lugar de entrega
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
+import PerfilViandero from "./components/PerfilViandero";
 import CardEntrega from "./components/CardEntrega";
 
 import { CarritoProvider } from "./context/CarritoProvider";
@@ -46,6 +47,7 @@ function App() {
             <Route path="/entregaNuevo" element={<EntregaNuevo />} />
             <Route path="/entregaListar" element={<EntregaListar />} />
             <Route path="/perfil" element={<Perfil />} />
+            <Route path="/perfilViandero" element={<PerfilViandero />} />
 
             <Route path="/AdminCliente" element={<AdminCliente />} />
             <Route path="/CardEntrega" element={<CardEntrega />} />

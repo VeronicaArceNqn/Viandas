@@ -227,7 +227,7 @@ const Sidebar = () => {
     <ul>
       <li>
         <NavLink
-        to="/Perfil"     
+        to="/PerfilViandero"     
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
