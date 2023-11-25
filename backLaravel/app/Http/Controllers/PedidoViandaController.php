@@ -145,27 +145,34 @@ class PedidoViandaController extends Controller
 
     public function obtenerPedidosViandasporPedido($pedidoId)
     {
-        // Obtén los vianderos filtrados por zonaReparto_id
-        $pedidoViandaFiltrados = PedidoVianda::where('pedido_id', $pedidoId)->get();
+        // Obtén los pedidoVianda filtrados por pedido_id
+        $pedidoViandaFiltrados = PedidoVianda::with('vianda', 'lugarEntrega')
+        ->where('pedido_id', $pedidoId)
+        ->get();
     
-        // Verifica si hay vianderos
+        // Verifica si hay pedidoVianda
         if ($pedidoViandaFiltrados->isEmpty()) {
-            // No hay vianderos, devuelve un mensaje indicando que no hay resultados
+            // No hay pedidoVianda, devuelve un mensaje indicando que no hay resultados
             return response()->json(['message' => 'No hay pedidos anteriores'], 404);
         }
     
-        // Para cada viandero, carga los datos del usuario asociado
+        // Para cada pedido, carga los datos del pedidoVianda asociado
         foreach ($pedidoViandaFiltrados as $pedidoVianda) {
-            $pedidoVianda->vianda; // Esto asume que hay una relación llamada "usuario" en tu modelo Viandero
+            $vianda = $pedidoVianda->vianda; // Accede a los datos de vianda
+    $lugarEntrega = $pedidoVianda->lugarEntrega; // Accede a los datos de lugar de entrega 
+    //$estadoActual = EstadoViandaController::obtenerEstadoActual($pedidoVianda->id);
+    // Aquí obtienes el estado actual para cada $pedidoVianda
         }
     
-        // Hay vianderos, devuelve los vianderos filtrados en formato JSON
+        
         $data = [
-            'message' => 'Listado de vianderos generado correctamente',
+            'message' => 'Listado de pedidoViandas generado correctamente',
             'pedidoVianda' => $pedidoViandaFiltrados
+            //'estadoActual' => $estadoActual
         ];
         return response()->json($data);
     }
+
     public function obtenerPedidoViandasPorFechaYViandero(Request $request)
     {
         try {

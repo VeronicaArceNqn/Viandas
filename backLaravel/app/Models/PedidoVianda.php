@@ -28,7 +28,7 @@ class PedidoVianda extends Model
     }
 
     public function lugarEntrega(){
-        return $this->belongsTo('App\Models\LugarEntrega');
+        return $this->belongsTo('App\Models\LugarEntrega', 'lugarEntrega_id');
     }
     
     //Relación muchos a muchos
