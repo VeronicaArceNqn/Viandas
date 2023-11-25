@@ -39,10 +39,10 @@ const AdminCliente = () => {
               <section className="grid grid-cols-1 mt-10 gap-8">
                 <div>
                   <h1 className="text-2xl font-bold text-white mb-8">Mi pedido de hoy </h1>
-                    <div className="bg-white p-4 rounded-xl shadow-2xl mb-8 flex flex-col gap-8">{fecha }
+                    <div className="bg-white p-4 rounded-xl shadow-2xl mb-6 flex flex-col gap-8">
                     
                     
-                            {/* <h1 className="text-indigo-600 font-bold">{fechaHoy}</h1> */}
+                            <h1 className="text-green-900 font-bold">{fecha}</h1>
 
                             {pedidosViandaHoy.map(pedidos => (
                               
