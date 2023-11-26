@@ -57,8 +57,8 @@ const Sidebar = () => {
     </form>*/}
     <ul className="mt-4 mb-8">
       <li>
-        <NavLink to='/nueva-vianda'
-       
+        <NavLink 
+          to='/crear-viandas'
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -76,13 +76,13 @@ const Sidebar = () => {
             />
           </svg>        
 
-          <span>Nueva vianda</span>
+          <span>Mis viandas</span>
           </NavLink>
         
       </li>
       <li>
-        <NavLink
-          to='/crear-viandas'         
+        <NavLink to='/nueva-vianda'
+                   
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -99,7 +99,7 @@ const Sidebar = () => {
               d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
             />
           </svg>
-          <span>Mis viandas </span>
+          <span>Nueva vianda </span>
         </NavLink>
       </li>
       <li>
@@ -227,7 +227,7 @@ const Sidebar = () => {
     <ul>
       <li>
         <NavLink
-        to="/Perfil"     
+        to="/PerfilViandero"     
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -248,7 +248,7 @@ const Sidebar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink     
+        <NavLink to="/PerfilViandero2"    
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
           <svg
@@ -265,7 +265,7 @@ const Sidebar = () => {
               d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
             />
           </svg>
-          <span>Editar viandero</span>
+          <span>Perfil de viandero</span>
         </NavLink>
       </li>
       {/* <li>

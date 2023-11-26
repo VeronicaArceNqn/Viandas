@@ -159,7 +159,7 @@ export default function Nav({ciudad,provincia}) {
             >
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
-                  to="/perfil"
+                  to="/AdminCliente"
                   className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <img
@@ -169,9 +169,9 @@ export default function Nav({ciudad,provincia}) {
                   />
 
                   <div className="flex flex-col text-sm">
-                    <span className="text-sm"> {user.user.nombre}</span>
+                    <span className="text-sm"> Mis pedidos</span>
                     <span className="text-xs text-gray-600">
-                      {user.user.email}
+                      {user.user.nombre}
                     </span>
                   </div>
                 </Link>
@@ -190,7 +190,7 @@ export default function Nav({ciudad,provincia}) {
                       className="text-2xl ml-8 w-10 cursor-pointer "
                     />
                     <div className="flex flex-col text-sm">
-                      <span className="text-sm"> Viandero </span>
+                      <span className="text-sm"> Zona Viandero </span>
                       <span className="text-xs text-gray-600">
                         {user.user.nombre}
                       </span>
@@ -218,22 +218,22 @@ export default function Nav({ciudad,provincia}) {
                   </div>
               </MenuItem> */}
               {/* <hr className="my-4 border-gray-500" /> */}
-              <MenuItem className="p-0 hover:bg-transparent">
+              {/* <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/Perfil"
                   className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Mi perfil
                 </Link>
-              </MenuItem>
-              <MenuItem className="p-0 hover:bg-transparent">
+              </MenuItem> */}
+              {/* <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/AdminCliente"
                   className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
                 >
                   <RiSettings3Line /> Administrar mis pedidos
                 </Link>
-              </MenuItem>
+              </MenuItem> */}
               {/* <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/"

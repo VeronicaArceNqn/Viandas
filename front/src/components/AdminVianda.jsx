@@ -40,6 +40,8 @@ fetchViandas()
       {/* <div className=" flex  gap-8 w-full p-1  bg-gray-50 dark:bg-gray-400 text-black  "> */}
         {/* <div className=" md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
               <Sidebar />
+              <div className="lg:col-span-3 xl:col-span-5 p-6 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">  
+              <h1 className="text-2xl font-bold text-white">Mis viandas - MENÚ </h1>
               <div className="grid grid-cols-3 lg:col-span-3 xl:col-span-5  p-4 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
           
             {/* <div className="  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"> */}
@@ -64,7 +66,7 @@ fetchViandas()
                 text="Tickets totales"
               /> */}
          
-             
+         </div>
             </div>
           {/* </div> */}
        

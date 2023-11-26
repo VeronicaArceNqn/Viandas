@@ -84,6 +84,24 @@ const PedidosHoyViandero = () => {
                     
                     
                             <h1 className="text-indigo-600 font-bold">{fechaHoy}</h1> */}
+<div class="col-span-12">
+    <div class="overflow-auto lg:overflow-visible">      
+        
+      </div> 
+      <table class="table text-indigo-700 border-separate space-y-6 text-sm">
+        <thead class="bg-indigo-500 text-dark">
+          <tr>
+            <th class="p-2">Vianda</th>
+            <th class="p-2 ">Cantidad</th>
+            <th class="p-2 ">Entrega</th>
+            <th class="p-2 ">Precio</th>
+
+            <th class="p-2 ">Estado</th>
+            <th class="p-2 ">Acciones</th>
+          </tr>
+        </thead>
+
+
                             {loading ? (
                                   <div>Cargando...</div>
                                 ) : (
@@ -100,12 +118,23 @@ const PedidosHoyViandero = () => {
                                           lugarEntrega_id={pedidoVianda.lugarEntrega_id}
                                           id={pedidoVianda.id}
                                         />
+                                        
+
+
+                                        
+
+
+
                                       );
                                     })
                                   ) : (
                                     <div>No hay pedidos para mostrar.</div>
                                   )
                                 )} 
+
+
+</table>
+    </div>
                            
                                     
                     {/* </div>         

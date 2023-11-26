@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             
-            $table->string('urlFoto');
+            $table->string('urlFoto')->nullable;
             $table->integer('cantidad');
             $table->float('precio');
             $table->string('horarioPedido');
