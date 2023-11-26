@@ -9,6 +9,7 @@ import { Badge } from "@mui/material";
 import AddHomeIcon from "@mui/icons-material/AddHome";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import imgCocinero from "../images/iconos/cocinero2.png";
+import Ubicar from "./Ubicar";
 import {
   RiArrowDownSLine,
   RiSettings3Line,
@@ -51,9 +52,6 @@ export default function Nav({ciudad,provincia}) {
       setShowModal(true);
     }
   };
-
-
-
 
   // };
   // async function getViandero() {
@@ -123,8 +121,9 @@ export default function Nav({ciudad,provincia}) {
 
     <nav className="sticky top-0">
       <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
-        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-3xl">
-          <NavLink to="/"> Viandas</NavLink>
+        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-md">
+        <Ubicar /> 
+          <NavLink to="/"> </NavLink>
         </h1>
 
         <div className="text-sm border-l-2 text-white ">{fecha}</div>

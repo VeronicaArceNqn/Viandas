@@ -9,13 +9,10 @@ import { GlobalContextProvider } from "./context/GlobalContext";
 import Error404 from "./components/Error404";
 import AdminVianda from "./components/AdminVianda";
 import NuevaVianda from "./components/NuevaVianda";
-
 import Entrega from "./components/Entrega"; // Nuevo componente para el registro del lugar de entrega
 import EditarVianda from "./components/EditarVianda";
-
 import AdminCliente from "./components/AdminCliente";
 import Sidebar from "./components/Sidebar";
-
 import EntregaNuevo from "./components/EntregaNuevo"; // Nuevo componente para el registro del lugar de entrega
 import EntregaListar from "./components/EntregaListar";
 import Perfil from "./components/Perfil";
@@ -31,7 +28,7 @@ import Ubicar from "./components/Ubicar";
 function App() {
   return (
     <GlobalContextProvider>
-      <Ubicar />
+      {/* <Ubicar /> */}
       <CarritoProvider>
         <BrowserRouter>
           <Routes>

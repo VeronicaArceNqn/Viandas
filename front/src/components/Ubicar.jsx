@@ -41,13 +41,13 @@ const Ubicar = () => {
 
   return (
     <div>
-      <h1>Tu ubicación actual:</h1>
+      {/* <h1>Tu ubicación actual:</h1> */}
       {latitude && longitude ? (
-        <p>
-          Latitud: {latitude}, Longitud: {longitude} <br />
-          Provincia: {localidad.provincia?.nombre} <br />
-          Departamento: {localidad.departamento?.nombre}
-        </p>
+        <>
+          {/* Latitud: {latitude}, Longitud: {longitude} <br /> */}
+          <p>Provincia: <span className="text-red-300">{localidad.provincia?.nombre}</span> </p> <br />
+         <p> Dpto: <span className="text-red-300">{localidad.departamento?.nombre}</span> </p> <br />
+        </>
       ) : (
         <p>Obteniendo ubicación...</p>
       )}

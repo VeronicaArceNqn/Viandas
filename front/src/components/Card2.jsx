@@ -12,6 +12,7 @@ import {
   RiErrorWarningLine,
 } from "react-icons/ri";
 import { Link, NavLink } from "react-router-dom";
+import { CarritoContext } from "../context/CarritoContext";
 //
 //
 //
@@ -28,6 +29,7 @@ const Card2 = ({
   agregado
 }) => {
   const { user, viandero } = useContext(GlobalContext);
+  const { loadingAdd } = useContext(CarritoContext);
   const [added, setAdded] = useState(true);
 
   const agregar = () => {
@@ -42,7 +44,7 @@ const Card2 = ({
   useEffect(() => {
     agregado ? setAdded(false) : setAdded(true);
   },[]);
-
+  // console.log(loadingAdd)
   return (
     <>
       {/* <!-- component --> */}
@@ -61,7 +63,7 @@ const Card2 = ({
 
           <div className="grid justify-items-center p-2 ">
             <img
-              className="object-cover object-center h-40 w-40 rounded-3xl cursor-pointer"
+              className="object-cover  hover:w-48 hover:h-64 hover:transition duration-500 ease-in-out object-center h-40 w-40 rounded-3xl cursor-pointer"
               src={img}
               // src="viandaNapo.png"
               alt={nombre}
@@ -131,7 +133,9 @@ const Card2 = ({
 
               {user ? (
                 cantidad != 0 ? (
-                  added ? (
+                  loadingAdd ? (
+                    <Spinner />
+                  ) :added ? (
                     <button
                       className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
                       onClick={agregar}
@@ -153,6 +157,18 @@ const Card2 = ({
         </div>
       </div>
     </>
+  );
+};
+const Spinner = () => {
+  return (
+    <div
+      className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+      role="status"
+    >
+      <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+        Loading...
+      </span>
+    </div>
   );
 };
 

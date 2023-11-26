@@ -12,8 +12,8 @@ import Swal from "sweetalert2";
 const Carrito = () => {
   const [loading, setLoading] = useState(false);
   const [fecha, setFecha] = useState(moment().format("YYYY-MM-DD"));
-  
   const navigate = useNavigate();
+  const { SERVER, user } = useContext(GlobalContext);
   /**
    * context carrito
    */
@@ -26,11 +26,9 @@ const Carrito = () => {
     vaciarCarrito,
   } = useContext(CarritoContext);
 
-
   /**
    *Context global
    */
-  const { SERVER, user } = useContext(GlobalContext);
 
   //Calcular total de los elementos seleccionados segun las cantidades de cada items
   const calcularTotal = () => {
@@ -39,10 +37,7 @@ const Carrito = () => {
       .toFixed(2);
   };
   //fx para realizar la compra
-  const handlePrint = () => {
-    print();
-    console.log(user);
-  };
+
 
   const handleChangeFecha = (e) => {
     //caontrolar que la fecha sea mayor a la actual
@@ -53,7 +48,6 @@ const Carrito = () => {
     }
   };
 
-  // console.log(user)
   /**
    * fx para realizar la compra
    */
@@ -61,6 +55,10 @@ const Carrito = () => {
     // Funcion comprar elementos del carrito
     // console.log(listaCompras);
     setLoading(true); //
+   
+    /**
+     * Conf array para enviar al back
+     */
     const viandasArray = listaCompras.map((item) => ({
       vianda_id: item.id,
       cantidad: item.cant,
@@ -69,16 +67,33 @@ const Carrito = () => {
       lugarEntrega_id: lugarEntrega[0].id,
     }));
     // console.log(viandasArray);
-
     const data = {
       user_id: user.user.id,
       items: viandasArray,
     };
 
-    try {
-      const res = await axios.post(`${SERVER}pedido`, data);
+    const generarContenido = (datos) => {
+      
+      
+      
+      
+      // Aquí puedes mapear los datos y construir el contenido HTML
+      return datos.map((dato) => { `
+        <div>
+          <p>Articulo : ${dato.nombre}</p>
+        </div>`
+      });
+    };
+    
 
-      console.log(res.data);
+    try {
+      // const res = await axios.post(`${SERVER}pedido`, data);
+
+      //  preguntar y mostrar los items que se compraron por pantalla
+
+
+      
+       
 
       Swal.fire("Compra realizada con exito!");
       // alert("Compra realizada con exito!");
@@ -95,16 +110,17 @@ const Carrito = () => {
 
   const [lugarEntrega, setLugarEntrega] = useState([]);
   const fetchLugarEntrega = async () => {
-    await axios
-      .get(`${SERVER}lugarEntrega/User/${user.user.id}`)
-      .then((res) => {
-        if (res.data === null || res.data.mensaje) {
-          alert("No tiene lugar de entrega registrado");
-          navigate("/");
-        } else {
-          setLugarEntrega(res.data);
-        }
-      });
+    const res = await axios.get(`${SERVER}lugarEntrega/User/${user.user.id}`);
+    console.log(res);
+    if (res.data === null || res.data.mensaje) {
+      alert("No tiene lugar de entrega registrado");
+      navigate("/");
+    } else {
+      console.log(res.data);
+      setLugarEntrega(res.data);
+    }
+
+  
   };
   useEffect(() => {
     fetchLugarEntrega();
@@ -114,14 +130,14 @@ const Carrito = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col  w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
+      <div className="flex flex-col   w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
         <h1 className="text-2xl shadow-lg"> Carrito</h1>
         {listaCompras.length < 1 ? (
           <p className="text-2xl font-serif shadow-lg">
             No hay elementos en el carrito
           </p>
-        ) : (
-          <table className=" mx-52 border-separate border border-slate-500 flex-col">
+        ) : ( 
+          <table className=" mx-52 p-16 border-separate border border-slate-500 flex-col">
             <thead>
               <tr>
                 <th scope="col" className="border border-slate-600">

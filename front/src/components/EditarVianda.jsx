@@ -396,13 +396,13 @@ const EditarVianda = () => {
                 </button>
               </div>
               <div className="flex-1 w-full">
-                <button
+                {/* <button
                   type="button"
                   onClick={eliminarVianda}
                   className="mb-8  bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-white"
                 >
                   Eliminar Vianda
-                </button>
+                </button> */}
               </div>
             </div>
           </form>
