@@ -312,7 +312,7 @@ export default function Nav({ciudad,provincia}) {
               onClick={() => {
                 vistaViandero();
               }}
-              className="flex w-32 bg-transparent hover:bg-gray-300 text-white font-semibold hover:text-black py-2 px-4 border border-gray-300 hover:border-transparent rounded"
+              className="flex w-36 bg-transparent hover:bg-gray-300 text-white font-semibold hover:text-black py-2 px-4 border border-gray-300 hover:border-transparent rounded"
             >
               <img
                 src={imgCocinero}
@@ -322,7 +322,7 @@ export default function Nav({ciudad,provincia}) {
                 //   vistaViandero();
                 // }}
               />
-              Vender
+              Vender ?
             </button>
           </div>
         )}

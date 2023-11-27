@@ -8,15 +8,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { set } from "date-fns";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { it } from "date-fns/locale";
 
 const Carrito = () => {
   const [loading, setLoading] = useState(false);
-  const [fecha, setFecha] = useState(moment().format("YYYY-MM-DD"));
+  // const [fecha, setFecha] = useState(moment().format("YYYY-MM-DD"));
   const navigate = useNavigate();
   const { SERVER, user } = useContext(GlobalContext);
-  /**
-   * context carrito
-   */
+
   const {
     listaCompras,
     agregarCompra,
@@ -25,6 +24,31 @@ const Carrito = () => {
     quitarCompra,
     vaciarCarrito,
   } = useContext(CarritoContext);
+  const [selectValido, setSelectValido] = useState(false);
+  const [fechas, setFechas] = useState(() => {
+    const initialFechas = {};
+    listaCompras.forEach((item) => {
+      initialFechas[item.id] = moment().format("YYYY-MM-DD");
+    });
+    return initialFechas;
+  });
+  const [lugarEntrega1, setLugarEntrega1] = useState(() => {
+    const initialOpciones = {};
+    listaCompras.forEach((item) => {
+      initialOpciones[item.id] = ""; // Opción seleccionada inicialmente vacía
+    });
+    return initialOpciones;
+  });
+  const handleSelectChange = (e, itemId) => {
+    setLugarEntrega1((prevOpciones) => ({
+      ...prevOpciones,
+      [itemId]: e.target.value,
+    }));
+    setSelectValido(opcionSeleccionada !== "");
+  };
+  /**
+   * context carrito
+   */
 
   /**
    *Context global
@@ -37,25 +61,37 @@ const Carrito = () => {
       .toFixed(2);
   };
   //fx para realizar la compra
-
-
-  const handleChangeFecha = (e) => {
-    //caontrolar que la fecha sea mayor a la actual
+  const handleChangeFecha = (e, itemId) => {
+    console.log(e.target.value, itemId);
+    // Controlar que la fecha sea mayor a la actual
     if (e.target.value < moment().format("YYYY-MM-DD")) {
       Swal.fire("La fecha debe ser mayor a la actual");
     } else {
-      setFecha(e.target.value);
+      setFechas((prevFechas) => ({
+        ...prevFechas,
+        [itemId]: e.target.value,
+      }));
     }
   };
+
+  // const handleChangeFecha = (e) => {
+  //   //caontrolar que la fecha sea mayor a la actual
+  //   if (e.target.value < moment().format("YYYY-MM-DD")) {
+  //     Swal.fire("La fecha debe ser mayor a la actual");
+  //   } else {
+  //     setFecha(e.target.value);
+  //   }
+  // };
 
   /**
    * fx para realizar la compra
    */
+
   const comprar = async () => {
     // Funcion comprar elementos del carrito
     // console.log(listaCompras);
     setLoading(true); //
-   
+
     /**
      * Conf array para enviar al back
      */
@@ -63,42 +99,31 @@ const Carrito = () => {
       vianda_id: item.id,
       cantidad: item.cant,
       precio: item.precio,
-      fechaEntrega: moment().format("YYYY-MM-DD"),
-      lugarEntrega_id: lugarEntrega[0].id,
+      // fechaEntrega: moment(item.fechaEntrega).format("YYYY-MM-DD"),
+      fechaEntrega: fechas[item.id],
+      lugarEntrega_id: lugarEntrega1[item.id],
+      // lugarEntrega_id: item.lugarEntrega_id,
     }));
-    // console.log(viandasArray);
+    console.log(viandasArray);
     const data = {
       user_id: user.user.id,
       items: viandasArray,
     };
 
-    const generarContenido = (datos) => {
-      
-      
-      
-      
-      // Aquí puedes mapear los datos y construir el contenido HTML
-      return datos.map((dato) => { `
-        <div>
-          <p>Articulo : ${dato.nombre}</p>
-        </div>`
-      });
-    };
-    
-
     try {
-      // const res = await axios.post(`${SERVER}pedido`, data);
-
-      //  preguntar y mostrar los items que se compraron por pantalla
-
-
+      const res = await axios.post(`${SERVER}pedido`, data);
+      //  console.log(res);
+      Swal.fire( {
+        icon: 'success',
+        title: 'Compra realizada con exito!',
+        text: 'Gracias por elegirnos! Te redirigimos a tu panel para seguir tu envio',
+        showConfirmButton: false,
+        timer: 1500
+      })
       
-       
-
-      Swal.fire("Compra realizada con exito!");
       // alert("Compra realizada con exito!");
       vaciarCarrito();
-      navigate("/");
+      navigate("/adminCliente");
     } catch (error) {
       console.log(error);
     } finally {
@@ -119,8 +144,6 @@ const Carrito = () => {
       console.log(res.data);
       setLugarEntrega(res.data);
     }
-
-  
   };
   useEffect(() => {
     fetchLugarEntrega();
@@ -136,8 +159,8 @@ const Carrito = () => {
           <p className="text-2xl font-serif shadow-lg">
             No hay elementos en el carrito
           </p>
-        ) : ( 
-          <table className=" mx-52 p-16 border-separate border border-slate-500 flex-col">
+        ) : (
+          <table className=" mx-32 p-16 border-separate border border-slate-500 flex-col">
             <thead>
               <tr>
                 <th scope="col" className="border border-slate-600">
@@ -150,16 +173,18 @@ const Carrito = () => {
                   Cantidad
                 </th>
                 <th scope="col" className="border border-slate-600">
-                  Fecha de Entrega
+                  Lugar de entrega
                 </th>
-
+                <th scope="col" className="border border-slate-600 ">
+                  Fecha de entrega
+                </th>
                 <th scope="col" className="border border-slate-600">
                   Eliminar
                 </th>
               </tr>
             </thead>
             <tbody>
-              {listaCompras?.map((item) => (
+              {listaCompras.map((item) => (
                 <tr key={item.id}>
                   <td className="border border-slate-700 ">{item.nombre}</td>
                   <td className="border border-slate-700 ">${item.precio}</td>
@@ -185,15 +210,35 @@ const Carrito = () => {
                     </button>
                     {/* {item.cant} */}
                   </td>
+                  <td>
+                    {/* <label htmlFor="zonaEntrega" className="text-gray-200">
+                      Zona de entrega
+                    </label> */}
+                    <select
+                      name="lugarEntrega"
+                      className="w-full py-2 border  border-slate-700  text-red-600  font-bold bg-gray-400"
+                      placeholder="Eliga una direccion"
+                      onChange={(e) => handleSelectChange(e, item.id)}
+                    >
+                      <option className="text-black" value={""}>
+                        Su direccion 
+                      </option>
+                      {lugarEntrega.map((zona) => (
+                        <option className="text-black" key={zona.id} value={zona.id}>
+                          {zona.calle}
+                          {zona.nroCalle}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
                   <td className="border border-slate-700">
                     <input
+                      name="fechaEntrega"
                       className="bg-gray-400"
                       type="date"
-                      value={fecha}
-                      onChange={handleChangeFecha}
+                      value={fechas[item.id]}
+                      onChange={(e) => handleChangeFecha(e, item.id)}
                     />
-                    {/* {moment(item.created_at).format("DD-MM-yyyy")}{" "} */}
-                    {/* {fechaFormateada(item.created_at)}{" "} */}
                   </td>
                   <td className="border border-slate-700 ">
                     <button
@@ -238,8 +283,17 @@ const Carrito = () => {
           ) : (
             <button
               onClick={() => {
-                // handlePrint();
-                comprar();
+                if (selectValido){
+
+                  comprar();
+                }else{
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Debe seleccionar un lugar de entrega!',
+                    // footer: '<a href>Why do I have this issue?</a>'
+                  })
+                }
               }}
               disabled={listaCompras < 1}
               className=" py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-green-500 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
@@ -249,6 +303,7 @@ const Carrito = () => {
             </button>
           )}
           <button
+          className=" ml-5 py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-yellow-400 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
             onClick={() => {
               navigate("/");
             }}
