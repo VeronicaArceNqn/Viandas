@@ -31,9 +31,11 @@ class PedidoVianda extends Model
         return $this->belongsTo('App\Models\LugarEntrega', 'lugarEntrega_id');
     }
     
-    //Relación muchos a muchos
-    public function estados(){
-        return $this->belongsToMany(Estado::class, 'estado_viandas');
-    }
+     //Relación muchos a muchos
+     public function estados(){
+        //    
+            return $this->belongsToMany(Estado::class, 'estado_viandas', 'pedidoVianda_id', 'estado_id')
+                    ->withPivot('fechaInicio', 'fechaFin');
+         }
 
 }
