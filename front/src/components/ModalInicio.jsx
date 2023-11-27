@@ -5,6 +5,8 @@ import Ubicacion from "../images/iconos/ubicacion.png";
 const ModalInicio = () => {
   const [open, setOpen] = useState(false);
 
+
+
   return (
     <>
       {open ? (
