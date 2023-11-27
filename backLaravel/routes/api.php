@@ -69,6 +69,8 @@ Route::post('/viandero', 'App\Http\Controllers\VianderoController@store');
 Route::put('/viandero/{id}', 'App\Http\Controllers\VianderoController@update');
 Route::delete('/viandero/{id}', 'App\Http\Controllers\VianderoController@destroy');
 Route::get('/viandero/zona-reparto/{zonaRepartoId}', 'App\Http\Controllers\VianderoController@obtenerVianderosZona');
+Route::get('/viandero/zona-reparto-viandas/{zonaRepartoId}', 'App\Http\Controllers\VianderoController@obtenerViandasDeVianderosZona');
+
 
 
 Route::get('/estado', 'App\Http\Controllers\EstadoController@index');
