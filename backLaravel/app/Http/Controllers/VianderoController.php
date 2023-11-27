@@ -33,6 +33,8 @@ class VianderoController extends Controller
         $viandero->user_id = $request->user_id;
         $viandero->descripcion = $request->descripcion;
        $viandero->zonaReparto_id = $request->zonaReparto_id;
+       $viandero->logo = $request->logo;
+       $viandero->descripPago = $request->descripPago;
        
        $viandero->save();
        $data= [
@@ -73,6 +75,8 @@ class VianderoController extends Controller
         $viandero->user_id = $request->user_id;
         $viandero->descripcion = $request->descripcion;
        $viandero->zonaReparto_id = $request->zonaReparto_id;
+       $viandero->logo = $request->logo;
+       $viandero->descripPago = $request->descripPago;
        
        $viandero->save();
        $data= [
