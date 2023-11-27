@@ -9,7 +9,7 @@ use app\Models\ZonaReparto;
 class Viandero extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'descripcion','zonaReparto_id'];
+    protected $fillable = ['user_id', 'descripcion','zonaReparto_id, logo, descripPago'];
 
     // public function zona_Reparto(){
     //     return $this->belongsTo(ZonaReparto::class, 'zonaReparto_id');

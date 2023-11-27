@@ -54,7 +54,7 @@ class PedidoController extends Controller
             // Crear los pedidoViandas asociados al pedido
             $pedidoViandas = [];
             foreach ($data['items'] as $item) {
-                $pedidoViandas[] = new PedidoVianda([
+                $pedidoVianda = new PedidoVianda([
                     'pedido_id' => $pedido->id,
                     'vianda_id' => $item['vianda_id'],
                     'cantidad' => $item['cantidad'],
@@ -62,10 +62,14 @@ class PedidoController extends Controller
                     'fechaEntrega' => $item['fechaEntrega'],
                    'lugarEntrega_id' => $item['lugarEntrega_id']
                 ]);
+                $pedido->pedidoViandas()->save($pedidoVianda);
+
+                $pedidoVianda->estados()->attach(1, ['fechaInicio' => now(), 'fechaFin' => null]);
+
             }
     
             // Asociar los pedidoViandas al pedido y guardarlos en una sola transacción
-            $pedido->pedidoViandas()->saveMany($pedidoViandas);
+            //$pedido->pedidoViandas()->saveMany($pedidoViandas);
     
             DB::commit();
     
