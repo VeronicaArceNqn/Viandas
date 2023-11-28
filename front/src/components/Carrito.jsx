@@ -40,7 +40,8 @@ const Carrito = () => {
     return initialOpciones;
   });
   const handleSelectChange = (e, itemId) => {
-    setLugarEntrega1((prevOpciones) => ({
+    const opcionSeleccionada = e.target.value;
+    setLugarEntrega1((prevOpciones) => ({// prevOpciones es el arreglo del estado inicial que ya se creo
       ...prevOpciones,
       [itemId]: e.target.value,
     }));
@@ -305,7 +306,7 @@ const Carrito = () => {
           <button
           className=" ml-5 py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-yellow-400 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
             onClick={() => {
-              navigate("/");
+              navigate("-1");
             }}
           >
             Volver

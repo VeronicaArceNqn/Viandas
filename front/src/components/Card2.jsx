@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
-// import Rating from "./Rating";
+import Rating from "./Rating";
 // import ButtonCard from "./ButtonCard";
 // import img from "../images/vinda1.png";
+
 import imgSinStock from "../images/iconos/sinStock.png";
 import { GlobalContext } from "../context/GlobalContext";
 import {
@@ -62,6 +63,7 @@ const Card2 = ({
            </Link> */}
 
           <div className="grid justify-items-center p-2 ">
+            
             <img
               className="object-cover  hover:w-48 hover:h-64 hover:transition duration-500 ease-in-out object-center h-40 w-40 rounded-3xl cursor-pointer"
               src={img}
@@ -80,7 +82,9 @@ const Card2 = ({
               <p>{descripcion}</p>
             </a>
             {/* //Rating */}
-            <div className="flex items-center mt-2.5 mb-5">
+            <Rating />
+            
+            {/* <div className="flex items-center mt-2.5 mb-5">
               <svg
                 className="w-5 h-5 text-yellow-300"
                 fill="currentColor"
@@ -124,8 +128,8 @@ const Card2 = ({
               <span className="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">
                 5.0
               </span>
-            </div>
-            {/* //Rating */}
+            </div> */}
+            
             <div className="flex items-center justify-between">
               <span className="text-3xl font-bold text-gray-900 dark:text-black">
                 {/* $1599 */}${precio}

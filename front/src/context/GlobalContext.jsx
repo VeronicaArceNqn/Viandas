@@ -10,7 +10,10 @@ function GlobalContextProvider({ children }) {
   //
   const [user, setUser] = useState(undefined); //estados globales
   const [viandero, setViandero] = useState(undefined); //estados globales
+  const [viandasZonal, setViandasZonal] = useState(0); //estados globales
   //
+  const [localidadProv, setLocalidadProv] = useState({});
+  // const [provincia, setProvincia] = useState(undefined);
   //
   async function getViandero() {
     const arrVianderos = await axios.get(`${SERVER}viandero`);
@@ -19,19 +22,19 @@ function GlobalContextProvider({ children }) {
     const result = vianderos.filter(
       (viandero) => viandero?.user_id === user?.user?.id
     );
-    
-    // setViandero(result[0]);
-    console.log("viandero despues de axios: ", result);
 
-    if (result.length == 1) {  
-      setViandero(result[0]);      
-      console.log("Viandero en if :", viandero);   
-    }else{
-      console.log("sin viandero")
+    // setViandero(result[0]);
+    // console.log("viandero despues de axios: ", result);
+
+    if (result.length == 1) {
+      setViandero(result[0]);
+      console.log("Viandero en if :", viandero);
+    } else {
+      console.log("sin viandero");
     }
   }
 
-  useEffect(() => {    
+  useEffect(() => {
     getViandero();
   }, [user]);
 
@@ -54,7 +57,17 @@ function GlobalContextProvider({ children }) {
       });
   };
 
-  const contextValue = { user, setUser, logout, SERVER, viandero, getViandero }; //variable a pasar a los hijos
+  const contextValue = {
+    user,
+    setUser,
+   
+    logout,
+    SERVER,
+    viandero,
+    getViandero,
+    setLocalidadProv,
+    localidadProv,
+  }; //variable a pasar a los hijos
   return (
     <GlobalContext.Provider value={contextValue}>
       {" "}
