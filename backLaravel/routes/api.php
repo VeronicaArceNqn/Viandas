@@ -37,6 +37,9 @@ Route::put('user/{id}', [UserController::class, 'update']);
 Route::delete('/viandas/{id}', 'App\Http\Controllers\ViandaController@destroy');
 //Route::resource('/viandas', ViandaController::class);
 Route::get('/viandas/filtrar/{id}', 'App\Http\Controllers\ViandaController@filtrarPorTipoVianda');
+Route::get('/viandas/{viandaId}/rating', 'App\Http\Controllers\ViandaController@getRatingUnaVianda');
+
+
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
 Route::get('/tipoVianda/{tipoViandas}', 'App\Http\Controllers\TipoViandaController@show');
@@ -85,6 +88,7 @@ Route::post('/pedido', 'App\Http\Controllers\PedidoController@store');
 Route::put('/pedido/{id}', 'App\Http\Controllers\PedidoController@update');
 Route::delete('/pedido/{id}', 'App\Http\Controllers\PedidoController@destroy');
 Route::get('/pedido/user/{id}', 'App\Http\Controllers\PedidoController@obtenerPedidosUsuario');
+Route::get('/pedidos-sin-valoracion/{user_id}', 'App\Http\Controllers\PedidoController@getPedidoViandasSinValoracion');
 
 Route::get('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@index');
 Route::get('/pedidoVianda/{pedidoVianda}', 'App\Http\Controllers\PedidoViandaController@show');

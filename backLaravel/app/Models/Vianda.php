@@ -52,5 +52,13 @@ class Vianda extends Model
 
         return 0; // En caso de no tener valoraciones aún
     }
+
+    public function getRatingUnaVianda($viandaId)
+{
+    $vianda = Vianda::findOrFail($viandaId);
+    $rating = $vianda->getRating();
+
+    return response()->json(['rating' => $rating]);
+}
     
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedido;
 use App\Models\PedidoVianda;
+use App\Models\EstadoVianda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -179,6 +180,23 @@ class PedidoController extends Controller
             'pedido_viandas' => $pedidoViandas
         ];
         return response()->json($data);
+    }
+
+        public function getPedidoViandasSinValoracion($user_id)
+    {
+        $pedidoViandasSinValoracion = PedidoVianda::whereHas('pedido', function ($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })
+            ->whereDoesntHave('valoraciones')
+            ->whereHas('estados', function ($query) {
+                $query->where('estado_id', 5); // Filtrar por el estado "Entregado" (estado_id = 5)
+            })
+            ->get();
+        $data = [
+                'message' => 'Listado de pedidoViandas generado correctamente',
+                'pedidoViandasSinValoracion' => $pedidoViandasSinValoracion
+        ];    
+        return response()->json([$data]);
     }
 
 }
