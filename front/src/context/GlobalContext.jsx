@@ -54,7 +54,7 @@ function GlobalContextProvider({ children }) {
       });
   };
 
-  const contextValue = { user, setUser, logout, SERVER, viandero, getViandero }; //variable a pasar a los hijos
+  const contextValue = { user, setUser, logout, SERVER, viandero, getViandero, setViandero }; //variable a pasar a los hijos
   return (
     <GlobalContext.Provider value={contextValue}>
       {" "}

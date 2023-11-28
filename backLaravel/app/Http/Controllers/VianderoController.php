@@ -136,7 +136,8 @@ class VianderoController extends Controller
 
         // Para cada viandero, carga los datos del usuario asociado
         foreach ($vianderosFiltrados as $viandero) {
-            $viandero->viandas; 
+            $viandero->viandas;
+            $viandero->user; 
         }
 
         // Hay vianderos, devuelve los vianderos filtrados en formato JSON
