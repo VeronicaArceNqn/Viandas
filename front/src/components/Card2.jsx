@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
-// import Rating from "./Rating";
+import Rating from "./Rating";
 // import ButtonCard from "./ButtonCard";
 // import img from "../images/vinda1.png";
 
@@ -82,7 +82,7 @@ const Card2 = ({
               <p>{descripcion}</p>
             </a>
             {/* //Rating */}
-
+            <Rating />
             
             {/* <div className="flex items-center mt-2.5 mb-5">
               <svg
