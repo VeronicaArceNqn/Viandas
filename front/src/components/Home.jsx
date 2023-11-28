@@ -14,9 +14,11 @@ import ModalInicio from "./ModalInicio";
 import { vi } from "date-fns/locale";
 
 function App() {
+//
+//
   const [viandas, setViandas] = useState([]);
   const [viandasTodas, setViandasTodas] = useState([]);
-  const { SERVER ,user  } = useContext(GlobalContext);
+  const { SERVER, user } = useContext(GlobalContext);
   // const [showModal, setShowModal] = useState(false);
   const [originalViandas, setOriginalViandas] = useState([]);
 
@@ -37,16 +39,14 @@ function App() {
     return listaCompras.some((producto) => producto.id === id);
   };
 
-  // const home = "home";
 
   const fetchViandas = async () => {
     await axios.get(`${SERVER}viandas`).then((res) => {
-      // console.log(res.data);
       setViandasTodas(res.data);
     });
   };
   useEffect(() => {
-    //
+    //carga las viandas del local storage
     const storedViandas = localStorage.getItem("viandas");
     if (storedViandas) {
       setViandas(JSON.parse(storedViandas));
@@ -54,46 +54,33 @@ function App() {
     //
     fetchViandas();
     // setOriginalViandas(viandas);
-   
-  }, []);  
+  }, []);
 
   const filterViandas = (id) => {
     //array esta vacio
     if (originalViandas.length === 0) {
-      console.log(originalViandas)
-      setOriginalViandas(viandas);//copio viandas en originalViandas
-      setViandas(originalViandas)
+      // console.log(originalViandas)
+      setOriginalViandas(viandas); //copio viandas en originalViandas
+      setViandas(originalViandas);
     }
-
-    // Restaurar a la lista original si se selecciona "Todas"
-  //   if (id === "0") {
-
-  //     console.log("0")
-  //     console.log(originalViandas)
-  //     setViandas(originalViandas);
-  //   } else {
-  //     // Filtrar las viandas por tipo
-  //     const viandasFiltradas = originalViandas.filter((vianda) => vianda.tipoVianda_id == id);
-  //     setViandas(viandasFiltradas);
-  //   }
   };
-  
-  
-  return (
-    <>  
-    {/* {showModal && <ModalInicio setViandas={setViandas} />} */}
 
-       <ModalInicio 
-       setViandas={setViandas}
-              
-       />
-       {/* <Header /> */}
+  return (
+    <>
+      {/* {showModal && <ModalInicio setViandas={setViandas} />} */}
+
+      <ModalInicio setViandas={setViandas} />
+      {/* <Header /> */}
       {/* <div className="text-3xl bg-black">Hola francisco</div> */}
       <Nav />
 
       <div className="flex flex-col justify-center w-auto p-1 bg-gray-400 text-black max-h-screem ">
-        <HomeSearchBar setViandas={setViandas} viandas={viandas} filterViandas={filterViandas} />
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  min-h-screen bg-gray-400 text-black justify-center">
+        <HomeSearchBar
+          setViandas={setViandas}
+          viandas={viandas}
+          filterViandas={filterViandas}
+        />
+        <div className=" mt-4 grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  min-h-screen bg-gray-400 text-black justify-center">
           {/* <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5"> */}
           {/* <div className="hidden xl:block"><Card /></div> */}
           {/* <div className="hidden xl:block"></div> */}

@@ -10,7 +10,7 @@ function GlobalContextProvider({ children }) {
   //
   const [user, setUser] = useState(undefined); //estados globales
   const [viandero, setViandero] = useState(undefined); //estados globales
-  const [viandasZonal, setViandasZonal] = useState(0); //estados globales
+  const [idZona, setIdZona] = useState(0); //estados globales
   //
   const [localidadProv, setLocalidadProv] = useState({});
   // const [provincia, setProvincia] = useState(undefined);

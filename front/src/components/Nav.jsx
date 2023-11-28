@@ -122,9 +122,9 @@ export default function Nav({ciudad,provincia}) {
           <NavLink to="/"> </NavLink>
         </h1>
 
-        <div className="text-sm border-l-2 text-white ">{fecha}</div>
+        {/* <div className="text-sm border-l-2 text-white ">{fecha}</div> */}
 
-        <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-0">
+        <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-100">
           <NavLink to="/">
             <AddHomeIcon fontSize="large" />
           </NavLink>
