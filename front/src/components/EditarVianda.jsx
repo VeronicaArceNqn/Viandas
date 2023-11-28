@@ -179,7 +179,8 @@ const EditarVianda = () => {
             <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-8">
               <div className="w-full md:w-1/4">
                 <p className="">
-                  Nombre <span className="text-red-500">*</span>
+                  Nombre 
+                  {/* <span className="text-red-500">*</span> */}
                 </p>
               </div>
               <div className="flex-1 flex items-center gap-4">
@@ -197,6 +198,7 @@ const EditarVianda = () => {
                     type="text"
                     className=" w-full py-2 px-4 outline-none placeholder-g rounded-lg bg-secondary-900"
                     placeholder="Nombre de tu vianda?"
+                    readOnly
                   />
                   {errors.nombre && (
                     <div className="flex  shadow-lg rounded-lg mt-1">
@@ -248,7 +250,8 @@ const EditarVianda = () => {
             <div className="flex flex-col-1 md:flex-row md:items-center gap-y-2 mb-8">
               <div className="w-full md:w-1/4">
                 <p>
-                  Tipo <span className="text-red-500">*</span>
+                  Tipo 
+                  {/* <span className="text-red-500">*</span> */}
                 </p>
               </div>
               <div className="flex-1  ">
