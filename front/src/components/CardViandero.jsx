@@ -10,8 +10,8 @@ const CardViandero = ({ vianderoId }) => {
   const { SERVER } = useContext(GlobalContext);
  
   const [viandero, setViandero] = useState();
-  console.log("vianderoId: ", vianderoId)
-  console.log("vianderoServer:", `${SERVER}viandero/${vianderoId}`)
+  //console.log("vianderoId: ", vianderoId)
+  //console.log("vianderoServer:", `${SERVER}viandero/${vianderoId}`)
 
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const CardViandero = ({ vianderoId }) => {
       <div>
         
             {/* <h1 className="text-2xl font-bold mb-8">Recommended project</h1> */}
-            <div className="bg-gray-200 p-4 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
+            <div className="bg-gray-200 p-4 rounded-xl shadow-2xl mb-2 flex flex-col gap-2">
               <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
                 <div className="flex items-center gap-4 p-3 ">
                   <span
@@ -88,12 +88,15 @@ const CardViandero = ({ vianderoId }) => {
                 {/* <h5 className="text-lg font-bold">
                 Descripción
                 </h5> */}
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-left ">
                 {viandero.descripcion}
                 </p>
+                <p className="text-gray-600 text-center mt-4">
+                <span className="text-lg font-bold ">Formas de pago: </span> <span className="text-md text-green-700 uppercase ">{viandero.descripPago}</span> 
+                </p>
               </div>
-              <div className="bg-primary-100/10 bg-indigo-200  flex flex-col md:flex-row items-center justify-between gap-4 py-4 px-4 rounded-lg">
-                <div>
+              <div className="bg-primary-100/10 bg-indigo-200  flex flex-col md:flex-row items-center justify-between py-4 px-8 rounded-lg">
+                <div className="text-gray-600 items-center">
                   <span className="">Email: {viandero.user.email}</span> - 
                   <span className="m-2">Teléfono: {viandero.user.telefono}</span>
                   {/* <span className="text-sm text-gray-500">Descripción: </span> */}
