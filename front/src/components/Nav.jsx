@@ -99,20 +99,16 @@ export default function Nav({ciudad,provincia}) {
     };
     console.log(viandero);
     try {
-      // const res = axios.get(`${SERVER}zonaReparto`);
+      
       const res = axios.post(`${SERVER}viandero`, data);
-      // const res = axios.get(`${SERVER}zonaReparto`);
-      // console.log(user.user);
-
-      // .then((res)=>{
-      // })
-      // setViandero()
+     
       getViandero();
       navigate("/crear-viandas");
     } catch (err) {
       console.log(err.message);
     }
   };
+  {const msj = 1}
 
   return (
     //     <nav>
@@ -135,7 +131,6 @@ export default function Nav({ciudad,provincia}) {
           {/* <NavLink to="/nosotros"> Nosotros</NavLink> */}
           <NavLink to="/"> Todas las viandas</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
-
           {user ? (
             <Menu
               menuButton={
@@ -201,56 +196,7 @@ export default function Nav({ciudad,provincia}) {
               ) : (
                 ""
               )}
-              {/* <MenuItem>
-              <img
-                    src={imgCocinero}
-                    title="Crear viandas"
-                    className="text-2xl ml-8 w-10 cursor-pointer "
-                    onClick={() => {
-                      vistaViandero();
-                    }}
-                  />
-                   <div className="flex flex-col text-sm">
-                    <span className="text-sm"> Viandero </span>
-                    <span className="text-xs text-gray-600">
-                      {user.user.nombre}
-                    </span>
-                  </div>
-              </MenuItem> */}
-              {/* <hr className="my-4 border-gray-500" /> */}
-              {/* <MenuItem className="p-0 hover:bg-transparent">
-                <Link
-                  to="/Perfil"
-                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
-                >
-                  <RiSettings3Line /> Mi perfil
-                </Link>
-              </MenuItem> */}
-              {/* <MenuItem className="p-0 hover:bg-transparent">
-                <Link
-                  to="/AdminCliente"
-                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
-                >
-                  <RiSettings3Line /> Administrar mis pedidos
-                </Link>
-              </MenuItem> */}
-              {/* <MenuItem className="p-0 hover:bg-transparent">
-                <Link
-                  to="/"
-                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
-                >
-                  <RiSettings3Line /> Configuración
-                </Link>
-              </MenuItem> */}
-              {/* <MenuItem className="p-0 hover:bg-transparent">
-                <NavLink
-                  to="/carrito"
-                  onClick={vistaViandero()}
-                  className="rounded-lg transition-colors text-gray-700 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
-                >
-                  <RiLogoutCircleRLine /> Menu de viandas
-                </NavLink>
-              </MenuItem> */}
+             
               <MenuItem className="p-0 hover:bg-transparent">
                 <Link
                   to="/"
@@ -268,6 +214,7 @@ export default function Nav({ciudad,provincia}) {
         {user ? (
           <span className="text-white ">
             <NavLink to="/carrito">
+             
               <Badge badgeContent={listaCompras.length} color="secondary">
                 <RiShoppingCart2Fill
                   onClick={() => {

@@ -137,6 +137,9 @@ class VianderoController extends Controller
         // Para cada viandero, carga los datos del usuario asociado
         foreach ($vianderosFiltrados as $viandero) {
             $viandero->viandas; 
+            foreach ($viandero->viandas as $viand) {
+                $viand->urlFoto = url($viand->urlFoto);
+            }
         }
 
         // Hay vianderos, devuelve los vianderos filtrados en formato JSON

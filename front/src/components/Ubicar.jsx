@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const Ubicar = () => {
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
   const [localidad, setLocalidad] = useState({});
+  const { setLocalidadProv } = useContext(GlobalContext);
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -31,8 +33,9 @@ const Ubicar = () => {
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data.ubicacion);
+    // console.log(data.ubicacion);
     setLocalidad(data.ubicacion);
+    setLocalidadProv(data.ubicacion);
     //   console.log(localidad['municipio']['nombre'])
   };
   //   getLocalidad();

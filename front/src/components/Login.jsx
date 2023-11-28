@@ -41,7 +41,7 @@ export default function Loggin() {
       getViandero();
       // console.log(result)
       Swal.fire("Bienvenido al sistema!");
-      viandero?.lenght > 1 ? navigate("/crearVianda") : navigate("/");
+      viandero?.lenght > 1 ? navigate("/crear-viandas") : navigate("/");
 
       // navigate("/home");
     } catch (err) {
