@@ -37,6 +37,9 @@ Route::put('user/{id}', [UserController::class, 'update']);
 Route::delete('/viandas/{id}', 'App\Http\Controllers\ViandaController@destroy');
 //Route::resource('/viandas', ViandaController::class);
 Route::get('/viandas/filtrar/{id}', 'App\Http\Controllers\ViandaController@filtrarPorTipoVianda');
+Route::get('/viandas/{viandaId}/rating', 'App\Http\Controllers\ViandaController@getRatingUnaVianda');
+
+
 
 Route::get('/tipoVianda', 'App\Http\Controllers\TipoViandaController@index');
 Route::get('/tipoVianda/{tipoViandas}', 'App\Http\Controllers\TipoViandaController@show');
@@ -85,6 +88,7 @@ Route::post('/pedido', 'App\Http\Controllers\PedidoController@store');
 Route::put('/pedido/{id}', 'App\Http\Controllers\PedidoController@update');
 Route::delete('/pedido/{id}', 'App\Http\Controllers\PedidoController@destroy');
 Route::get('/pedido/user/{id}', 'App\Http\Controllers\PedidoController@obtenerPedidosUsuario');
+Route::get('/pedidos-sin-valoracion/{user_id}', 'App\Http\Controllers\PedidoController@getPedidoViandasSinValoracion');
 
 Route::get('/pedidoVianda', 'App\Http\Controllers\PedidoViandaController@index');
 Route::get('/pedidoVianda/{pedidoVianda}', 'App\Http\Controllers\PedidoViandaController@show');
@@ -103,10 +107,15 @@ Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@store'
 Route::put('/estadoVianda/{id}', 'App\Http\Controllers\EstadoViandaController@update');
 Route::get('/estadoVianda/obtenerEstado/{pedidoVianda_id}', 'App\Http\Controllers\EstadoViandaController@obtenerEstadoActual');
 Route::patch('/actualizarCarrito/{id}','App\Http\Controllers\ViandaController@actualizarCarrito');//actualizar stock de viandas
-
-
-
 Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@cambiarEstado');
+
+Route::get('/valoracion', 'App\Http\Controllers\ValoracionController@index');
+Route::get('/valoracion/{valoracion}', 'App\Http\Controllers\ValoracionController@show');
+Route::post('/valoracion', 'App\Http\Controllers\ValoracionController@store');
+Route::put('/valoracion/{id}', 'App\Http\Controllers\ValoracionController@update');
+Route::delete('/valoracion/{id}', 'App\Http\Controllers\ValoracionController@destroy');
+
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);

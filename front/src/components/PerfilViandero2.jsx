@@ -10,7 +10,7 @@ import PerfilViandero2Editar from "./PerfilViandero2Editar";
 
 const PerfilViandero2 = () => {
 
-  const {viandero, user, SERVER } = useContext(GlobalContext);
+  const {viandero, user, SERVER, getViandero} = useContext(GlobalContext);
   const [editing, setEditing] = useState(false);
  
   //const [viandero, setViandero] = useState();
@@ -21,6 +21,24 @@ const PerfilViandero2 = () => {
   const handleEditClick = () => {
     setEditing(true);
   }
+  const handleSaveClick = async () => {
+    // ... Lógica de guardado de datos en el servidor ...
+
+    try {
+      // Realizar la solicitud PUT al servidor para actualizar los datos del viandero
+      await axios.put(`${SERVER}viandero/${formData.id}`, formData);
+      
+      // Obtener los datos actualizados del viandero después de la edición
+      await getViandero();
+
+      // Cerrar la edición
+      setEditing(false);
+    } catch (error) {
+      console.error("Error al realizar la solicitud:", error);
+    }
+  };
+
+
 
   // useEffect(() => {
   //   if (!viandero) {
@@ -117,15 +135,27 @@ const PerfilViandero2 = () => {
                   </span> */}
                 </div>
               </div>
+              {viandero?( 
+                <div>  
+                  {editing ? (
+                    <PerfilViandero2Editar viandero={viandero} setEditing={setEditing} />
+                    ) : (
+                      <button
+                        className="text-white w-52 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 m-5 transition-colors"
+                        onClick={handleEditClick}
+                      >
+                        Editar mi perfil de viandero
+                      </button>
+                    )}           
+                </div>
+                ) : (
+                  ""
+                  )}
               
 
 
-
             </div>
-            <div>  
-                        {editing && <PerfilViandero2Editar usuario={user} setEditing={setEditing} />}
-                        {!editing && <button className="text-white w-52 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 m-5  transition-colors " onClick={handleEditClick}>Editar mi perfil de viandero</button>}
-                </div>
+            
 
             
       </div>

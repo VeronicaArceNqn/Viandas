@@ -107,13 +107,13 @@ return (
            
           <tr>
             <th class="p-1">Vianda</th>
-            <th class="p-3 text-left">Foto</th>
-            <th class="p-3 text-left">Vianda</th>
-            <th class="p-3 text-left">Precio</th>
+            <th class="p-1 text-center">Foto</th>
+            <th class="p-1 text-center">Vianda</th>
+            <th class="p-1 text-center">Precio</th>
 
-            <th class="p-3 text-left">Fecha</th>
-            <th class="p-3 text-left">Viandero</th>
-            <th class="p-3 text-left">Calificar</th>
+            <th class="p-1 text-center">Fecha</th>
+            <th class="p-1 text-center">Viandero</th>
+            <th class="p-1 text-center">Calificar</th>
           </tr>
         </thead>
         <tbody>

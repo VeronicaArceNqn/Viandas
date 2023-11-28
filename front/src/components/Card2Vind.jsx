@@ -72,7 +72,7 @@ const Card2Viand = ({
                 {/* $1599 */}${precio}
               </span>
 
-              {added ? (
+              {/* {added ? (
                 <button
                   className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
                   onClick={agregar}
@@ -86,7 +86,7 @@ const Card2Viand = ({
                 >
                   deshabilitar
                 </button>
-              )}
+              )} */}
               {/* {user ? (
                 //
               ) : ( // aqui el boton 

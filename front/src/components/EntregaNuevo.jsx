@@ -71,21 +71,21 @@ export default function Register() {
      <Nav />
       {/* <!-- HTML --> */}
       {/* <div className=" container mx-auto min-h-screen bg-[#252831] grid grid-cols-1 lg:grid-cols-1"> */}
-      <div className="flex justify-between w-full  bg-gray-600 dark:bg-gray-400  ">
-        <div className="grid grid-cols-1  md:grid-cols-2 gap-8  text-dark">
+      {/* <div className="flex justify-between w-full  bg-gray-600 dark:bg-gray-400  "> */}
+        <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen  bg-gray-100 dark:bg-gray-400 text-black">
       <SidebarCliente />
-        {/* <div className="text-white bg-indigo-300 flex flex-col items-center justify-center gap-8 p-8 max-w-lg mx-auto lg:grid-cols-1 text-center"> */}
+        <div className="lg:col-span-3 xl:col-span-5 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
         
           {/* <!-- Titulo con descripción --> */}
-          <div className="text-white p-3 m-3 border rounded-md">
-            <h1 className="text-2xl font-medium ">Ingresar un lugar de entrega para la vianda</h1>
+          <div className="text-dark p-3 m-3 border border-indigo-700 bg-slate-400 rounded-md">
+            <h1 className="text-2xl font-bold ">Ingresar un lugar de entrega para la vianda</h1>
             
           
 
           {/* <!-- Form --> */}
           <form className="flex flex-col gap-4" onSubmit={onSubmit}>
 
-          <label htmlFor="user_id" className="text-gray-200">
+          <label htmlFor="user_id" className="text-white">
                
               </label>
               <input
@@ -94,14 +94,14 @@ export default function Register() {
                 })}
                 type="number"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"                
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"                
                 defaultValue={user.user.id} 
                 readOnly
                 hidden 
               />
            
             <div>
-              <label htmlFor="calle" className="text-gray-200">
+              <label htmlFor="calle" className="text-white">
                 Calle *
               </label>
               <input
@@ -118,7 +118,7 @@ export default function Register() {
                 })}
                 type="text"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"
                 placeholder="Ingresa la calle"
               />
               {errors.calle && (
@@ -136,7 +136,7 @@ export default function Register() {
               </div>
               
               <div>
-              <label htmlFor="nroCalle" className="text-gray-200">
+              <label htmlFor="nroCalle" className="text-white">
                 Altura de la calle
               </label>
               <input
@@ -149,7 +149,7 @@ export default function Register() {
                 })}
                 type="number"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"
                 placeholder="Ingresa un nro de altura de la calle"
               />
               {errors.nroCalle && (
@@ -167,7 +167,7 @@ export default function Register() {
             </div>
 
               <div>
-              <label htmlFor="nombreLugar" className="text-gray-200">
+              <label htmlFor="nombreLugar" className="text-white">
                 Nombre del Organismo / Institución / Local / Domicilio particular *
               </label>
               <input
@@ -188,7 +188,7 @@ export default function Register() {
                 })}
                 type="text"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"
                 placeholder="Organismo "
               />
               {errors.nombreLugar && (
@@ -206,7 +206,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label htmlFor="provincia" className="text-gray-200">
+              <label htmlFor="provincia" className="text-white">
                 Provincia *
               </label>
               <input
@@ -227,7 +227,7 @@ export default function Register() {
                 })}
                 type="text"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"
                 placeholder="Provincia "
               />
               
@@ -284,7 +284,7 @@ export default function Register() {
             </div>  */}
               
               <div>
-              <label htmlFor="ciudad" className="text-gray-200">
+              <label htmlFor="ciudad" className="text-white">
                 Ciudad *
               </label>
               <input
@@ -305,7 +305,7 @@ export default function Register() {
                 })}
                 type="text"
                 autoComplete="off"
-                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-400"
+                className="w-full py-2 px-4 bg-transparent border rounded-full mt-2 outline-none focus:border-indigo-500"
                 placeholder="Ciudad"
               />
               {errors.ciudad && (
@@ -364,7 +364,7 @@ export default function Register() {
             <div className="mt-4 order-1 md:order-2">
               <button
                 type="submit"
-                className="w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors"
+                className="w-72 bg-indigo-700 p-2 rounded-full text-white text-lg hover:bg-indigo-800 transition-colors"
               >
                 Agregar lugar de entrega
               </button>

@@ -68,6 +68,7 @@ function GlobalContextProvider({ children }) {
     setLocalidadProv,
     localidadProv,
   }; //variable a pasar a los hijos
+
   return (
     <GlobalContext.Provider value={contextValue}>
       {" "}

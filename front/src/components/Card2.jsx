@@ -72,7 +72,7 @@ const Card2 = ({
               // onClick={cambiarImagen}
             />
           </div>
-          <div className="px-5 pb-5">
+          <div className="px-5 pb-3">
             <a href="#">
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
                 {/* Milanesa napolitana con pure */}
@@ -156,7 +156,9 @@ const Card2 = ({
                   )
                 ) : (<img className="w-24" src={imgSinStock}/>)
               ) : null}
+              
             </div>
+            <p className="text-left text-gray-600">Disponibles: {cantidad}</p>
           </div>
         </div>
       </div>

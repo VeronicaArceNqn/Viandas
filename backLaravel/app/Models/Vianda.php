@@ -35,5 +35,30 @@ class Vianda extends Model
     public function pedidoViandas(){
         return $this->hasMany('App\Models\PedidoVianda');
     }
+
+    public function valoraciones()
+    {
+        return $this->hasMany(Valoracion::class, 'vianda_id');
+    }
+
+    public function getRating()
+    {
+        $totalValoraciones = $this->valoraciones()->count();
+        $totalPuntuacion = $this->valoraciones()->sum('puntuacion');
+
+        if ($totalValoraciones > 0) {
+            return $totalPuntuacion / $totalValoraciones;
+        }
+
+        return 0; // En caso de no tener valoraciones aún
+    }
+
+    public function getRatingUnaVianda($viandaId)
+{
+    $vianda = Vianda::findOrFail($viandaId);
+    $rating = $vianda->getRating();
+
+    return response()->json(['rating' => $rating]);
+}
     
 }
