@@ -172,7 +172,7 @@ const NuevaVianda = () => {
                     },
                   })}
                   name="tipoVianda"
-                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-gray-700 appearance-none"
+                  className="w-full py-2 px-4 outline-none rounded-lg bg-secondary-900 text-gray-300 appearance-none"
                 >
                   <option value="1">Tradicional</option>
                   <option value="2">Vegetariana</option>

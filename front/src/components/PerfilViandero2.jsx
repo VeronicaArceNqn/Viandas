@@ -106,9 +106,9 @@ const PerfilViandero2 = () => {
                     className="w-14 h-14 object-cover rounded-full  bg-indigo-100"
                   ><svg class="h-14 w-14 text-purple-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />  <path d="M4 16v2a2 2 0 0 0 2 2h2" />  <path d="M16 4h2a2 2 0 0 1 2 2v2" />  <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />  <line x1="9" y1="10" x2="9.01" y2="10" />  <line x1="15" y1="10" x2="15.01" y2="10" />  <path d="M9.5 15a3.5 3.5 0 0 0 5 0" /></svg></span>
                   <div>
-                    <h3 className="text-2xl font-bold ">{user.user.nombre} {user.user.apellido} <span className=" border border-indigo-800 ml-5 p-2  rounded-full  text-sm text-purple-500">
-                    Ver Viandas
-                  </span></h3>
+                    <h3 className="text-2xl font-bold ">{user.user.nombre} {user.user.apellido} 
+                    
+                  </h3>
                     {/* <p className="text-gray-500">Updated 10m ago</p> */}
                    
                   </div>
@@ -119,8 +119,11 @@ const PerfilViandero2 = () => {
                 {/* <h5 className="text-lg font-bold">
                 Descripción
                 </h5> */}
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-left">
                 {viandero.descripcion}
+                </p>
+                <p className="text-gray-600 text-center mt-4">
+                <span className="text-lg font-bold ">Formas de pago: </span> <span className="text-md text-green-700 uppercase ">{viandero.descripPago}</span> 
                 </p>
               </div>
               <div className="bg-primary-100/10 bg-indigo-200  flex flex-col md:flex-row items-center justify-between gap-4 py-4 px-4 rounded-lg">

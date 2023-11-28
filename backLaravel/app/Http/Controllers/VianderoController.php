@@ -138,6 +138,7 @@ class VianderoController extends Controller
         foreach ($vianderosFiltrados as $viandero) {
 
             $viandero->viandas; 
+            $viandero->user;
             foreach ($viandero->viandas as $viand) {
                 $viand->urlFoto = url($viand->urlFoto);
             }
