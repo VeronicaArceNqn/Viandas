@@ -9,6 +9,8 @@ class Valoracion extends Model
 {
     use HasFactory;
 
+    protected $table = 'valoraciones';
+
     protected $fillable = [
         'pedidoVianda_id',
         'vianda_id',
@@ -19,7 +21,7 @@ class Valoracion extends Model
     // Relación con PedidoVianda
     public function pedidoVianda()
     {
-        return $this->belongsTo(PedidoVianda::class);
+        return $this->belongsTo(PedidoVianda::class, 'pedidoVianda_id');
     }
 
     // Relación con Vianda

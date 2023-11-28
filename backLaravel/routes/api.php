@@ -103,10 +103,15 @@ Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@store'
 Route::put('/estadoVianda/{id}', 'App\Http\Controllers\EstadoViandaController@update');
 Route::get('/estadoVianda/obtenerEstado/{pedidoVianda_id}', 'App\Http\Controllers\EstadoViandaController@obtenerEstadoActual');
 Route::patch('/actualizarCarrito/{id}','App\Http\Controllers\ViandaController@actualizarCarrito');//actualizar stock de viandas
-
-
-
 Route::post('/estadoVianda', 'App\Http\Controllers\EstadoViandaController@cambiarEstado');
+
+Route::get('/valoracion', 'App\Http\Controllers\ValoracionController@index');
+Route::get('/valoracion/{valoracion}', 'App\Http\Controllers\ValoracionController@show');
+Route::post('/valoracion', 'App\Http\Controllers\ValoracionController@store');
+Route::put('/valoracion/{id}', 'App\Http\Controllers\ValoracionController@update');
+Route::delete('/valoracion/{id}', 'App\Http\Controllers\ValoracionController@destroy');
+
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);

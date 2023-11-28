@@ -30,6 +30,10 @@ class PedidoVianda extends Model
     public function lugarEntrega(){
         return $this->belongsTo('App\Models\LugarEntrega', 'lugarEntrega_id');
     }
+
+    public function valoraciones(){
+        return $this->hasOne('App\Models\Valoracion', 'pedidoVianda_id');
+    }
     
      //Relación muchos a muchos
      public function estados(){
