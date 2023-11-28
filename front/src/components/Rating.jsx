@@ -4,15 +4,15 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
 export default function BasicRating() {
-  const [value, setValue] = React.useState(2);
-
+  const [value, setValue] = React.useState(4);
+  
   return (
     <Box
       sx={{
         '& > legend': { mt: 2 },
       }}
     >
-      <Typography component="legend">Valoracion</Typography>
+      <Typography component="legend"></Typography>
       <Rating
       readOnly
         name="read-only"

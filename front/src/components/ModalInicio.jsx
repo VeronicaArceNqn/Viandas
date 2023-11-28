@@ -8,11 +8,10 @@ import Swal from "sweetalert2";
 import { set } from "date-fns";
 
 const ModalInicio = ({ setViandas}) => {
-  const { SERVER, localidadProv, user,setViandasZonal } = useContext(GlobalContext);
+  const { SERVER, localidadProv, user,idZona } = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
   const [zonasReparto, setZreparto] = useState([]);
-  const [selectValido, setSelectValido] = useState(false);
-  const [viandasLocal, setViandasLocal] = useState([]);
+
 
   useEffect(() => {
     const hasShownModal = localStorage.getItem("hasShownModal");
@@ -42,7 +41,6 @@ const ModalInicio = ({ setViandas}) => {
       console.error(error);
     }
   };
-
   useEffect(() => {
     cargaZonasRepartos();
   }, []);
@@ -121,7 +119,7 @@ const ModalInicio = ({ setViandas}) => {
                             Localidad: {localidadProv.departamento?.nombre}
                           </p>
                           <p className="text-xl shadow-lg ">
-                            Antes de elegir tu vianda, te pedimos que eligas la
+                            Antes de elegir tu vianda, te pedimos que elijas la
                             zona mas cercana al lugar donde te encuentres.
                           </p>
                         </div>
