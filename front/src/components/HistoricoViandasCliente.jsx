@@ -73,7 +73,7 @@ const HistoricoViandasCliente = () => {
               <div class="col-span-12">
     <div class="bg-white overflow-auto lg:overflow-visible p-3 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
       <div class="bg-white flex lg:justify-between border-b-2 border-fuchsia-900 pb-1">
-        <h2 class="text-2xl text-gray-500 font-bold">Histórico de viandas consumidas</h2></div>
+        <h2 class="text-2xl text-gray-500 font-bold">Histórico de viandas </h2></div>
 
 
                 
