@@ -215,7 +215,7 @@ export default function Nav({ciudad,provincia}) {
           <span className="text-white ">
             <NavLink to="/carrito">
              
-              <Badge badgeContent={listaCompras.length} color="secondary">
+              <Badge  badgeContent={listaCompras.length} color="secondary">
                 <RiShoppingCart2Fill
                   onClick={() => {
                     console.log("click ico carrito");

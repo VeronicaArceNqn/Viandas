@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Rating from "./Rating";
+import MuiRating from "./MuiRating";
 // import ButtonCard from "./ButtonCard";
 // import img from "../images/vinda1.png";
 
@@ -52,6 +53,7 @@ const Card2 = ({
       {/* <!-- component --> */}
       {/* <!-- This is an example component --> */}
 
+          {/* <MuiRating /> */}
       <div className="max-w-xl mx-1 my-1 w-auto">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700 justify-center">
           {/* validar si viandero existe  para mostrar icono de edicion */}
@@ -77,13 +79,13 @@ const Card2 = ({
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
                 {/* Milanesa napolitana con pure */}
                 {nombre}
-                <hr className="border-t-2 border-blue-300 my-1" />
+                <hr className="border-t-2 border-green-600 my-1" />
               </h3>
               <p>{descripcion}</p>
             </a>
             {/* //Rating */}
             <Rating />
-            
+
            
             
             <div className="flex items-center justify-between">
@@ -97,7 +99,7 @@ const Card2 = ({
                     <Spinner />
                   ) :added ? (
                     <button
-                      className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                      className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-green-400 hover:text-white rounded-full transition-colors"
                       onClick={agregar}
                     >
                       Agregar

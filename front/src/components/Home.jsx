@@ -13,6 +13,7 @@ import { set } from "date-fns";
 import ModalInicio from "./ModalInicio";
 import { vi } from "date-fns/locale";
 
+
 function App() {
 //
 //
@@ -80,11 +81,11 @@ function App() {
           viandas={viandas}
           filterViandas={filterViandas}
         />
-        <div className=" mt-4 grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  min-h-screen bg-gray-400 text-black justify-center">
+        <div className=" mt-4 grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-4 bg-gray-400 text-black justify-center">
           {/* <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5"> */}
           {/* <div className="hidden xl:block"><Card /></div> */}
           {/* <div className="hidden xl:block"></div> */}
-          {viandas.map((vianda) => (
+          {viandasTodas.map((vianda) => (
             <Card2
               key={vianda.id}
               id={vianda.id}
