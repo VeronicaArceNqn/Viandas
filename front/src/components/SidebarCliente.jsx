@@ -36,7 +36,7 @@ const SidebarCliente = () => {
       </span>
       
       <div>
-        <h3 className="font-bold text-indigo-600">Gestion de mis pedidos </h3>
+        <h3 className="font-bold text-indigo-600 text-2xl">Mis pedidos </h3>
         <p className="text-gray-800 text-xs">
          Administracion de mis pedidos
         </p>
@@ -84,7 +84,7 @@ const SidebarCliente = () => {
           </NavLink>
       </li>
     </ul>
-    <hr className="my-8" />
+    <hr className="my-6" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] mb-4">
       Informes
     </h5>
@@ -133,7 +133,7 @@ const SidebarCliente = () => {
           <span>Vianderos por zona</span>
           </NavLink>
       </li>
-      <li>
+      {/* <li>
       <NavLink
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -153,9 +153,9 @@ const SidebarCliente = () => {
           </svg>
           <span className="text-red-600">Calificar</span>
           </NavLink>
-      </li>
+      </li> */}
     </ul>
-    <hr className="my-8" />
+    <hr className="my-6" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] my-4">
       Personal
     </h5>
@@ -200,18 +200,18 @@ const SidebarCliente = () => {
               d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
             />
           </svg>
-          <span>Mis lugares de entrega</span>
+          <span>Lugares de entrega</span>
           </NavLink>
       </li>
     
     </ul>
   {/* </section> */}
   {/* <!-- Bottom --> */}
-  <section>
+  {/* <section> */}
 
     
   
-    <div className="flex items-center justify-center gap-4 pt-4 border-t">
+    {/* <div className="flex items-center justify-center gap-4 pt-4 border-t">
       <img
         src="https://img.freepik.com/fotos-premium/retrato-viejo-mexicano-sombrero_379858-2229.jpg"
         className="w-8 h-8 object-cover rounded-xl ring-4 ring-gray-200"
@@ -222,14 +222,14 @@ const SidebarCliente = () => {
         </h3>
         <p className="text-gray-800 text-xs">Desarrollador fullstack</p>
       </div>
-    </div>
+    </div> */}
     <button
         onClick={() => setShowMenu(!showMenu)}
         className="lg:hidden fixed right-5 top-12 text-4xl bg-primary-900 p-3 rounded-full text-white z-50"
       >
         {showMenu ? <RiCloseFill /> : <RiMore2Fill />}
       </button>
-  </section>
+  {/* </section> */}
   
 </div> 
 

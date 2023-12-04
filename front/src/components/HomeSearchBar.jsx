@@ -43,12 +43,12 @@ console.log(viandasOriginal)
     <>
       <form
         onSubmit={handleSubmitSearch}
-        className="max-w-full mt-8 h-50 md:h-auto w-full items-center justify-center text-center"
+        className="max-w-full mt-5 h-50 md:h-auto w-full items-center justify-center text-center"
       >
-        <div className="inline-flex md:flex-row gap-y-2 flex-col items-center text-gray-300 justify-between p-5 md:pl-5 md:pr-1 shadow md:border-2 h-full md:h-16 w-full py-1 md:rounded-full border-gray-500 dark:border-gray-200">
+        <div className="inline-flex md:flex-row gap-y-2 flex-col items-center text-gray-300 justify-between p-5 md:pl-5 md:pr-1 shadow md:border-2 h-full md:h-16 w-full py-1 md:rounded-full border-gray-500 dark:border-gray-200 ">
           <div className="flex justify-center md:border-0 md:rounded-none w-full md:w-1/2 h-full md:h-[60%] border-gray-900 rounded-full dark:border-white-ghost border md:mr-2 text-black dark:text-black-800">
             <input
-              className="w-1/4 overflow-clip h-full placeholder:text-gray-100 bg-transparent outline-none text-2xl"
+              className="w-1/4 overflow-clip h-full placeholder:text-gray-100 bg-transparent outline-none"
               placeholder={fecha}
               readOnly
             />
@@ -56,7 +56,7 @@ console.log(viandasOriginal)
           <div className="flex justify-center w-full md:w-1/2 h-full md:h-[60%] border-gray-900 rounded-full dark:border-white-ghost border md:border-0 md:rounded-none md:border-l md:mr-2 text-black dark:text-white-ghost">
             <select
               name="tipoVianda"
-              className="w-11/12 overflow-clip h-full placeholder:text-indigo-50  bg-transparent outline-none "
+              className="w-11/12 overflow-clip h-full placeholder:text-indigo-50  bg-gray-300 outline-none "
               placeholder="Tipo de viandas"
             >
               <option value="0">Todos los tipos de viandas</option>

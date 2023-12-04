@@ -74,7 +74,7 @@ function App() {
       {/* <div className="text-3xl bg-black">Hola francisco</div> */}
       <Nav />
 
-      <div className="flex flex-col justify-center w-auto p-1 bg-gray-400 text-black max-h-screem ">
+      <div className="flex flex-col justify-center w-auto bg-gray-400 text-black max-h-screem ">
         <HomeSearchBar
           setViandas={setViandas}
           viandas={viandas}

@@ -82,7 +82,7 @@ const Card2 = ({
               <p>{descripcion}</p>
             </a>
             {/* //Rating */}
-            <Rating />
+            {/* <Rating /> */}
             
            
             
