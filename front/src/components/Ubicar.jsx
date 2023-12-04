@@ -21,7 +21,7 @@ const Ubicar = () => {
         }
       );
     } else {
-      console.error("Geolocation is not supported by this browser.");
+      console.error("Geo:: no soporta  su navegador.");
     }
   }, []);
   useEffect(() => {

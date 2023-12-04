@@ -10,34 +10,36 @@ const HomeSearchBar = ({ setViandas, viandas, filterViandas, viandasZonal }) => 
   const [viandasOriginal, setViandasOriginal] = useState([]);
   const fecha = format(new Date(), "dd-MM-yyyy");
   
-  useEffect(() => {
-    // viandas esta vacio 
-    if (viandasOriginal.length === 0) {
-      // console.log("viandas esta vacio");
-      // console.log(viandas);
-      setViandasOriginal([...viandas]);
-      // console.log(viandasOriginal);
-      return;
-    }
+//   useEffect(() => {
+//     // viandas esta vacio 
+//     if (viandasOriginal.length === 0) {
+//        console.log("viandasOriginal esta vacio");
+     
+//       setViandasOriginal([...viandas]);
+      
+//       return;
+//     }
 
-  }, [viandas]);
-console.log(viandasOriginal)
+//   }, [viandas, viandasOriginal]);
+// console.log(viandasOriginal)
+console.log(viandas)
   
 
   const handleSubmitSearch = async (e) => {
     e.preventDefault();
     const id = e.target.tipoVianda.value;
-    console.log(id);   
+    console.log(id);  
+    filterViandas(id); 
 
-    if (id !== "0") {
-      const viandasFiltradas = viandasOriginal.filter(
-        (vianda) => vianda.tipoVianda_id == id
-      );
-      setViandas([...viandasFiltradas]);
-    } else {
-      // setViandas(viandas);
-      setViandas([...viandasOriginal]);
-    }
+    // if (id !== "0") {
+    //   const viandasFiltradas = viandasOriginal.filter(
+    //     (vianda) => vianda.tipoVianda_id == id
+    //   );
+    //   setViandas([...viandasFiltradas]);
+    // } else {
+    //   // setViandas(viandas);
+    //   setViandas([...viandasOriginal]);
+    // }
 
   };
   return (
