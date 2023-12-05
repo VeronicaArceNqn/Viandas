@@ -55,7 +55,7 @@ const Sidebar = () => {
         placeholder="Buscador"
       />
     </form>*/}
-    <ul className="mt-4 mb-8">
+    <ul className="mt-4 mb-6">
       <li>
         <NavLink 
           to='/crear-viandas'
@@ -102,7 +102,7 @@ const Sidebar = () => {
           <span>Nueva vianda </span>
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink         
           className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
         >
@@ -120,11 +120,11 @@ const Sidebar = () => {
               d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
             />
           </svg>
-          {/* <span>Pedidos programados</span> */}
+          <span>Pedidos programados</span>
         </NavLink>
-      </li>
+      </li> */}
     </ul>
-    <hr className="my-8" />
+    <hr className="my-6" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] mb-4">
       Pedidos
     </h5>
@@ -220,7 +220,7 @@ const Sidebar = () => {
       </ul>
 
     {/* </ul> */}
-
+<hr className="my-6" />
     <h5 className="uppercase font-semibold text-xs text-indigo-600 tracking-[2px] my-4">
       Personal
     </h5>
@@ -292,7 +292,7 @@ const Sidebar = () => {
     </section>
     <section>
 
-    <div className="flex items-center gap-4 pt-4 border-t">
+    {/* <div className="flex items-center gap-4 pt-4 border-t">
       <img
         src="https://img.freepik.com/fotos-premium/retrato-viejo-mexicano-sombrero_379858-2229.jpg"
         className="w-10 h-10 object-cover rounded-xl ring-4 ring-gray-200"
@@ -303,7 +303,7 @@ const Sidebar = () => {
         </h3>
         <p className="text-gray-800 text-xs">Desarrollador fullstack</p>
       </div>
-    </div>
+    </div> */}
     <button
         onClick={() => setShowMenu(!showMenu)}
         className="lg:hidden fixed right-5 top-12 text-4xl bg-primary-900 p-3 rounded-full text-white z-50"

@@ -59,7 +59,7 @@ const ModalInicio = ({ setViandas}) => {
         []
       );
       setViandas(viandasDeLaZona);
-      // localStorage.setItem("viandas", JSON.stringify(viandasDeLaZona));// A.u 
+       localStorage.setItem("viandas", JSON.stringify(viandasDeLaZona));// A.u 
 
       setOpen(false);
       localStorage.setItem("hasShownModal", true); // Guardar en el localStorage que el modal ya se ha mostrado a este usuario
