@@ -58,7 +58,7 @@ console.log(viandas)
           <div className="flex justify-center md:border-0 md:rounded-none w-full md:w-1/2 h-full md:h-[60%] border-gray-900 rounded-full dark:border-white-ghost border md:mr-2 text-black dark:text-black-800">
             <input
 
-              className="w-1/4 overflow-clip h-full placeholder:text-gray-100 bg-transparent outline-none text-2xl "
+              className="w-1/4 overflow-clip h-full placeholder:text-gray-100 bg-transparent outline-none  "
 
               placeholder={fecha}
               readOnly
@@ -81,14 +81,14 @@ console.log(viandas)
             </select>
           </div>
 
-          <div className="flex space-x-12 items-center w-2/3 justify-center h-full ml-2 md:w-52 bg-orange-brand rounded-full">
-            {/* <button
+          {/* <div className="flex space-x-12 items-center w-2/3 justify-center h-full ml-2 md:w-52 bg-orange-brand rounded-full">
+            <button
               type="submit"
               className=" w-11/12 h-full text-white font-bold rounded-full  outline-none bg-gray-600 border-l-2 border-gray-6"
             >
               Buscar
-            </button> */}
-          </div>
+            </button>
+          </div> */}
         </div>
       </form>
     </>

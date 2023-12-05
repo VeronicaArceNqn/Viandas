@@ -33,13 +33,13 @@ const Sidebar = () => {
             </div>
           </div>
 
-        <h3 className="font-bold text-indigo-600 text-2xl">Zona de viandas </h3>
-        </NavLink>
-        <p className="text-gray-800 text-xs">
+        {/* <h3 className="font-bold text-indigo-600 text-2xl">Zona de viandas </h3>
+        </NavLink> */}
+        {/* <p className="text-gray-800 text-xs">
          Administración de viandas
-        </p>
-      </div>
-    </div>
+        </p> */}
+      {/* </div>
+    </div> */}
     {/* <!-- Search --> 
     <form>
       <input

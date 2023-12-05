@@ -119,6 +119,7 @@ export default function Nav({ciudad,provincia}) {
       <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
         <h1 className="md:col-span-2 flex justify-center md:justify-start text-sm cursor-pointer text-md">
         <Ubicar /> 
+        <h1 className="text-3xl font-bold text-gray-900">Viandas <span className='text-yellow-400'>OK</span> </h1>
           <NavLink to="/"> </NavLink>
         </h1>
 
