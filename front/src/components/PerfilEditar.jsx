@@ -93,7 +93,7 @@ const PerfilEditar = ({ setEditing }) => {
         
         <div>
               <label htmlFor="telefono" className="text-gray-100">
-              Telefono
+              Teléfono
               </label>
               <input
                
@@ -146,8 +146,9 @@ const PerfilEditar = ({ setEditing }) => {
                 <option value="NoBinario">No binario</option>
               </select>
             </div>
-        
-        <button className="text-gray-100 w-full bg-indigo-700 p-2 mt-8 rounded-full hover:bg-indigo-800 transition-colors" type="button" onClick={handleSaveClick}>Guardar</button>
+            <div className="w-full flex-1">
+        <button className="text-gray-100 w-72 bg-indigo-700 p-2 mt-8 rounded-full hover:bg-indigo-800 transition-colors" type="button" onClick={handleSaveClick}>Guardar</button>
+        </div>
       </form>
     </div>
   );

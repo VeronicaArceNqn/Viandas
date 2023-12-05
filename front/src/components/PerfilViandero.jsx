@@ -29,14 +29,14 @@ const Perfil = () => {
 
                   <article className=" bg-white grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center md:gap-4 gap-8 overflow-hidden shadow-xl">
 
-                  <section className="col-span-1 flex items-center justify-center p-8 z-20">
+                  <section className="col-span-1 flex items-center justify-center p-8 ">
                       <img
                         src={icoUser}
                         className="mt-8 md:mt-0 w-40 h-40 object-cover rounded-full p-1 bg-indigo-500 ring-8 ring-white"
                       />
                     </section>
                     <section className="md:col-span-1 lg:col-span-2 p-8 ">
-                                    <div className="absolute right-0 top-0 flex items-center gap-2 p-2 font-medium bg-gradient-to-r from-[#f69220] to-[#f9be40] text-white uppercase text-sm">
+                                    <div className=" flex items-center gap-2 p-2 font-medium bg-gradient-to-r from-[#f69220] to-[#f9be40] text-white uppercase text-sm">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

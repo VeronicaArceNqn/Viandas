@@ -59,8 +59,10 @@ const ModalInicio = ({ setViandas }) => {
       );
       console.log("fetchVianderoPorZona",viandasDeLaZona);
       setViandas(viandasDeLaZona);
+
       //guardar en el local storage
       // localStorage.setItem("viandas", JSON.stringify(viandasDeLaZona));// A.u
+
 
       setOpen(false);
       localStorage.setItem("hasShownModal", true); // Guardar en el localStorage que el modal ya se ha mostrado a este usuario

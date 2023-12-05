@@ -79,7 +79,9 @@ const Footer = (props) => {
         <div className=" bg-slate-500 w-full p-8 rounded-b-xl ">
   <div className="grid grid-rows-1 gap-8 md:grid-cols-12 xl:gap-8">
     <div className="md:col-span-12 xl:col-span-4 flex flex-col gap-4">
+
       <h1 className="text-3xl font-bold text-gray-900">Viandas <span className='text-yellow-400'>OK</span> </h1>
+
       <p className="text-gray-200 text-center">
         Proyecto Trabajo Final Viandas.
       </p>
@@ -88,7 +90,7 @@ const Footer = (props) => {
       </p>
     </div>
     <div className="md:col-span-4 xl:col-span-2">
-      <h2 className="font-bold mb-6 uppercase">Menu</h2>
+      <h2 className="font-bold mb-6 uppercase">Menú</h2>
       <nav className="flex flex-col gap-4">
         <a href="#" className="hover:underline">
           Todas las viandas

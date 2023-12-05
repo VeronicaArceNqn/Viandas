@@ -171,12 +171,12 @@ const EditarVianda = () => {
         <Sidebar />
         <div className="lg:col-span-3 xl:col-span-5  p-8 h-[100vh] overflow-y-scroll bg-gray-100 dark:bg-gray-300 text-black">
           {/* <div className="ml-9 text-center w-1/2 "> */}
-          <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg ">
+          <h1 className="text-3xl my-4 font-bold text-indigo-600 shadow-lg ">
             Editar Vianda
           </h1>
 
           <form onSubmit={onSubmit}>
-            <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-8">
+            <div className="flex flex-col gap-y-2 md:flex-row md:items-center mb-6">
               <div className="w-full md:w-1/4">
                 <p className="">
                   Nombre 
@@ -247,7 +247,7 @@ const EditarVianda = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col-1 md:flex-row md:items-center gap-y-2 mb-8">
+            <div className="flex flex-col-1 md:flex-row md:items-center gap-y-2 mb-6">
               <div className="w-full md:w-1/4">
                 <p>
                   Tipo 
@@ -284,7 +284,7 @@ const EditarVianda = () => {
                 )}
               </div>
             </div>
-            <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-8">
+            <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-6">
               <div className="w-full md:w-1/4">
                 <p>
                   Detalle <span className="text-red-500">*</span>
@@ -321,7 +321,7 @@ const EditarVianda = () => {
               </div>
             </div>
 
-            <div className="flex items-center mb-8 ">
+            <div className="flex items-center mb-6 ">
               <div className="w-1/2">
                 <p>Foto de la vianda</p>
               </div>
@@ -385,29 +385,31 @@ const EditarVianda = () => {
                 onChange={(e) => setCantidad(e.target.value)}
                 className="w-20 text-right py-2 text-xl my-4 text-gray-100 px-1 outline-none rounded-lg bg-secondary-900"
                 placeholder="Cantidad de esta vianda"
+
                 max={30}
+
               />
             </div>
-            <hr className="py-3" />
-            <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-8">
+            <hr className="py-2" />
+            <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-4">
               {/* <div className="w-full md:w-1/4"></div> */}
-              <div className="w-full flex-1 ">
+              <div className="w-full flex-1">
                 <button
                   type="submit"
-                  className="mb-8 w-72 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
+                  className="mb-6 w-72 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
                 >
                   Guardar Cambios
                 </button>
               </div>
-              <div className="flex-1 w-full">
-                {/* <button
+              {/* <div className="flex-1 w-full">
+                <button
                   type="button"
                   onClick={eliminarVianda}
                   className="mb-8  bg-red-500 p-2 rounded-full hover:bg-indigo-800 transition-colors text-white"
                 >
                   Eliminar Vianda
-                </button> */}
-              </div>
+                </button>
+              </div> */}
             </div>
           </form>
         </div>

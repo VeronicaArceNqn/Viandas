@@ -110,10 +110,12 @@ const NuevaVianda = () => {
       <div className="grid lg:grid-cols-4 xl:grid-cols-6 min-h-screen bg-gray-100 dark:bg-gray-400 text-black">
       {/* <div className=" flex  w-full p-1  bg-gray-50 dark:bg-gray-400 text-black"> */}
         <Sidebar />
-        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-8 h-[100vh] overflow-y-scroll dark:bg-gray-300">
+        <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-6 h-[100vh]  dark:bg-gray-300">
         {/* <div className="ml-9 text-center w-1/2 "> */}
+
           <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg  ">
             Descripcion de viandas
+
           </h1>
           
           <p className="  py-4 px-6  border-l-4 border-yellow-600 border-b-2 text-black text-lg rounded-lg mb-6 flex items-center gap-3 shadow-lg">
@@ -287,11 +289,11 @@ const NuevaVianda = () => {
               </div>
             </div>
             <div className="flex flex-col md:flex-row md:items-center gap-y-2 mb-8">
-              <div className="w-full md:w-1/4"></div>
-              <div className="flex-1">
+              {/* <div className="w-full md:w-1/4"></div> */}
+              <div className="w-full flex-1">
                 <button
                   type="submit"
-                  className="mb-8 w-full bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
+                  className="mb-6 w-72 bg-indigo-700 p-2 rounded-full hover:bg-indigo-800 transition-colors text-green-400"
                 >
                   Crear Vianda
                 </button>

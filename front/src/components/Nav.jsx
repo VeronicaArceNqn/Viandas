@@ -117,7 +117,7 @@ export default function Nav({ciudad,provincia}) {
 
     <nav className="sticky top-0 z-10">
       <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
-        <h1 className="md:col-span-2 flex justify-center md:justify-start font-bold cursor-pointer text-md">
+        <h1 className="md:col-span-2 flex justify-center md:justify-start text-sm cursor-pointer text-md">
         <Ubicar /> 
           <NavLink to="/"> </NavLink>
         </h1>
@@ -125,9 +125,9 @@ export default function Nav({ciudad,provincia}) {
         {/* <div className="text-sm border-l-2 text-white ">{fecha}</div> */}
 
         <nav className="md:col-span-6 flex items-center gap-4 justify-end sticky top-100">
-          <NavLink to="/">
+          {/* <NavLink to="/">
             <AddHomeIcon fontSize="large" />
-          </NavLink>
+          </NavLink> */}
           {/* <NavLink to="/nosotros"> Nosotros</NavLink> */}
           <NavLink to="/"> Todas las viandas</NavLink>
           {!user ? <NavLink to="/register"> Registro</NavLink> : ""}
@@ -166,7 +166,7 @@ export default function Nav({ciudad,provincia}) {
                   <div className="flex flex-col text-sm">
                     <span className="text-sm"> Mis pedidos</span>
                     <span className="text-xs text-gray-600">
-                      {user.user.nombre}
+                      {/* {user.user.nombre} */}
                     </span>
                   </div>
                 </Link>
@@ -187,7 +187,7 @@ export default function Nav({ciudad,provincia}) {
                     <div className="flex flex-col text-sm">
                       <span className="text-sm"> Zona Viandero </span>
                       <span className="text-xs text-gray-600">
-                        {user.user.nombre}
+                        {/* {user.user.nombre} */}
                       </span>
                     </div>
                   </MenuItem>
