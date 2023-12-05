@@ -113,7 +113,12 @@ const PerfilViandero2Editar = ({viandero, setEditing }) => {
                 
                 <label htmlFor="descripPago" className="text-gray-100">
                 Detallar al cliente las formas de pago
+
+          
+            
+
                 </label>
+
                 
                 <input
                   type="text"

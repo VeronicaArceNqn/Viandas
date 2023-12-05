@@ -9,6 +9,7 @@ import { set } from "date-fns";
 import moment from "moment";
 import Swal from "sweetalert2";
 import { it } from "date-fns/locale";
+import Borrar from "../images/iconos/borrar.png";
 
 const Carrito = () => {
   const [loading, setLoading] = useState(false);
@@ -154,44 +155,48 @@ const Carrito = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col   w-full p-1 bg-gray-50 dark:bg-gray-400 text-black  ">
-        <h1 className="text-2xl shadow-lg"> Carrito</h1>
+      <div className="flex flex-col   w-full p-1 bg-gray-50 dark:bg-gray-400 text-black">
+        <h1 className="text-2xl shadow-lg font-mono py-4 ">Su Carrito</h1>
         {listaCompras.length < 1 ? (
           <p className="text-2xl font-serif shadow-lg">
             No hay elementos en el carrito
           </p>
         ) : (
-          <table className=" mx-32 p-16 border-separate border border-slate-500 flex-col">
+          <table className=" mx-10 p-16  flex-col ">
             <thead>
               <tr>
-                <th scope="col" className="border border-slate-600">
+                <th scope="col" className="">
+                  Vianda
+                </th>
+                <th scope="col" className="b">
                   Nombre
                 </th>
-                <th scope="col" className="border border-slate-600">
+                <th scope="col" className="">
                   Precio
                 </th>
-                <th scope="col" className="border border-slate-600">
+                <th scope="col" className="">
                   Cantidad
                 </th>
-                <th scope="col" className="border border-slate-600">
+                <th scope="col" className="">
                   Lugar de entrega
                 </th>
-                <th scope="col" className="border border-slate-600 ">
+                <th scope="col" className=" ">
                   Fecha de entrega
                 </th>
-                <th scope="col" className="border border-slate-600">
-                  Eliminar
+                <th scope="col" className="">
+                   Borrar
                 </th>
               </tr>
             </thead>
             <tbody>
               {listaCompras.map((item) => (
                 <tr key={item.id}>
-                  <td className="border border-slate-700 ">{item.nombre}</td>
-                  <td className="border border-slate-700 ">${item.precio}</td>
-                  <td className="border border-slate-700 ">
+                  <td className=" border border-y-slate-700 w-28 "> <img src={item.urlFoto} /></td>
+                  <td className="  ">{item.nombre}</td>
+                  <td className="  ">${item.precio}</td>
+                  <td className=" ">
                     <button
-                      className="text-xl"
+                      className="text-xl "
                       onClick={() => {
                         aumentarCompra(item.id);
                       }}
@@ -217,11 +222,11 @@ const Carrito = () => {
                     </label> */}
                     <select
                       name="lugarEntrega"
-                      className="w-full py-2 border  border-slate-700  text-red-600  font-bold bg-gray-400"
+                      className="w-full py-6  text-xl   text-red-600  font-bold bg-gray-400"
                       placeholder="Eliga una direccion"
                       onChange={(e) => handleSelectChange(e, item.id)}
                     >
-                      <option className="text-black" value={""}>
+                      <option className="text-black " value={""}>
                         Su direccion 
                       </option>
                       {lugarEntrega.map((zona) => (
@@ -248,7 +253,7 @@ const Carrito = () => {
                         quitarCompra(item.id);
                       }}
                     >
-                      Eliminar
+                      <img className="w-12" src={Borrar} alt="" /> 
                     </button>
                   </td>
                 </tr>
@@ -264,7 +269,8 @@ const Carrito = () => {
             <tfoot>
               <tr>
                 <th>Total</th>
-                <th>{calcularTotal()}</th>
+              <th></th>
+                <th className="text-left">$ {calcularTotal()}</th>
               </tr>
             </tfoot>
           </table>
@@ -297,14 +303,14 @@ const Carrito = () => {
                 }
               }}
               disabled={listaCompras < 1}
-              className=" py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-green-500 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
+              className=" py-2 px-6 text-center hover:bg-green-700-500 text-white border border-green-600 hover:bg-purple-700  bg-[#d500f9] overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
             >
               {/* Comprar */}
               {loading ? <Spinner /> : "Comprar"}
             </button>
           )}
           <button
-          className=" ml-5 py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border border-green-600 bg-yellow-400 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
+          className=" ml-5 py-2 px-6 text-center hover:bg-green-700-500 text-gray-900 border hover:bg-yellow-500 bg-yellow-400 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white mt-4"
             onClick={() => {
               navigate("-1");
             }}

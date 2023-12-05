@@ -115,7 +115,7 @@ export default function Nav({ciudad,provincia}) {
 
     //       <div className="max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
 
-    <nav className="sticky top-0">
+    <nav className="sticky top-0 z-10">
       <div className=" md:flex-row max-w-full h-54 bg-slate-500  rounded-t-lg p-4 grid md:grid-cols-12 gap-4 items-center justify-center">
         <h1 className="md:col-span-2 flex justify-center md:justify-start text-sm cursor-pointer text-md">
         <Ubicar /> 
@@ -215,7 +215,7 @@ export default function Nav({ciudad,provincia}) {
           <span className="text-white ">
             <NavLink to="/carrito">
              
-              <Badge badgeContent={listaCompras.length} color="secondary">
+              <Badge  badgeContent={listaCompras.length} color="secondary">
                 <RiShoppingCart2Fill
                   onClick={() => {
                     console.log("click ico carrito");

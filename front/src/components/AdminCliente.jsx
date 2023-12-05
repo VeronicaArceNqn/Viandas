@@ -23,7 +23,7 @@ const AdminCliente = () => {
   const fetchPedidoViandaHoy = async () => {
     await axios.get(`${SERVER}pedido/user/${user.user.id}`)
       .then((res) => {
-      console.log("pedidos ", res.data);
+      // console.log("pedidos ", res.data);
        setPedidosViandaHoy(res.data.pedidos);//cargo todas las viandas
     });
   };

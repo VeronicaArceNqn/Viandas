@@ -7,11 +7,10 @@ import { GlobalContext } from "../context/GlobalContext";
 import Swal from "sweetalert2";
 import { set } from "date-fns";
 
-const ModalInicio = ({ setViandas}) => {
-  const { SERVER, localidadProv, user,idZona } = useContext(GlobalContext);
+const ModalInicio = ({ setViandas }) => {
+  const { SERVER, localidadProv, user, idZona } = useContext(GlobalContext);
   const [open, setOpen] = useState(false);
   const [zonasReparto, setZreparto] = useState([]);
-
 
   useEffect(() => {
     const hasShownModal = localStorage.getItem("hasShownModal");
@@ -58,8 +57,12 @@ const ModalInicio = ({ setViandas}) => {
         },
         []
       );
+      console.log("fetchVianderoPorZona",viandasDeLaZona);
       setViandas(viandasDeLaZona);
-       localStorage.setItem("viandas", JSON.stringify(viandasDeLaZona));// A.u 
+
+      //guardar en el local storage
+      // localStorage.setItem("viandas", JSON.stringify(viandasDeLaZona));// A.u
+
 
       setOpen(false);
       localStorage.setItem("hasShownModal", true); // Guardar en el localStorage que el modal ya se ha mostrado a este usuario
@@ -139,7 +142,7 @@ const ModalInicio = ({ setViandas}) => {
                           </option>
                           {zonasReparto.map((zona) => (
                             <option key={zona.id} value={zona.id}>
-                              {zona.nombreZona}
+                              {zona.nombreZona} - {zona.descripZona}
                             </option>
                           ))}
                         </select>

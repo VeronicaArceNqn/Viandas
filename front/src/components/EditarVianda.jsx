@@ -339,6 +339,7 @@ const EditarVianda = () => {
                     <RiEdit2Line />
                   </label>
                   <input
+                  
                     {...register("urlFoto", {
                       required: {
                         value: true,
@@ -384,7 +385,9 @@ const EditarVianda = () => {
                 onChange={(e) => setCantidad(e.target.value)}
                 className="w-20 text-right py-2 text-xl my-4 text-gray-100 px-1 outline-none rounded-lg bg-secondary-900"
                 placeholder="Cantidad de esta vianda"
-                max={50}
+
+                max={30}
+
               />
             </div>
             <hr className="py-2" />

@@ -13,6 +13,7 @@ import { set } from "date-fns";
 import ModalInicio from "./ModalInicio";
 import { vi } from "date-fns/locale";
 
+
 function App() {
 //
 //
@@ -23,8 +24,7 @@ function App() {
   const [originalViandas, setOriginalViandas] = useState([]);
 
   //--carrito
-  const { listaCompras, agregarCompra, disminurCompra, quitarCompra } =
-    useContext(CarritoContext);
+  const { listaCompras, agregarCompra,  quitarCompra } = useContext(CarritoContext);
 
   const handleAgregar = (compra) => {
     agregarCompra(compra);
@@ -32,8 +32,7 @@ function App() {
   const handleQuitar = (id) => {
     quitarCompra(id);
   };
-  // const handleAumentar = (id) => {};
-  // const handleDisminuir = (id) => {};
+
   //--carrito
   const estaEnCarrito = (id) => {
     return listaCompras.some((producto) => producto.id === id);
@@ -42,33 +41,55 @@ function App() {
 
   const fetchViandas = async () => {
     await axios.get(`${SERVER}viandas`).then((res) => {
-      setViandasTodas(res.data);
+      // setViandasTodas(res.data);
+      setViandas(res.data);
     });
   };
+
+  // 
   useEffect(() => {
     //carga las viandas del local storage
-    const storedViandas = localStorage.getItem("viandas");
-    if (storedViandas) {
-      setViandas(JSON.parse(storedViandas));
-    }
+    // const storedViandas = localStorage.getItem("viandas");
+    // if (storedViandas) {
+    //   setViandas(JSON.parse(storedViandas));
+    // }
     //
-    fetchViandas();
+    if(originalViandas.length === 0){
+      console.log("useEffect App")
+
+      fetchViandas();
+    }else{
+      setViandas(originalViandas);
+    }
     // setOriginalViandas(viandas);
   }, []);
 
   const filterViandas = (id) => {
-    //array esta vacio
+      console.log(originalViandas)//vacio
     if (originalViandas.length === 0) {
-      // console.log(originalViandas)
-      setOriginalViandas(viandas); //copio viandas en originalViandas
+      setOriginalViandas(viandas)
+    }else{
       setViandas(originalViandas);
     }
+
+
+    if (id !== "0") {
+        // setViandas(originalViandas);
+      const viandasFiltradas = viandas.filter(
+        (vianda) => vianda.tipoVianda_id == id
+      );
+      setViandas([...viandasFiltradas]);
+    } else {
+      // setViandas(viandas);
+      setViandas([...originalViandas]);
+    }
+
   };
 
   return (
     <>
       {/* {showModal && <ModalInicio setViandas={setViandas} />} */}
-
+ 
       <ModalInicio setViandas={setViandas} />
       {/* <Header /> */}
       {/* <div className="text-3xl bg-black">Hola francisco</div> */}
@@ -80,7 +101,7 @@ function App() {
           viandas={viandas}
           filterViandas={filterViandas}
         />
-        <div className=" mt-4 grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  min-h-screen bg-gray-400 text-black justify-center">
+        <div className=" mt-4 grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-4 bg-gray-400 text-black justify-center">
           {/* <div className="  mt-10 flex flex-wrap justify-evenly duration-300 gap-5 lg:gap-4 w-full lg:px-5"> */}
           {/* <div className="hidden xl:block"><Card /></div> */}
           {/* <div className="hidden xl:block"></div> */}
@@ -93,7 +114,7 @@ function App() {
               img={vianda.urlFoto}
               handleAgregar={() => handleAgregar(vianda)}
               handleQuitar={() => handleQuitar(vianda.id)}
-              // home={home}
+              tipo={vianda.tipoVianda_id}
               cantidad={vianda.cantidad}
               descripcion={vianda.descripcion}
               agregado={estaEnCarrito(vianda.id)}

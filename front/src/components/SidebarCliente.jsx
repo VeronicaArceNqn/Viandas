@@ -17,7 +17,7 @@ const SidebarCliente = () => {
   return (
     <>
     <div
-        className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all z-50 duration-300 ${
+        className={`bg-gray-300 h-full fixed lg:static w-[80%] md:w-[40%] lg:w-full transition-all  duration-300 ${
           showMenu ? "left-0" : "-left-full"
         }`}
       >

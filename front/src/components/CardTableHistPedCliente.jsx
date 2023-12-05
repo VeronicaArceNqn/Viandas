@@ -121,7 +121,7 @@ return (
           <tr class="bg-gray-200 text-black">
             <td class="font-medium capitalize">{item.vianda.id}</td>
             <td class="p-1"><img
-                    src={item.vianda.urlFoto}
+                    src={`http://localhost:8000${item.vianda.urlFoto}`}
                     className="w-14 h-14 object-cover rounded-xl"
                   /></td>
             <td class="p-2">{item.vianda.nombre}</td>

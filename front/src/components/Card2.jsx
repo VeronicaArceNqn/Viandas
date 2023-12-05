@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 // import VerifiedIcon from "@mui/icons-material/Verified";
 // import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Rating from "./Rating";
+import MuiRating from "./MuiRating";
 // import ButtonCard from "./ButtonCard";
-// import img from "../images/vinda1.png";
+import Sintacc from "../images/iconos/sintacc2.png";
 
 import imgSinStock from "../images/iconos/sinStock.png";
 import { GlobalContext } from "../context/GlobalContext";
@@ -27,7 +28,8 @@ const Card2 = ({
   handleQuitar,
   descripcion,
   cantidad,
-  agregado
+  agregado,
+  tipo
 }) => {
   const { user, viandero } = useContext(GlobalContext);
   const { loadingAdd } = useContext(CarritoContext);
@@ -52,16 +54,22 @@ const Card2 = ({
       {/* <!-- component --> */}
       {/* <!-- This is an example component --> */}
 
+          {/* <MuiRating /> */}
       <div className="max-w-xl mx-1 my-1 w-auto">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700 justify-center">
           {/* validar si viandero existe  para mostrar icono de edicion */}
 
           {/*           
           <Link to={`/editar-vianda/${id}`} >
-           <RiEdit2Line/>          
+          <RiEdit2Line/>          
+          
+        </Link> */}
 
-           </Link> */}
-
+            {tipo == 4 ? (
+              <div className="flex justify-end ">
+                <img className="w-10" src={Sintacc} />
+              </div>
+            ) : null}
           <div className="grid justify-items-center p-2 ">
             
             <img
@@ -70,20 +78,24 @@ const Card2 = ({
               // src="viandaNapo.png"
               alt={nombre}
               // onClick={cambiarImagen}
-            />
+              />
           </div>
           <div className="px-5 pb-3">
             <a href="#">
               <h3 className="text-gray-900 font-semibold text-xl tracking-tight dark:text-black">
                 {/* Milanesa napolitana con pure */}
                 {nombre}
-                <hr className="border-t-2 border-blue-300 my-1" />
+                <hr className="border-t-2 border-green-600 my-1" />
               </h3>
               <p>{descripcion}</p>
             </a>
             {/* //Rating */}
+
+
+
             {/* <Rating /> */}
             
+
            
             
             <div className="flex items-center justify-between">
@@ -97,7 +109,7 @@ const Card2 = ({
                     <Spinner />
                   ) :added ? (
                     <button
-                      className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-sky-600 hover:text-white rounded-full transition-colors"
+                      className="border border-sky-600 text-sky-600 py-2 px-4 hover:bg-green-400 hover:text-white rounded-full transition-colors"
                       onClick={agregar}
                     >
                       Agregar
