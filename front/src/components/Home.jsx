@@ -72,7 +72,9 @@ function App() {
       setViandas(originalViandas);
     }
 
+
     if (id !== "0") {
+        setViandas(originalViandas);
       const viandasFiltradas = viandas.filter(
         (vianda) => vianda.tipoVianda_id == id
       );
@@ -112,7 +114,7 @@ function App() {
               img={vianda.urlFoto}
               handleAgregar={() => handleAgregar(vianda)}
               handleQuitar={() => handleQuitar(vianda.id)}
-              // home={home}
+              tipo={vianda.tipoVianda_id}
               cantidad={vianda.cantidad}
               descripcion={vianda.descripcion}
               agregado={estaEnCarrito(vianda.id)}

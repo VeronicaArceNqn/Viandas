@@ -16,14 +16,7 @@ import { Link, NavLink } from "react-router-dom";
 //
 //
 
-const Card2Viand = ({
-  id,
-  nombre,
-  precio,
-  img, 
-  descripcion,
-  cantidad
-}) => {
+const Card2Viand = ({ id, nombre, precio, img, descripcion, cantidad }) => {
   const { user, viandero } = useContext(GlobalContext);
   const [added, setAdded] = useState(true);
 
@@ -42,9 +35,19 @@ const Card2Viand = ({
       {/* <!-- This is an example component --> */}
       <div className="max-w-xl mx-1 my-1 w-54">
         <div className="bg-white shadow-md rounded-lg max-w-sm dark:bg-gray-300 dark:border-gray-700">
-         <p className="bg-purple-300 hover:bg-indigo-400 $ text-indigo-700 font-bold py-2 px-4 rounded transition duration-300">Stock: <span className={`${cantidad > 4? 'text-green-700': 'text-red-700'}   text-xl`}> {cantidad}</span></p> 
+          <p className="bg-purple-200 hover:bg-indigo-400 $ text-indigo-700 font-bold py-2 px-4 rounded transition duration-300">
+            Stock:{" "}
+            <span
+              className={`${
+                cantidad > 4 ? "text-green-700" : "text-red-700"
+              }   text-xl`}
+            >
+              {" "}
+              {cantidad}
+            </span>
+          </p>
           <Link className="" to={`/editar-vianda/${id}`}>
-            <RiEdit2Line  />
+            <RiEdit2Line />
           </Link>
 
           {/* } */}
@@ -68,7 +71,7 @@ const Card2Viand = ({
               <p className="text-sm">{descripcion}</p>
             </a>
             <div className="flex items-center justify-between">
-              <span className="text-3xl font-bold text-gray-900 dark:text-black">
+              <span className="text-3xl font-bold text-red-500 ">
                 {/* $1599 */}${precio}
               </span>
 

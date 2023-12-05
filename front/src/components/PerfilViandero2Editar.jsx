@@ -110,7 +110,7 @@ const PerfilViandero2Editar = ({viandero, setEditing }) => {
                 <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
                 Detallar al cliente las formas de pago
                 </p>
-                <p></p>
+            
                 
                 <input
                   type="text"

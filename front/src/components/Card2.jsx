@@ -4,7 +4,7 @@ import React, { useState, useContext, useEffect } from "react";
 import Rating from "./Rating";
 import MuiRating from "./MuiRating";
 // import ButtonCard from "./ButtonCard";
-// import img from "../images/vinda1.png";
+import Sintacc from "../images/iconos/sintacc2.png";
 
 import imgSinStock from "../images/iconos/sinStock.png";
 import { GlobalContext } from "../context/GlobalContext";
@@ -28,7 +28,8 @@ const Card2 = ({
   handleQuitar,
   descripcion,
   cantidad,
-  agregado
+  agregado,
+  tipo
 }) => {
   const { user, viandero } = useContext(GlobalContext);
   const { loadingAdd } = useContext(CarritoContext);
@@ -60,10 +61,15 @@ const Card2 = ({
 
           {/*           
           <Link to={`/editar-vianda/${id}`} >
-           <RiEdit2Line/>          
+          <RiEdit2Line/>          
+          
+        </Link> */}
 
-           </Link> */}
-
+            {tipo == 4 ? (
+              <div className="flex justify-end ">
+                <img className="w-10" src={Sintacc} />
+              </div>
+            ) : null}
           <div className="grid justify-items-center p-2 ">
             
             <img
@@ -72,7 +78,7 @@ const Card2 = ({
               // src="viandaNapo.png"
               alt={nombre}
               // onClick={cambiarImagen}
-            />
+              />
           </div>
           <div className="px-5 pb-3">
             <a href="#">
