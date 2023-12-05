@@ -91,12 +91,12 @@ const PerfilViandero2 = () => {
         <Sidebar />
         <div className="lg:col-span-3 xl:col-span-5 p-8 h-[100vh] overflow-y-scroll bg-gray-700 dark:bg-gray-400">
           {/* <h1 className="text-2xl font-bold mb-8">Recommended project</h1> */}
-          <div className="bg-gray-200 p-4 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
+          <div className="bg-gray-100 p-4 rounded-xl shadow-2xl mb-2 flex flex-col gap-8">
             <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
               <div className="flex items-center gap-4 p-3 ">
                 <span
                   src=""
-                  className="w-14 h-14 object-cover rounded-full  bg-indigo-100"
+                  className="w-14 h-14 object-cover rounded-full  bg-gray-100"
                 >
                   <svg
                     class="h-14 w-14 text-purple-500"

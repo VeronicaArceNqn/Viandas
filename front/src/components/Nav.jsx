@@ -323,7 +323,7 @@ export default function Nav({ciudad,provincia}) {
                       </option>
                       {zReparto.map((zona) => (
                         <option key={zona.id} value={zona.id}>
-                          {zona.nombreZona}
+                          {zona.nombreZona} - ({zona.descripZona})
                         </option>
                       ))}
                     </select>

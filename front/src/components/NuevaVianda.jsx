@@ -113,12 +113,12 @@ const NuevaVianda = () => {
         <div className="lg:col-span-3 xl:col-span-5 bg-gray-100 p-6 h-[100vh]  dark:bg-gray-300">
         {/* <div className="ml-9 text-center w-1/2 "> */}
 
-          <h1 className="text-3xl my-9 font-bold text-indigo-600 shadow-lg  ">
-            Descripcion de viandas
+          <h1 className="text-3xl my-5 font-bold text-indigo-600 shadow-lg  ">
+            Crear viandas
 
           </h1>
           
-          <p className="  py-4 px-6  border-l-4 border-yellow-600 border-b-2 text-black text-lg rounded-lg mb-6 flex items-center gap-3 shadow-lg">
+          <p className="  py-4 px-6  border-l-4 border-yellow-600 border-b-2 text-gray-800  rounded-lg mb-6 flex items-center gap-3 shadow-lg bg-gray-100">
            Las viandas seran creadas por unica vez. Luego podras editar  precio, imagen y  cantidad en menu "Mis viandas".
           </p>
           

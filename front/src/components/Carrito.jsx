@@ -162,28 +162,28 @@ const Carrito = () => {
             No hay elementos en el carrito
           </p>
         ) : (
-          <table className=" mx-10 p-16  flex-col ">
+          <table className=" mx-10 p-16  flex-col">
             <thead>
               <tr>
-                <th scope="col" className="">
+                <th scope="col" className="border">
                   Vianda
                 </th>
-                <th scope="col" className="b">
+                <th scope="col" className="border">
                   Nombre
                 </th>
-                <th scope="col" className="">
+                <th scope="col" className="border">
                   Precio
                 </th>
-                <th scope="col" className="">
+                <th scope="col" className="border">
                   Cantidad
                 </th>
-                <th scope="col" className="">
+                <th scope="col" className="border">
                   Lugar de entrega
                 </th>
-                <th scope="col" className=" ">
+                <th scope="col" className="border ">
                   Fecha de entrega
                 </th>
-                <th scope="col" className="">
+                <th scope="col" className="border">
                    Borrar
                 </th>
               </tr>
@@ -192,9 +192,9 @@ const Carrito = () => {
               {listaCompras.map((item) => (
                 <tr key={item.id}>
                   <td className=" border border-y-slate-700 w-28 "> <img src={item.urlFoto} /></td>
-                  <td className="  ">{item.nombre}</td>
-                  <td className="  ">${item.precio}</td>
-                  <td className=" ">
+                  <td className="border">{item.nombre}</td>
+                  <td className="border">${item.precio}</td>
+                  <td className="border">
                     <button
                       className="text-xl "
                       onClick={() => {
@@ -216,7 +216,7 @@ const Carrito = () => {
                     </button>
                     {/* {item.cant} */}
                   </td>
-                  <td>
+                  <td className="border">
                     {/* <label htmlFor="zonaEntrega" className="text-gray-200">
                       Zona de entrega
                     </label> */}
@@ -237,7 +237,7 @@ const Carrito = () => {
                       ))}
                     </select>
                   </td>
-                  <td className="border border-slate-700">
+                  <td className="border ">
                     <input
                       name="fechaEntrega"
                       className="bg-gray-400"
@@ -246,7 +246,7 @@ const Carrito = () => {
                       onChange={(e) => handleChangeFecha(e, item.id)}
                     />
                   </td>
-                  <td className="border border-slate-700 ">
+                  <td className="border  ">
                     <button
                       className="relative py-2 px-6 text-center hover:bg-red-500 text-red-600 border border-red-600 overflow-hidden transition-all ease-in-out before:absolute before:bg-red-600 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:-z-10 before:transition-all before:duration-300 before:w-0 before:h-full hover:before:w-full hover:text-white"
                       onClick={() => {
