@@ -192,8 +192,8 @@ const Carrito = () => {
               {listaCompras.map((item) => (
                 <tr key={item.id}>
                   <td className=" border border-y-slate-700 w-28 "> <img src={item.urlFoto} /></td>
-                  <td className=" border-b-2 ">{item.nombre}</td>
-                  <td className="border-b-2  ">${item.precio}</td>
+                  <td className="  ">{item.nombre}</td>
+                  <td className="  ">${item.precio}</td>
                   <td className=" ">
                     <button
                       className="text-xl "
@@ -222,7 +222,7 @@ const Carrito = () => {
                     </label> */}
                     <select
                       name="lugarEntrega"
-                      className="w-full py-6 border-b-2 text-xl   text-red-600  font-bold bg-gray-400"
+                      className="w-full py-6  text-xl   text-red-600  font-bold bg-gray-400"
                       placeholder="Eliga una direccion"
                       onChange={(e) => handleSelectChange(e, item.id)}
                     >

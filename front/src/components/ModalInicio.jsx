@@ -140,7 +140,7 @@ const ModalInicio = ({ setViandas }) => {
                           </option>
                           {zonasReparto.map((zona) => (
                             <option key={zona.id} value={zona.id}>
-                              {zona.nombreZona}
+                              {zona.nombreZona} - {zona.descripZona}
                             </option>
                           ))}
                         </select>

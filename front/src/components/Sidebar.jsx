@@ -22,18 +22,7 @@ const Sidebar = () => {
         <section>
           {/* <!-- Logo --> */}
           <div className="flex flex-col items-center justify-center p-2 gap-2 h-[20vh]">
-            {/* <span
-        src=""
-        className="w-15 h-15 bg-purple-500 p-2 rounded-xl">
-        <svg class="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4H1m3 4H1m3 4H1m3 4H1m6.071.286a3.429 3.429 0 1 1 6.858 0M4 1h12a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Zm9 6.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
-  </svg>
-      </span> */}
-            {/* <div className="logo flex items-center gap-4 mb-8"> */}
-            {/* <img
-        src="vianda.png"
-        className="w-10 h-10 bg-indigo-600 p-2 rounded-xl"
-      /> */}
+      
             <div>
               <NavLink to="/crear-viandas">
                 <h3 className="font-bold text-indigo-600 text-2xl">
@@ -43,7 +32,7 @@ const Sidebar = () => {
               <p className="text-gray-800 text-xs">Administración de viandas</p>
             </div>
           </div>
-        
+
           <ul className="mt-4 mb-8">
             <li>
               <NavLink
@@ -210,9 +199,9 @@ const Sidebar = () => {
             Personal
           </h5>
           <ul>
-            <li>
+            {/* <li>
               <NavLink
-                to="/PerfilViandero"
+                to="/informeViandero"
                 className="flex items-center gap-4 p-2 hover:bg-gray-200 transition-colors rounded-lg"
               >
                 <svg
@@ -231,7 +220,7 @@ const Sidebar = () => {
                 </svg>
                 <span>Informes</span>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 to="/PerfilViandero"

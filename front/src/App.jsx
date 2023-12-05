@@ -28,6 +28,7 @@ import Carrito from "./components/Carrito";
 import PedidosHoyViandero from "./components/PedidosHoyViandero";
 import HistoricoViandasCliente from "./components/HistoricoViandasCliente";
 import Ubicar from "./components/Ubicar";
+import InformesViandero from "./components/InformesViandero";
 
 function App() {
   return (
@@ -43,17 +44,16 @@ function App() {
             <Route path="/crear-viandas" element={<AdminVianda />} />
             <Route path="/entrega" element={<Entrega />} />
             <Route path="/nueva-vianda" element={<NuevaVianda />} />
-
+            {/* <Route path="/informeViandero" element={<InformesViandero />} /> */}
             <Route path="/entregaNuevo" element={<EntregaNuevo />} />
             <Route path="/entregaListar" element={<EntregaListar />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/perfilViandero" element={<PerfilViandero />} />
             <Route path="/PerfilViandero2" element={<PerfilViandero2 />} />
             <Route path="/VianderoPorZona" element={<VianderoPorZona />} />
-            <Route path="/AdminCliente" element={<AdminCliente />} />
+            <Route path="/adminCliente" element={<AdminCliente />} />
             <Route path="/CardEntrega" element={<CardEntrega />} />
             <Route path="/Sidebar" element={<Sidebar />} />
-
             <Route path="/editar-vianda/:id" element={<EditarVianda />} />
             <Route path="/*" element={<Navigate to="/" />} />
             <Route path="/carrito" element={<Carrito />} />

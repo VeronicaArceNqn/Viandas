@@ -65,7 +65,7 @@ function App() {
   }, []);
 
   const filterViandas = (id) => {
-
+      console.log(originalViandas)//vacio
     if (originalViandas.length === 0) {
       setOriginalViandas(viandas)
     }else{
@@ -74,7 +74,7 @@ function App() {
 
 
     if (id !== "0") {
-        setViandas(originalViandas);
+        // setViandas(originalViandas);
       const viandasFiltradas = viandas.filter(
         (vianda) => vianda.tipoVianda_id == id
       );

@@ -339,6 +339,7 @@ const EditarVianda = () => {
                     <RiEdit2Line />
                   </label>
                   <input
+                  
                     {...register("urlFoto", {
                       required: {
                         value: true,
